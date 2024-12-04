@@ -15,7 +15,7 @@ $(document).ready(function () {
             delay: 1,
             disableOnInteraction: false,
         },
-        speed: 5000,
+        speed: 1000,
         freeMode: true,
         freeModeMomentum: true,
     });
