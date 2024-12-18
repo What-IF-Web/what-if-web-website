@@ -23,14 +23,14 @@ $(document).ready(function () {
 
 gsap.registerPlugin(ScrollTrigger)
 gsap.registerPlugin(SplitText) 
-gsap.registerPlugin(ScrollSmoother)
 gsap.registerPlugin(DrawSVGPlugin)
 
 //morphing shape for the projects section
 var morph1 = gsap.to(".shape-1", { duration: 1, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
 var morph2 = gsap.to(".shape-3", { duration: 1, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
-var morph2 = gsap.to(".shape-5", { duration: 1, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
+var morph3 = gsap.to(".shape-5", { duration: 1, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
 
+//cards scroll through animation for the services section
 $(document).ready(function () {
   let cardsArray = [];
 
@@ -68,6 +68,7 @@ $(document).ready(function () {
 
 //splitHeadingIntoLines
 var heroSplit = new SplitText(".home-header_heading", {type: "lines"});
+
 //hero section animation
 var heroLoad = gsap.timeline({scrollTrigger: {trigger: ".section_home-header"}});
 
@@ -91,23 +92,26 @@ projectsLoad.from(".projects_component > a", {y:100, opacity: 0, ease: "power3.o
 projectsLoad.from("#projects-highlight", {color: "EB5B30", duration: 0}, "<").to("#projects-highlight", {scale: 1.1, duration: 0.3, ease: "power2.in"}, "<").to("#projects-highlight", {scale: 1, duration: 0.2, ease: "power2.out"}, "<0.4");
 projectsLoad.from("#projects-line > svg > path", {drawSVG: 0, duration: 0.6, ease: "power3.out"}, "<");
 
+//solutions/services section animation
+var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services"}});
+
+servicesLoad.from(".services_content-top > h2", {y: 200, opacity: 0, duration: 1, ease: "power3.out"});
+servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
+
 //cta form animation
 var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom bottom", markers: true}});
 
-ctaFormLoad.from(".cta_form_input-wrapper", {y: 900, ease: "power3.out"});
-ctaFormLoad.to(".cta_graphic", {y: -300, opacity: 0, ease: "power3.out"}, ">+0.25");
-ctaFormLoad.to(".cta_form", {gap: 400, y: -300}, "<1").from("#cta-form-bottom", {y: 800, ease: "power3.out"}, "<0.25");
+ctaFormLoad.from(".cta_form_input-wrapper", {y: 900, ease: "power3.out"}, 0.1);
+ctaFormLoad.to(".cta_graphic", {y: -300, opacity: 0, ease: "power3.out"}, ">+0.2").to(".cta_heading-wrapper", {y: -80}, "<0.025");
+ctaFormLoad.to(".cta_form", {gap: 400, y: -300}, "<.05").from("#cta-form-bottom", {y: 800, ease: "power3.out"}, "<0.25");
 
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: true}});
 
 processLoad.to("#process-heading", {y: -700, ease: "power3.out"}, .5);
-processLoad.to(".process_critter", {width: "100dvw", height: "50dvw"}, ">");
-processLoad.to(".process_card-wrapper", {x: "-300dvw"}, ">-0.5");
-
-
-
-
+processLoad.to(".process_critter", {width: "100dvw", height: "50dvw", ease: "power4.out"}, ">");
+// processLoad.to(".process_card-wrapper", {x: "-300dvw"}, ">-0.1");
+processLoad.to(".process_card-wrapper > .card", {x: "-100dvw", stagger: 0.25, motionPath: {Path: "#process-path", align: "#process-path"}}, ">-0.1");
 
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials"}});
