@@ -105,9 +105,11 @@ servicesLoad.from(".services_service-list > .services_service-item", {y: 100, op
 //cta form animation
 var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom bottom", markers: true}});
 
-ctaFormLoad.from(".cta_form_input-wrapper", {y: 900, ease: "power3.out"}, 0.1);
-ctaFormLoad.to(".cta_graphic", {y: -300, opacity: 0, ease: "power3.out"}, ">+0.2").to(".cta_heading-wrapper", {y: -80}, "<0.025");
-ctaFormLoad.to(".cta_form", {gap: 400, y: -300}, "<.05").from("#cta-form-bottom", {y: 800, ease: "power3.out"}, "<0.25");
+ctaFormLoad.from(".cta_form_input-wrapper", {y: 1200, ease: "power3.out"}, 1);
+ctaFormLoad.fromTo(".cta_heading-wrapper", {y: 1000}, {y: 0, ease: "power3.out"}, "<");
+ctaFormLoad.to(".cta_graphic", {y: -300, opacity: 0, ease: "power3.out"}, ">");
+ctaFormLoad.to(".cta_heading-wrapper", {y: -80}, "<");
+ctaFormLoad.from("#cta-form-bottom", {y: 800, ease: "power3.out"}, "<0.25");
 
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
@@ -115,7 +117,7 @@ var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", 
 processLoad.to("#process-heading", {y: -700, ease: "power3.out"}, .5);
 processLoad.to(".process_critter", {width: "100dvw", height: "50dvw", ease: "power4.out"}, ">-0.5");
 gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
-processLoad.to(".process_card-wrapper > .card", {stagger: 0.08, motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
+processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
 
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials"}});
