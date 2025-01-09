@@ -28,9 +28,9 @@ gsap.registerPlugin(MotionPathPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
 
 //morphing shape for the projects section
-var morph1 = gsap.to(".shape-1", { duration: 1, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
-var morph2 = gsap.to(".shape-3", { duration: 1, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
-var morph3 = gsap.to(".shape-5", { duration: 1, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
+var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
+var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
+var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
 
 //cards scroll through animation for the services section
 $(document).ready(function () {
@@ -102,21 +102,30 @@ var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", 
 servicesLoad.from(".services_content-top > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
 
-//cta form animation
+//CTA FORM ANIMATION
 var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
 
-ctaFormLoad.from(".cta_form_input-wrapper", {y: 1200, ease: "power3.out"}, 1);
-ctaFormLoad.fromTo(".cta_heading-wrapper", {y: 1000}, {y: 0, ease: "power3.out"}, "<");
-ctaFormLoad.to(".cta_graphic", {y: -300, opacity: 0, ease: "power3.out"}, ">");
-ctaFormLoad.to(".cta_heading-wrapper", {y: -80}, "<");
-ctaFormLoad.from("#cta-form-bottom", {y: 800, ease: "power3.out"}, "<0.25");
+var ctaFormElements = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top bottom", end: "bottom bottom", markers: true}});
+
+ctaFormLoad.from(".cta_form", { gap: 300, ease: "power3.out"}, 0.25);
+ctaFormLoad.to(".cta_form", {gap: 80, ease: "power3.out"}, ">");
+ctaFormLoad.to(".cta_form", {y: -300, ease: "power3.out"}, "<");
+ctaFormLoad.from("#cta-form-bottom", { opacity: "0", y: 800, ease: "power4.out"}, "<");
+ctaFormLoad.to(".cta_graphic", {y: -600, opacity: "0", ease: "power4.out"}, "<");
+
+//CTA FORM ELEMENTS POP IN
+ctaFormElements.to("#cta-star-1", {duration: 0.5, scale: 1.6, ease: "power3.inOut", repeat: 1, yoyo: true}, 0.25);
+ctaFormElements.to("#cta-star-2", {duration: 0.4, scale: 1.4, ease: "power3.inOut", repeat: 1, yoyo: true}, 0.45);
+ctaFormElements.from(".cta_lottie", {duration: 0.75, scale: 0.8, y: 200, ease: "power3.out"}, "<+=0.3");
+ctaFormElements.from(".cta_burst-lines", {drawSVG: 0, duration: 1, ease: "power4.in", repeat: 1, yoyo: true});
+ctaFormElements.from(".cta_scribble", {drawSVG: 0, duration: 1, ease: "power4.in", repeat: 1, yoyo: true});
 
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
 
-var pauseTrigger = gsap.timeline({scrollTrigger: {trigger: ".process_component", start: "top bottom", end: "80% bottom", markers: true, onLeave: (processLoad) => {processLoad.disable();}}});
+// var pauseTrigger = gsap.timeline({scrollTrigger: {trigger: ".process_component", start: "top bottom", end: "80% bottom", markers: true, onLeave: (processLoad) => {processLoad.disable();}}});
 
-processLoad.to("#process-heading", {y: -700, ease: "power3.out"}, .5);
+processLoad.to("#process-heading", {y: -700, opacity: 0, ease: "power3.out"}, .5);
 processLoad.to(".process_critter", {width: "100dvw", height: "50dvw", ease: "power4.out"}, ">-0.5");
 gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
 processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
