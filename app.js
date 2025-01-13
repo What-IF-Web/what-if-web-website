@@ -1,3 +1,39 @@
+
+gsap.registerPlugin(ScrollTrigger)
+gsap.registerPlugin(SplitText) 
+gsap.registerPlugin(DrawSVGPlugin)
+gsap.registerPlugin(MotionPathPlugin)
+gsap.registerPlugin(MorphSVGPlugin)
+
+
+//Case studies page
+
+var csHeaderLoad = gsap.timeline({scrollTrigger: {trigger: ".section_case-studies"}});
+
+csHeaderLoad.from(".case-studies_content-top > h1", {y: 150, duration: .75, opacity: 0, ease: "power3.out"});
+csHeaderLoad.from(".case-studies_content-top > p", {y: 100, duration: 1, opacity: 0, ease: "power3.out"}, "<0.125");
+csHeaderLoad.from(".case-studies_filter-item", {y: 120, duration: 0.75, stagger: 0.125, ease: "power3.out"}, "<0.5");
+csHeaderLoad.from(".reset-link", {y: 120, duration: 1, opacity: 0, ease: "power3.out"}, ">-0.25");
+
+
+const cards = document.querySelectorAll(".case-studies_item");
+
+cards.forEach((card, index) => {
+  gsap.from(card, {
+    scrollTrigger: {
+      trigger: card,
+      start: "top bottom",
+      end: "top 60%",
+      scrub: true,
+      markers: true
+    },
+    scale: 1.1,
+    ease: "power3.out",
+    rotateX: 35,
+    opacity: 0
+  });
+});
+
 /* testimonial slider */
 $(document).ready(function () {
     var testimonialsSlider = new Swiper('#testimonials-slider', {
@@ -31,11 +67,6 @@ $(document).ready(function () {
     });
 });
 
-gsap.registerPlugin(ScrollTrigger)
-gsap.registerPlugin(SplitText) 
-gsap.registerPlugin(DrawSVGPlugin)
-gsap.registerPlugin(MotionPathPlugin)
-gsap.registerPlugin(MorphSVGPlugin)
 
 //morphing shape for the projects section
 var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
