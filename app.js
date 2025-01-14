@@ -25,14 +25,53 @@ cards.forEach((card, index) => {
       start: "top bottom",
       end: "top 60%",
       scrub: true,
-      markers: true
+      markers: false
     },
-    scale: 1.1,
+    scale: 0.8,
+    y: 100,
     ease: "power3.out",
-    rotateX: 35,
+    rotateX: 45,
     opacity: 0
   });
 });
+
+var solutionsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_solutions", start: "top+=100 center"}});
+
+solutionsLoad.from(".solutions_bespoke-item", {y: 100, opacity: 0, duration: 1, ease: "power4.out"}, 0);
+solutionsLoad.from(".solutions_bespoke-item > h2, .solutions_bespoke-item > p", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: "0.05"}, "<0.25");
+solutionsLoad.from(".solutions_service-item", {y: 100, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.35);
+solutionsLoad.from(".solutions_service-item > .solutions_service-icon-wrapper > .solutions_service-icon", {y: 50, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.25);
+
+//contact page stuff
+
+var contactLoad = gsap.timeline({scrollTrigger: {trigger: ".section_contact-header"}});
+
+contactLoad.from(".contact-header_heading-wrapper", {y: 80, opacity: 0, duration: 1, ease: "power3.out"}, 0);
+contactLoad.from(".container-header_card", {y: 50, opacity: 0, duration: 1, ease: "power4.out"}, 0.125);
+contactLoad.from(".contact-header_info-callout", {y: 50, opacity: 0, duration: 1, ease: "power4.out"}, 0.25);
+contactLoad.from(".contact-header_info-callout > h2, .contact-header_info-callout > p", {y: 30, opacity: 0, duration: .75, ease: "power3.out", stagger: "0.125"}, 0.35);
+contactLoad.from(".contact-header_contact", {y: 30, opacity: 0, duration: .75, ease: "power3.out", stagger: 0.125}, 0.625);
+contactLoad.from(".contact-header_form-wrapper", {y: 100, opacity: 0, duration: 1.25, ease: "power4.out"}, 0.75);
+contactLoad.from(".contact-header_form > .form_input-wrapper, .contact-header_form > .button", {y: 10, opacity: 0, duration: 0.5, stagger: 0.125}, "<0.125");
+contactLoad.to(".button.is-form-submit", {duration: 0.25, scale: 1.05, ease: "power3.inOut", repeat: 1, yoyo: true}, ">")
+
+//FAQ section
+
+var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "top+=100 center"}});
+
+faqLoad.from("#faq-heading", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out"}, 0);
+faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "power4.out", stagger: 0.125}, 0.25);
+faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.25}, "<0.5");
+//need to add optional cta bit
+
+//Pricing stuff
+var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
+
+pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
+
+pricingLoad.from(".pricing_card.is-left", {y: 200, opacity: 0, scale: 0.9, rotateZ: -15, duration: 1, ease: "power4.out"}, 0.25);
+pricingLoad.from(".pricing_card.is-centre", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.375);
+pricingLoad.from(".pricing_card.is-right", {y: 200, opacity: 0, scale: 0.9, rotateZ: 15, duration: 1, ease: "power4.out"}, 0.5);
 
 /* testimonial slider */
 $(document).ready(function () {
@@ -67,6 +106,8 @@ $(document).ready(function () {
     });
 });
 
+
+//home page and general stuff
 
 //morphing shape for the projects section
 var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
