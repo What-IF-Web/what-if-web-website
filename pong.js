@@ -1,4 +1,5 @@
-// Pong Test
+// Pong
+let paused = false;
 const canvas = document.getElementById("pongCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -213,8 +214,10 @@ function render() {
 
 // Game loop
 function gameLoop() {
-    update();
-    render();
+    if (!paused) {
+        update();
+        render();
+    }
     requestAnimationFrame(gameLoop);
 }
 
@@ -227,6 +230,19 @@ window.addEventListener("keydown", (e) => {
 window.addEventListener("keyup", (e) => {
     if (e.key === "ArrowUp" || e.key === "ArrowDown") leftPaddle.dy = 0;
 });
+
+window.addEventListener("keydown", (e) => {
+    if (e.key === "P" || e.key === "p" || e.key === "Escape") {
+        paused = !paused;
+    }
+    if (e.key === "ArrowUp") leftPaddle.dy = -paddleSpeed;
+    if (e.key === "ArrowDown") leftPaddle.dy = paddleSpeed;
+});
+
+window.addEventListener("keyup", (e) => {
+    if (!paused && (e.key === "ArrowUp" || e.key === "ArrowDown")) leftPaddle.dy = 0;
+});
+
 
 // Initialize with the default ball
 ballImage.src = ballImages.Tom;
