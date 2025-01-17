@@ -5,41 +5,40 @@ gsap.registerPlugin(DrawSVGPlugin)
 gsap.registerPlugin(MotionPathPlugin)
 gsap.registerPlugin(MorphSVGPlugin)
 
-if (document.querySelector(".section_home-header")) {
-  import('./home.js').then((module) => {
-    module.default(); // Run the home page GSAP code
-  }).catch((err) => {
-    console.error('Error loading the home page script', err);
-  });
-}
-if (document.querySelector(".section_case-study-header")) {
-  import('./case-studies-template.js').then((module) => {
-    module.default(); // Run the case-studies-template page GSAP code
-  }).catch((err) => {
-    console.error('Error loading the case-studies-template page script', err);
-  });
-}
-if (document.querySelector(".section_case-studies")) {
-  import('./case-studies.js').then((module) => {
-    module.default(); // Run the case-studies page GSAP code
-  }).catch((err) => {
-    console.error('Error loading the case-studies page script', err);
-  });
-}
-if (window.location.pathname.includes('contact')) {
-  import('./contact.js').then((module) => {
-    module.default(); // Run the Contact page GSAP code
-  }).catch((err) => {
-    console.error('Error loading the contact page script', err);
-  });
-}
-if (window.location.pathname.includes('pricing')) {
-  import('./pricing.js').then((module) => {
-    module.default(); // Run the pricing page GSAP code
-  }).catch((err) => {
-    console.error('Error loading the pricing page script', err);
-  });
-}
+const url = window.location.pathname
+const homeHeader = document.querySelector(".section_home-header");
+const caseStudy = document.querySelector(".section_case-study-header");
+const caseStudies = document.querySelector(".section_case-studies");
+
+switch (true) {
+  case homeHeader !== null:
+    import('./home.js').then((module) => {
+      module.default();
+    });
+    break;
+  case caseStudy !== null:
+    import('./case-studies-template.js').then((module) => {
+      module.default();
+    });
+    break;
+  case caseStudies !== null:
+    import('./case-studies.js').then((module) => {
+      module.default();
+    });
+    break;
+  case url.includes('pricing'):
+    import('./pricing.js').then((module) => {
+      module.default();
+    });
+    break;
+  case url.includes('contact'):
+    import('./contact.js').then((module) => {
+      module.default();
+    });
+    break;
+  default:
+    console.log('no-script');
+};
 
 /* testimonial slider */
 $(document).ready(function () {

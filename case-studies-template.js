@@ -36,3 +36,23 @@ ctaLoad.from("#ctaScribble", {drawSVG: 0, duration: 1, ease: "power4.in"}, "<");
 ctaLoad.fromTo(".quote-cta_heading-wrapper", {y:100}, {y: 0, duration: 1, ease: "power2.out"}, "<.25");
 ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out", opacity: 0}, "<0.5");
 ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
+
+//related section
+var relatedSplit = new SplitText(".related-case-studies_content-top > h2", {type: "lines"});
+
+var relatedLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-case-studies", start: "top+=100 center"}});
+
+relatedLoad.from(relatedSplit.lines, {y: 50, opacity: 0, ease: "power4.out", duration: 0.875, stagger: 0.125}, 0);
+relatedLoad.from(".related-case-studies_content-top > p", {y: 50, opacity: 0, ease: "power4.out", duration: 0.75}, 0.25);
+relatedLoad.from(".case-studies_item", {y: 100, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.125}, ">-0.5");
+
+//footer animation
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=100 center"}});
+
+var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
+
+footerLoad.from(footerSplit.lines, {scale: 0.8, opacity: 0, y: 100, stagger: 0.125, ease: "power3.out", duration: 1}, 0);
+footerLoad.from(".footer_top-wrapper > p", {scale: 0.8, opacity: 0, y: 100, ease: "power3.out", duration: 1}, "<0.25");
+footerLoad.from(".footer_form_component", {scale: 0.8, opacity: 0, y: 100, ease: "power3.out", duration: 1}, "<0.125");
+footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25}, "<0.5");
+footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
