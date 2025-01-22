@@ -9,6 +9,7 @@ const url = window.location.pathname
 const homeHeader = document.querySelector(".section_home-header");
 const caseStudy = document.querySelector(".section_case-study-header");
 const caseStudies = document.querySelector(".section_case-studies");
+const notFound = document.querySelector(".section_not-found-header");
 
 switch (true) {
   case homeHeader !== null:
@@ -25,6 +26,12 @@ switch (true) {
     import('./case-studies.js').then((module) => {
       module.default();
     });
+    break;
+  case notFound !== null:
+    import('./not-found.js').then((module) => {
+      module.default();
+    });
+    console.log("not-found");
     break;
   case url.includes('pricing'):
     import('./pricing.js').then((module) => {
