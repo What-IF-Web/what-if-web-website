@@ -12,7 +12,7 @@ const notFound = document.querySelector(".section_not-found-header");
 
 
 const scriptURL = new URL(
-  'https://raw.githubusercontent.com/What-IF-Web/what-if-web-website/main/home.js'
+  'https://what-if-web.github.io/what-if-web-website/home.js'
 );
 
 import(scriptURL.href)
