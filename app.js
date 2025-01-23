@@ -28,6 +28,9 @@ const notFoundScriptURL = new URL(
 const pricingScriptURL = new URL(
   "https://what-if-web.github.io/what-if-web-website/pricing.js"
 );
+const roastScriptURL = new URL(
+  "https://what-if-web.github.io/what-if-web-website/roast.js"
+);
 
 switch (true) {
   case homeHeader !== null:
@@ -47,6 +50,8 @@ switch (true) {
     break;
   case url.includes("contact"):
     import(contactScriptURL.href);
+  case url.includes("roast"):
+    import(roastScriptURL.href);
 }
 
 /* testimonial slider */
