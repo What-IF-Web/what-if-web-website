@@ -33,29 +33,11 @@ const pricingScriptURL = new URL(
 
 
 import(homeScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 import(caseStudiesScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 import(caseStudiesTempScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 import(contactScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 import(notFoundScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 import(pricingScriptURL.href)
-  .then((module) => {
-  module.default();
-});
 
 /* testimonial slider */
 $(document).ready(function () {
