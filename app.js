@@ -30,42 +30,37 @@ const pricingScriptURL = new URL(
   'https://what-if-web.github.io/what-if-web-website/home.js'
 );
 
-
+/*
 switch (true) {
   case homeHeader !== null:
     import(homeScriptURL.href)
     .then((module) => {
       module.default();
-    }
-    );
+    });
     break;
   case caseStudy !== null:
   import(caseStudiesTempScriptURL.href)
     .then((module) => {
       module.default();
-    }
-    );
+    });
     break;
   case caseStudies !== null:
     import(caseStudiesScriptURL.href)
     .then((module) => {
       module.default();
-    }
-    );  
+    });  
     break;
   case notFound !== null:
     import(notFoundScriptURL.href)
     .then((module) => {
       module.default();
-    }
-    );
+    });
     break;
   case url.includes("pricing"):
     import(pricingScriptURL.href)
     .then((module) => {
       module.default();
-    }
-    );
+    });
     break;
   case url.includes("contact"):
     import(contactScriptURL.href)
@@ -76,6 +71,34 @@ switch (true) {
     break;
   default:
     console.log("no-script");
+}*/
+
+if (homeHeader !== null) {
+  import(homeScriptURL.href).then((module) => {
+    module.default();
+  });
+} else if (caseStudy !== null) {
+  import(caseStudiesTempScriptURL.href).then((module) => {
+    module.default();
+  });
+} else if (caseStudies !== null) {
+  import(caseStudiesScriptURL.href).then((module) => {
+    module.default();
+  });
+} else if (notFound !== null) {
+  import(notFoundScriptURL.href).then((module) => {
+    module.default();
+  });
+} else if (url.includes("pricing")) {
+  import(pricingScriptURL.href).then((module) => {
+    module.default();
+  });
+} else if (url.includes("contact")) {
+  import(contactScriptURL.href).then((module) => {
+    module.default();
+  });
+} else {
+  console.log("no-script");
 }
 
 /* testimonial slider */
