@@ -4,13 +4,12 @@ gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(MorphSVGPlugin);
 
-/*
 const url = window.location.pathname;
 const homeHeader = document.querySelector(".section_home-header");
 const caseStudy = document.querySelector(".section_case-study-header");
 const caseStudies = document.querySelector(".section_case-studies");
 const notFound = document.querySelector(".section_not-found-header");
-*/
+
 
 const homeScriptURL = new URL(
   'https://what-if-web.github.io/what-if-web-website/home.js'
