@@ -11,17 +11,56 @@ const caseStudies = document.querySelector(".section_case-studies");
 const notFound = document.querySelector(".section_not-found-header");
 
 
-const scriptURL = new URL(
+const homeScriptURL = new URL(
+  'https://what-if-web.github.io/what-if-web-website/home.js'
+);
+const caseStudiesScriptURL = new URL(
+  'https://what-if-web.github.io/what-if-web-website/home.js'
+);
+const caseStudiesTempScriptURL = new URL(
+  'https://what-if-web.github.io/what-if-web-website/home.js'
+);
+const contactScriptURL = new URL(
+  'https://what-if-web.github.io/what-if-web-website/home.js'
+);
+const notFoundScriptURL = new URL(
+  'https://what-if-web.github.io/what-if-web-website/home.js'
+);
+const pricingScriptURL = new URL(
   'https://what-if-web.github.io/what-if-web-website/home.js'
 );
 
-import(scriptURL.href)
+import(homeScriptURL.href)
   .then((module) => {
     module.default();
-  })
-  .catch((error) => {
-    console.error('Error loading the module:', error);
-  });
+  }
+);
+import(caseStudiesScriptURL.href)
+  .then((module) => {
+    module.default();
+  }
+);
+import(caseStudiesTempScriptURL.href)
+  .then((module) => {
+    module.default();
+  }
+);
+import(contactScriptURL.href)
+  .then((module) => {
+    module.default();
+  }
+);
+import(notFoundScriptURL.href)
+  .then((module) => {
+    module.default();
+  }
+);
+import(pricingScriptURL.href)
+  .then((module) => {
+    module.default();
+  }
+);
+
 
 /*switch (true) {
   case homeHeader !== null:
