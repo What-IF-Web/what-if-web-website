@@ -50,9 +50,14 @@ switch (true) {
     break;
   case url.includes("contact"):
     import(contactScriptURL.href);
+    break;
   case url.includes("roast"):
     import(roastScriptURL.href);
-}
+    break;
+  default:
+    console.log("no-script");
+    break;
+};
 
 /* testimonial slider */
 $(document).ready(function () {
