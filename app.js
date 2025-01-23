@@ -10,44 +10,43 @@ const caseStudy = document.querySelector(".section_case-study-header");
 const caseStudies = document.querySelector(".section_case-studies");
 const notFound = document.querySelector(".section_not-found-header");
 
-
 const homeScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/home.js'
+  "https://what-if-web.github.io/what-if-web-website/home.js"
 );
 const caseStudiesScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/case-studies.js'
+  "https://what-if-web.github.io/what-if-web-website/case-studies.js"
 );
 const caseStudiesTempScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/case-studies-template.js'
+  "https://what-if-web.github.io/what-if-web-website/case-studies-template.js"
 );
 const contactScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/contact.js'
+  "https://what-if-web.github.io/what-if-web-website/contact.js"
 );
 const notFoundScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/not-found.js'
+  "https://what-if-web.github.io/what-if-web-website/not-found.js"
 );
 const pricingScriptURL = new URL(
-  'https://what-if-web.github.io/what-if-web-website/pricing.js'
+  "https://what-if-web.github.io/what-if-web-website/pricing.js"
 );
 
 switch (true) {
   case homeHeader !== null:
-    import(homeScriptURL.href)
+    import(homeScriptURL.href);
     break;
   case caseStudy !== null:
-  import(caseStudiesTempScriptURL.href)
+    import(caseStudiesTempScriptURL.href);
     break;
   case caseStudies !== null:
-    import(caseStudiesScriptURL.href)
+    import(caseStudiesScriptURL.href);
     break;
   case notFound !== null:
-    import(notFoundScriptURL.href)
+    import(notFoundScriptURL.href);
     break;
   case url.includes("pricing"):
-    import(pricingScriptURL.href)
+    import(pricingScriptURL.href);
     break;
   case url.includes("contact"):
-    import(contactScriptURL.href)
+    import(contactScriptURL.href);
 }
 
 /* testimonial slider */
