@@ -10,9 +10,18 @@ const caseStudy = document.querySelector(".section_case-study-header");
 const caseStudies = document.querySelector(".section_case-studies");
 const notFound = document.querySelector(".section_not-found-header");
 
-import("./home.js").then((module) => {
-  module.default();
-});
+
+const scriptURL = new URL(
+  'https://raw.githubusercontent.com/What-IF-Web/what-if-web-website/main/home.js'
+);
+
+import(scriptURL.href)
+  .then((module) => {
+    module.default();
+  })
+  .catch((error) => {
+    console.error('Error loading the module:', error);
+  });
 
 /*switch (true) {
   case homeHeader !== null:
