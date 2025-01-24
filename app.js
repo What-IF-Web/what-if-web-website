@@ -99,7 +99,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   let formConfetti = function () {
     setTimeout(function () {
-      console.log("deez nuts");
       confetti({
         particleCount: 150,
         startVelocity: 30,
