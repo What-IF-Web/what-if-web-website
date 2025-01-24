@@ -91,3 +91,48 @@ $(document).ready(function () {
     },
   });
 });
+
+//confetti on form submit
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#email-form");
+  const footerForm = document.querySelector("#footer-form");  
+
+  let formConfetti = function () {
+    setTimeout(function () {
+      console.log("deez nuts");
+      confetti({
+        particleCount: 150,
+        startVelocity: 30,
+        spread: 360,
+        scalar: 3,
+        flat: true,
+        origin: { x: 0.5, y: 0 },
+        shapes: ["square", "diamonds"],
+        colors: [
+          "#A41212",
+          "#FE0D04",
+          "#C36A66",
+          "#008B47",
+          "#FFFF00",
+          "#0074E3",
+          "#FF9CD2",
+          "#3FDCE3",
+          "#FFC25D",
+          "#CDEAF2",
+        ],
+      });
+    }, 1600);
+  };
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      formConfetti();
+    });
+  }
+
+  if (footerForm) {
+    footerForm.addEventListener("submit", function (event) {
+      formConfetti();
+    });
+  }
+});
