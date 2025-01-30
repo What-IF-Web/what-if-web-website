@@ -5,14 +5,6 @@ var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, 
 var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
 var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
 
-var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
-
-pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
-
-pricingLoad.from(".pricing_card.is-left", {y: 200, opacity: 0, scale: 0.9, rotateZ: -15, duration: 1, ease: "power4.out"}, 0.25);
-pricingLoad.from(".pricing_card.is-centre", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.375);
-pricingLoad.from(".pricing_card.is-right", {y: 200, opacity: 0, scale: 0.9, rotateZ: 15, duration: 1, ease: "power4.out"}, 0.5);
-
 //quote CTA animation
 var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "top+=100 center"}});
 
@@ -102,3 +94,24 @@ footerLoad.from(".footer_top-wrapper > p", {scale: 0.8, opacity: 0, y: 100, ease
 footerLoad.from(".footer_form_component", {scale: 0.8, opacity: 0, y: 100, ease: "power3.out", duration: 1}, "<0.125");
 footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25}, "<0.5");
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
+
+let mm = gsap.matchMedia();
+
+// desktop
+mm.add("(min-width: 991px)", () => {
+  var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
+
+  pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
+
+  pricingLoad.from(".pricing_card.is-left", {y: 200, opacity: 0, scale: 0.9, rotateZ: -15, duration: 1, ease: "power4.out"}, 0.25);
+  pricingLoad.from(".pricing_card.is-centre", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.375);
+  pricingLoad.from(".pricing_card.is-right", {y: 200, opacity: 0, scale: 0.9, rotateZ: 15, duration: 1, ease: "power4.out"}, 0.5);
+});
+//mobile
+mm.add("(max-width: 991px)", () => {
+  var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
+
+pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
+
+pricingLoad.from(".pricing_card", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.25);
+});
