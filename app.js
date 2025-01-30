@@ -13,7 +13,8 @@ const notFound = document.querySelector(".section_not-found-header");
 function loadScript(src) {
   const script = document.createElement("script");
   script.type = "module";
-  script.src = src;
+  script.src = `${src}?v=${new Date().getTime()}`; // Cache-busting query parameter
+  script.defer = true;
   document.body.appendChild(script);
 }
 
