@@ -10,54 +10,84 @@ const caseStudy = document.querySelector(".section_case-study-header");
 const caseStudies = document.querySelector(".section_case-studies");
 const notFound = document.querySelector(".section_not-found-header");
 
-const homeScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/home.js"
-);
-const caseStudiesScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/case-studies.js"
-);
-const caseStudiesTempScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/case-studies-template.js"
-);
-const contactScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/contact.js"
-);
-const notFoundScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/not-found.js"
-);
-const pricingScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/pricing.js"
-);
-const roastScriptURL = new URL(
-  "https://what-if-web.github.io/what-if-web-website/roast.js"
-);
+function loadScript(src) {
+  const script = document.createElement("script");
+  script.type = "module";
+  script.src = src;
+  document.body.appendChild(script);
+}
 
-switch (true) {
-  case homeHeader !== null:
-    import(homeScriptURL.href);
-    break;
-  case caseStudy !== null:
-    import(caseStudiesTempScriptURL.href);
-    break;
-  case caseStudies !== null:
-    import(caseStudiesScriptURL.href);
-    break;
-  case notFound !== null:
-    import(notFoundScriptURL.href);
-    break;
-  case url.includes("pricing"):
-    import(pricingScriptURL.href);
-    break;
-  case url.includes("contact"):
-    import(contactScriptURL.href);
-    break;
-  case url.includes("roast"):
-    import(roastScriptURL.href);
-    break;
-  default:
-    console.log("no-script");
-    break;
-};
+// Check for elements or URL paths to load the correct script
+if (document.querySelector(".section_home-header")) {
+  loadScript("https://what-if-web.github.io/what-if-web-website/home.js");
+} else if (document.querySelector(".section_case-study-header")) {
+  loadScript(
+    "https://what-if-web.github.io/what-if-web-website/case-studies-template.js"
+  );
+} else if (document.querySelector(".section_case-studies")) {
+  loadScript(
+    "https://what-if-web.github.io/what-if-web-website/case-studies.js"
+  );
+} else if (document.querySelector(".section_not-found-header")) {
+  loadScript("https://what-if-web.github.io/what-if-web-website/not-found.js");
+} else if (window.location.pathname.includes("pricing")) {
+  loadScript("https://what-if-web.github.io/what-if-web-website/pricing.js");
+} else if (window.location.pathname.includes("contact")) {
+  loadScript("https://what-if-web.github.io/what-if-web-website/contact.js");
+} else if (window.location.pathname.includes("roast")) {
+  loadScript("https://what-if-web.github.io/what-if-web-website/roast.js");
+} else {
+  console.log("No script loaded for this page.");
+}
+
+// const homeScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/home.js"
+// );
+// const caseStudiesScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/case-studies.js"
+// );
+// const caseStudiesTempScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/case-studies-template.js"
+// );
+// const contactScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/contact.js"
+// );
+// const notFoundScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/not-found.js"
+// );
+// const pricingScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/pricing.js"
+// );
+// const roastScriptURL = new URL(
+//   "https://what-if-web.github.io/what-if-web-website/roast.js"
+// );
+
+// switch (true) {
+//   case homeHeader !== null:
+//     import(homeScriptURL.href);
+//     break;
+//   case caseStudy !== null:
+//     import(caseStudiesTempScriptURL.href);
+//     break;
+//   case caseStudies !== null:
+//     import(caseStudiesScriptURL.href);
+//     break;
+//   case notFound !== null:
+//     import(notFoundScriptURL.href);
+//     break;
+//   case url.includes("pricing"):
+//     import(pricingScriptURL.href);
+//     break;
+//   case url.includes("contact"):
+//     import(contactScriptURL.href);
+//     break;
+//   case url.includes("roast"):
+//     import(roastScriptURL.href);
+//     break;
+//   default:
+//     console.log("no-script");
+//     break;
+// };
 
 /* testimonial slider */
 $(document).ready(function () {
@@ -95,7 +125,7 @@ $(document).ready(function () {
 //confetti on form submit
 document.addEventListener("DOMContentLoaded", function () {
   const form = document.querySelector("#email-form");
-  const footerForm = document.querySelector("#footer-form");  
+  const footerForm = document.querySelector("#footer-form");
 
   let formConfetti = function () {
     setTimeout(function () {

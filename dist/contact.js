@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"eCF1U":[function(require,module,exports,__globalThis) {
+})({"bG1Fs":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "138b6a135baa4167";
+module.bundle.HMR_BUNDLE_ID = "4751d1b17c5f2ea4";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -595,153 +595,65 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"igcvL":[function(require,module,exports,__globalThis) {
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(MorphSVGPlugin);
-const url = window.location.pathname;
-const homeHeader = document.querySelector(".section_home-header");
-const caseStudy = document.querySelector(".section_case-study-header");
-const caseStudies = document.querySelector(".section_case-studies");
-const notFound = document.querySelector(".section_not-found-header");
-function loadScript(src) {
-    const script = document.createElement("script");
-    script.type = "module";
-    script.src = src;
-    document.body.appendChild(script);
-}
-// Check for elements or URL paths to load the correct script
-if (document.querySelector(".section_home-header")) loadScript("https://what-if-web.github.io/what-if-web-website/home.js");
-else if (document.querySelector(".section_case-study-header")) loadScript("https://what-if-web.github.io/what-if-web-website/case-studies-template.js");
-else if (document.querySelector(".section_case-studies")) loadScript("https://what-if-web.github.io/what-if-web-website/case-studies.js");
-else if (document.querySelector(".section_not-found-header")) loadScript("https://what-if-web.github.io/what-if-web-website/not-found.js");
-else if (window.location.pathname.includes("pricing")) loadScript("https://what-if-web.github.io/what-if-web-website/pricing.js");
-else if (window.location.pathname.includes("contact")) loadScript("https://what-if-web.github.io/what-if-web-website/contact.js");
-else if (window.location.pathname.includes("roast")) loadScript("https://what-if-web.github.io/what-if-web-website/roast.js");
-else console.log("No script loaded for this page.");
-// const homeScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/home.js"
-// );
-// const caseStudiesScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/case-studies.js"
-// );
-// const caseStudiesTempScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/case-studies-template.js"
-// );
-// const contactScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/contact.js"
-// );
-// const notFoundScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/not-found.js"
-// );
-// const pricingScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/pricing.js"
-// );
-// const roastScriptURL = new URL(
-//   "https://what-if-web.github.io/what-if-web-website/roast.js"
-// );
-// switch (true) {
-//   case homeHeader !== null:
-//     import(homeScriptURL.href);
-//     break;
-//   case caseStudy !== null:
-//     import(caseStudiesTempScriptURL.href);
-//     break;
-//   case caseStudies !== null:
-//     import(caseStudiesScriptURL.href);
-//     break;
-//   case notFound !== null:
-//     import(notFoundScriptURL.href);
-//     break;
-//   case url.includes("pricing"):
-//     import(pricingScriptURL.href);
-//     break;
-//   case url.includes("contact"):
-//     import(contactScriptURL.href);
-//     break;
-//   case url.includes("roast"):
-//     import(roastScriptURL.href);
-//     break;
-//   default:
-//     console.log("no-script");
-//     break;
-// };
-/* testimonial slider */ $(document).ready(function() {
-    var testimonialsSlider = new Swiper("#testimonials-slider", {
-        loop: true,
-        slidesPerView: 1,
-        centeredSlides: true,
-        spaceBetween: 8,
-        draggable: true,
-        grabCursor: true,
-        pagination: {
-            el: ".swiper_pagination",
-            clickable: true
-        },
-        autoplay: {
-            delay: 2200,
-            disableOnInteraction: false
-        },
-        speed: 600,
-        breakpoints: {
-            478: {
-                slidesPerView: 2
-            },
-            991: {
-                slidesPerView: 3,
-                spaceBetween: 16
-            },
-            1366: {
-                slidesPerView: 4
-            }
-        }
-    });
+},{}],"eTyhu":[function(require,module,exports,__globalThis) {
+//contact page stuff
+var contactLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_contact-header"
+    }
 });
-//confetti on form submit
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#email-form");
-    const footerForm = document.querySelector("#footer-form");
-    let formConfetti = function() {
-        setTimeout(function() {
-            confetti({
-                particleCount: 150,
-                startVelocity: 30,
-                spread: 360,
-                scalar: 3,
-                flat: true,
-                origin: {
-                    x: 0.5,
-                    y: 0
-                },
-                shapes: [
-                    "square",
-                    "diamonds"
-                ],
-                colors: [
-                    "#A41212",
-                    "#FE0D04",
-                    "#C36A66",
-                    "#008B47",
-                    "#FFFF00",
-                    "#0074E3",
-                    "#FF9CD2",
-                    "#3FDCE3",
-                    "#FFC25D",
-                    "#CDEAF2"
-                ]
-            });
-        }, 1600);
-    };
-    if (form) form.addEventListener("submit", function(event) {
-        formConfetti();
-    });
-    if (footerForm) footerForm.addEventListener("submit", function(event) {
-        formConfetti();
-    });
-});
+contactLoad.from(".contact-header_heading-wrapper", {
+    y: 80,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out"
+}, 0);
+contactLoad.from(".container-header_card", {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+}, 0.125);
+contactLoad.from(".contact-header_info-callout", {
+    y: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+}, 0.25);
+contactLoad.from(".contact-header_info-callout > h2, .contact-header_info-callout > p", {
+    y: 30,
+    opacity: 0,
+    duration: 0.75,
+    ease: "power3.out",
+    stagger: "0.125"
+}, 0.35);
+contactLoad.from(".contact-header_contact", {
+    y: 30,
+    opacity: 0,
+    duration: 0.75,
+    ease: "power3.out",
+    stagger: 0.125
+}, 0.625);
+contactLoad.from(".contact-header_form-wrapper", {
+    y: 100,
+    opacity: 0,
+    duration: 1.25,
+    ease: "power4.out"
+}, 0.75);
+contactLoad.from(".contact-header_form > .form_input-wrapper, .contact-header_form > .button", {
+    y: 10,
+    opacity: 0,
+    duration: 0.5,
+    stagger: 0.125
+}, "<0.125");
+contactLoad.to(".button.is-form-submit", {
+    duration: 0.25,
+    scale: 1.05,
+    ease: "power3.inOut",
+    repeat: 1,
+    yoyo: true
+}, ">");
 
-},{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
+},{}]},["bG1Fs","eTyhu"], "eTyhu", "parcelRequire94c2")
 
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=contact.js.map
