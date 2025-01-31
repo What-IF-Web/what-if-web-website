@@ -165,6 +165,7 @@ mm.add("(min-width: 991px)", () => {
   ctaFormLoad.to(".cta_form", {y: -300, ease: "power3.out"}, "<");
   ctaFormLoad.from("#cta-form-bottom", { opacity: "0", y: 700, ease: "power4.out"}, "<-0.125");
   ctaFormLoad.to(".cta_graphic", {y: -600, opacity: "0", ease: "power4.out"}, "<");
+  ctaFormLoad.to(".cta_form", {opacity: 0, duration: 0.5, ease: "power4.out"}, ">-0.1");
 
 });
 //mobile
