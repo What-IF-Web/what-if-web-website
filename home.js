@@ -157,7 +157,7 @@ mm.add("(min-width: 991px)", () => {
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
 
-  var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
+  var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom+=25% center", markers: false}});
   
   ctaFormLoad.from(".cta_graphic", {scale: 0.5, ease: "power3.out"}, 0);
   ctaFormLoad.from(".cta_form", { gap: 300, ease: "power3.out"}, 0.25);
@@ -165,7 +165,7 @@ mm.add("(min-width: 991px)", () => {
   ctaFormLoad.to(".cta_form", {y: -300, ease: "power3.out"}, "<");
   ctaFormLoad.from("#cta-form-bottom", { opacity: "0", y: 700, ease: "power4.out"}, "<-0.125");
   ctaFormLoad.to(".cta_graphic", {y: -600, opacity: "0", ease: "power4.out"}, "<");
-  ctaFormLoad.to(".cta_form", {opacity: 0, duration: 0.5, ease: "power4.out"}, ">-0.1");
+  ctaFormLoad.to(".cta_form", {opacity: 0, duration: 0.5, ease: "power4.out"}, ">");
 
 });
 //mobile
