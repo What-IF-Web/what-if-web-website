@@ -1,9 +1,19 @@
 //home page and general stuff
 
 //morphing shape for the projects section
-var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
-var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
-var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
+// var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
+// var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
+// var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
+
+var morphPath = gsap.timeline({repeat: -1});
+
+morphPath.to(".path1", { duration: 1, morphSVG:".path2", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path3", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path4", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path5", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path6", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path7", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:".path1", duration: 2})
 
 //cards scroll through animation for the services section
 $(document).ready(function () {
@@ -165,7 +175,7 @@ mm.add("(min-width: 991px)", () => {
   ctaFormLoad.to(".cta_form", {y: -300, ease: "power3.out"}, "<");
   ctaFormLoad.from("#cta-form-bottom", { opacity: "0", y: 700, ease: "power4.out"}, "<-0.125");
   ctaFormLoad.to(".cta_graphic", {y: -600, opacity: "0", ease: "power4.out"}, "<");
-  ctaFormLoad.to(".cta_form", {opacity: 0, duration: 0.5, ease: "power4.out"}, ">");
+  ctaFormLoad.to(".cta_form", {opacity: 0, y: -500, ease: "power4.out"}, ">-0.5");
 
 });
 //mobile
