@@ -79,6 +79,7 @@ projectsLoad.from(".projects_component > a", {y:100, opacity: 0, ease: "power3.o
 projectsLoad.from("#projects-highlight", {color: "EB5B30", duration: 0}, "<").to("#projects-highlight", {scale: 1.1, duration: 0.3, ease: "power2.in"}, "<").to("#projects-highlight", {scale: 1, duration: 0.2, ease: "power2.out"}, "<0.4");
 projectsLoad.from("#projects-line > svg > path", {drawSVG: '0% 0%', duration: 0.6, ease: "power3.out"}, "<");
 projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 0.6, ease: "power3.out"}, ">-0.3");
+projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">");
 
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
