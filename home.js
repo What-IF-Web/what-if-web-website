@@ -79,7 +79,7 @@ projectsLoad.from(".projects_component > a", {y:100, opacity: 0, ease: "power3.o
 projectsLoad.from("#projects-highlight", {color: "EB5B30", duration: 0}, "<").to("#projects-highlight", {scale: 1.1, duration: 0.3, ease: "power2.in"}, "<").to("#projects-highlight", {scale: 1, duration: 0.2, ease: "power2.out"}, "<0.4");
 projectsLoad.from("#projects-line > svg > path", {drawSVG: '0% 0%', duration: 0.6, ease: "power3.out"}, "<");
 projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 0.6, ease: "power3.out"}, ">-0.3");
-projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">");
+projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
 
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
@@ -94,10 +94,16 @@ var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start:
 ctaFormTrigger.to("#cta-star-1", {duration: 0.4, scale: 1.6, ease: "power3.inOut", repeat: 1, yoyo: true}, 0);
 ctaFormTrigger.to("#cta-star-2", {duration: 0.3, scale: 1.4, ease: "power3.inOut", repeat: 1, yoyo: true}, 0.25);
 ctaFormTrigger.from(".cta_lottie", {duration: 0.75, scale: 0.8, y: 200, ease: "power3.out"}, "<");
-ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: 0, opacity: 0, scale: 0.9, duration: .25, ease: "power2.in"}, "<.25");
+// ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: 0, opacity: 0, scale: 0.9, duration: .25, ease: "power2.in"}, "<.25");
 ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
 ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");
-ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: 0, duration: 0.75, ease: "power4.in"}, "<0.125");
+// ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: 0, duration: 0.75, ease: "power4.in"}, "<0.125");
+ctaFormTrigger.from("cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaFormTrigger.to("cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaFormTrigger.to("cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.02");
+ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaFormTrigger.to(".cta_scribble > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02");
 
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
@@ -134,7 +140,9 @@ ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"
 
 ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, 1);
 ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
-ctaLoad.from("#ctaScribble", {drawSVG: 0, duration: 1, ease: "power4.in"}, "<");
+ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
 
 //content
 ctaLoad.fromTo(".quote-cta_heading-wrapper", {y:100}, {y: 0, duration: 1, ease: "power2.out"}, "<.25");
