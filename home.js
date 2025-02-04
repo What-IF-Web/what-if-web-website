@@ -98,12 +98,12 @@ ctaFormTrigger.from(".cta_lottie", {duration: 0.75, scale: 0.8, y: 200, ease: "p
 ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
 ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");
 // ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: 0, duration: 0.75, ease: "power4.in"}, "<0.125");
-ctaFormTrigger.from("cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
-ctaFormTrigger.to("cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaFormTrigger.to("cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.02");
+ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaFormTrigger.to(".cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaFormTrigger.to(".cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.02");
 ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
 ctaFormTrigger.to(".cta_scribble > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02");
+ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02"); 
 
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
