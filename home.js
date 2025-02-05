@@ -87,27 +87,10 @@ var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", 
 servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
 
-//CTA FORM ANIMATION
-var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center"}});
-
-//CTA FORM ELEMENTS POP IN
-ctaFormTrigger.to("#cta-star-1", {duration: 0.4, scale: 1.6, ease: "power3.inOut", repeat: 1, yoyo: true}, 0);
-ctaFormTrigger.to("#cta-star-2", {duration: 0.3, scale: 1.4, ease: "power3.inOut", repeat: 1, yoyo: true}, 0.25);
-ctaFormTrigger.from(".cta_lottie", {duration: 0.75, scale: 0.8, y: 200, ease: "power3.out"}, "<");
-// ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: 0, opacity: 0, scale: 0.9, duration: .25, ease: "power2.in"}, "<.25");
-ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
-ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");
-// ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: 0, duration: 0.75, ease: "power4.in"}, "<0.125");
-ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
-ctaFormTrigger.to(".cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaFormTrigger.to(".cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.05");
-ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<+0.125");
-ctaFormTrigger.to(".cta_scribble > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02"); 
-
+/*
 //process section animation
 var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top bottom", end: "bottom bottom", markers: false}});
-
+*/
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "top+=100 center"}});
 
@@ -166,14 +149,14 @@ footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: 
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
 
 let mm = gsap.matchMedia();
-
+/*
 // desktop
 mm.add("(min-width: 991px)", () => {
 
   processLoad.fromTo("#process-heading", {lineHeight: "2"}, {lineHeight: "0.79"}, 0);
   processLoad.to("#process-heading", {y: -700, opacity: 0, ease: "power3.out"}, .5);
   processLoad.fromTo("#process-heading", {lineHeight: "0.79"}, {lineHeight: "1.5"}, "<");
-  processLoad.to(".process_critter", {width: "100dvw", height: "50dvw", ease: "power4.out"}, ">-0.5");
+  processLoad.to(".process_critter", {width: "100dvw", height: "35dvw", ease: "power4.out"}, ">-0.5");
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
 
@@ -195,4 +178,4 @@ mm.add("(max-width: 991px)", () => {
   processLoad.to(".process_critter", {y: -200, opacity: 0, ease: "power3.out"}, 1.2);
   processLoad.to(".process_card-container", {x: "-300rem", ease: "none", duration: 2}, ">-0.3");
 
-});
+});*/
