@@ -21,7 +21,7 @@ cards.forEach((card, index) => {
     scrollTrigger: {
       trigger: card,
       start: "top bottom",
-      end: "top 60%",
+      end: "top 10rem",
       scrub: true,
       markers: false
     },

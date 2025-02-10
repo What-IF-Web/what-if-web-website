@@ -13,7 +13,9 @@ ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"
 
 ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, 1);
 ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
-ctaLoad.from("#ctaScribble", {drawSVG: 0, duration: 1, ease: "power4.in"}, "<");
+ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
 
 //content
 ctaLoad.fromTo(".quote-cta_heading-wrapper", {y:100}, {y: 0, duration: 1, ease: "power2.out"}, "<.25");
@@ -30,7 +32,9 @@ projectsLoad.from(".projects_content > .projects_item > .projects_card", {durati
 projectsLoad.from(".projects_component > a", {y:100, opacity: 0, ease: "power3.out"}, "<0.25");
 
 projectsLoad.from("#projects-highlight", {color: "EB5B30", duration: 0}, "<").to("#projects-highlight", {scale: 1.1, duration: 0.3, ease: "power2.in"}, "<").to("#projects-highlight", {scale: 1, duration: 0.2, ease: "power2.out"}, "<0.4");
-projectsLoad.from("#projects-line > svg > path", {drawSVG: 0, duration: 0.6, ease: "power3.out"}, "<");
+projectsLoad.from("#projects-line > svg > path", {drawSVG: '0% 0%', duration: 0.6, ease: "power3.out"}, "<");
+projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 0.6, ease: "power3.out"}, ">-0.3");
+projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
 
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
