@@ -1,10 +1,5 @@
 //home page and general stuff
 
-//morphing shape for the projects section
-// var morph1 = gsap.to(".shape-1", { duration: 3, morphSVG:".shape-2", repeat:-1, yoyo:true, repeatDelay:0})
-// var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, yoyo:true, repeatDelay:0})
-// var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
-
 var morphPath = gsap.timeline({repeat: -1});
 
 morphPath.to(".path1", { duration: 1, morphSVG:".path2", duration: 2})
@@ -84,6 +79,9 @@ projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.0
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
 
+//pinned service element
+var servicesPinTrigger = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top top", end: "bottom bottom", scrub: true, pin: ".services_content-top-wrapper", pinSpacing: false}});
+
 servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
 
@@ -145,28 +143,47 @@ footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: 
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
 
 let mm = gsap.matchMedia();
-/*
+
 // desktop
 mm.add("(min-width: 991px)", () => {
+  //cta form + process animation starts here 
+  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center", markers: true}});
+  var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".cta_form", pinSpacing: false}});
+  //contents fade in
+  ctaFormLoad.from(".cta_heading-span", {y: 200, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, 0);
+  ctaFormLoad.from(".cta_form_input-wrapper", {y: 300, opacity: 0, duration: 1, ease: "power3.out"}, "<");
+  ctaFormLoad.from("#cta-form-bottom", {y: 400, opacity: 0, duration: 1, ease: "power3.out"}, "<");
+  //form field wobble or something
+  // ctaFormLoad.to("", {}, ">+0.25");
+  //contents fade out
+  ctaFormLoad.to(".cta_heading-span", {y: -400, stagger: 0.05, scale: 0.95, opacity: 0, duration: 1, ease: "power3.out"}, ">+0.25");
+  ctaFormLoad.to(".cta_form_input-wrapper", {y: -300, opacity: 0, duration: 1, ease: "power3.out"}, "<+.05");
+  ctaFormLoad.to("#cta-form-bottom", {y: -200, opacity: 0, duration: 1, ease: "power3.out"}, "<");
 
-  processLoad.fromTo("#process-heading", {lineHeight: "2"}, {lineHeight: "0.79"}, 0);
-  processLoad.to("#process-heading", {y: -700, opacity: 0, ease: "power3.out"}, .5);
-  processLoad.fromTo("#process-heading", {lineHeight: "0.79"}, {lineHeight: "1.5"}, "<");
-  processLoad.to(".process_critter", {width: "100dvw", height: "35dvw", ease: "power4.out"}, ">-0.5");
+  ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
+  ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");
+  ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+  ctaFormTrigger.to(".cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+  ctaFormTrigger.to(".cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.05");
+  ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<+0.125");
+  ctaFormTrigger.to(".cta_scribble > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+  ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02");
+
+  //process section animation
+  var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".process_content-top"}});
+  //contents fade in
+  processLoad.from(".process_heading-span", {y: 200, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, 0);
+  processLoad.from(".process_critter-wrapper", {y: 300, scale: 0.9, opacity: 0, duration: 1, ease: "power3.out"}, "<");
+  //contents fade out
+  processLoad.to(".process_heading-span", {y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, ">+.05");
+  processLoad.to(".process_critter-wrapper", {y: -200, duration: 1, ease: "power3.out"}, "<+0.15");
+  //critter grows
+  processLoad.to(".process_critter", {width: "100dvw", y: 200, height: "50dvw", ease: "power4.out"}, ">+0.5");
+  //cards path animation
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
-
-  var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top bottom", end: "bottom+=25% center", markers: false}});
-  
-  ctaFormLoad.from(".cta_graphic", {scale: 0.5, ease: "power3.out"}, 0);
-  ctaFormLoad.from(".cta_form", { gap: 300, ease: "power3.out"}, 0.25);
-  ctaFormLoad.to(".cta_form", {gap: 80, ease: "power3.out"}, ">");
-  ctaFormLoad.to(".cta_form", {y: -300, ease: "power3.out"}, "<");
-  ctaFormLoad.from("#cta-form-bottom", { opacity: "0", y: 700, ease: "power4.out"}, "<-0.125");
-  ctaFormLoad.to(".cta_graphic", {y: -600, opacity: "0", ease: "power4.out"}, "<");
-  ctaFormLoad.to(".cta_form", {opacity: 0, y: -500, ease: "power4.out"}, ">-0.5");
-
-});
+  //process + cta ends here
+  });
 //mobile
 mm.add("(max-width: 991px)", () => {
 
@@ -174,4 +191,4 @@ mm.add("(max-width: 991px)", () => {
   processLoad.to(".process_critter", {y: -200, opacity: 0, ease: "power3.out"}, 1.2);
   processLoad.to(".process_card-container", {x: "-300rem", ease: "none", duration: 2}, ">-0.3");
 
-});*/
+});
