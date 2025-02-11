@@ -16,8 +16,10 @@ solutionsLoad.from(".solutions_service-item > .solutions_service-icon-wrapper > 
 
 const cards = document.querySelectorAll(".case-studies_item");
 
+var cardsTl = gsap.timeline();
+
 cards.forEach((card, index) => {
-  gsap.from(card, {
+  cardsTl.from(card, {
     scrollTrigger: {
       trigger: card,
       start: "top bottom",
@@ -51,4 +53,4 @@ footerLoad.from(".footer_form_component", {scale: 0.8, opacity: 0, y: 100, ease:
 footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25}, "<0.5");
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
 
-$(".case-studies_checkbox-button").click(ScrollTrigger.refresh());
+$(".case-studies_checkbox-button").click(cardsTl.ScrollTrigger.refresh());
