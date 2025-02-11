@@ -186,6 +186,7 @@ mm.add("(min-width: 991px)", () => {
   });
 //mobile
 mm.add("(max-width: 991px)", () => {
+  var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".process_content-top"}});
 
   processLoad.to("#process-heading", {y: -300, opacity: 0, ease: "power3.out"}, 1.15);
   processLoad.to(".process_critter", {y: -200, opacity: 0, ease: "power3.out"}, 1.2);
