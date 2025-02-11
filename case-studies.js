@@ -14,27 +14,6 @@ solutionsLoad.from(".solutions_bespoke-item > h2, .solutions_bespoke-item > p", 
 solutionsLoad.from(".solutions_service-item", {y: 100, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.35);
 solutionsLoad.from(".solutions_service-item > .solutions_service-icon-wrapper > .solutions_service-icon", {y: 50, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.25);
 
-const cards = document.querySelectorAll(".case-studies_item");
-
-var cardsTl = gsap.timeline();
-
-cards.forEach((card, index) => {
-  cardsTl.from(card, {
-    scrollTrigger: {
-      trigger: card,
-      start: "top bottom",
-      end: "top 50%",
-      scrub: true,
-      markers: false
-    },
-    scale: 0.8,
-    y: 100,
-    ease: "power3.out",
-    rotateX: 45,
-    opacity: 0
-  });
-});
-
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "top+=100 center"}});
 
@@ -52,5 +31,3 @@ footerLoad.from(".footer_top-wrapper > p", {scale: 0.8, opacity: 0, y: 100, ease
 footerLoad.from(".footer_form_component", {scale: 0.8, opacity: 0, y: 100, ease: "power3.out", duration: 1}, "<0.125");
 footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25}, "<0.5");
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
-
-$(".case-studies_checkbox-button").click(cardsTl.ScrollTrigger.refresh());

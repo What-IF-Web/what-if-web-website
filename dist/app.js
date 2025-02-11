@@ -706,6 +706,27 @@ document.addEventListener("DOMContentLoaded", function() {
         formConfetti();
     });
 });
+//case studies card testing
+//case studies cards animation
+const cards = document.querySelectorAll(".case-studies_item");
+var cardsTl = gsap.timeline();
+cards.forEach((card, index)=>{
+    cardsTl.from(card, {
+        scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "top 50%",
+            scrub: true,
+            markers: false
+        },
+        scale: 0.8,
+        y: 100,
+        ease: "power3.out",
+        rotateX: 45,
+        opacity: 0
+    });
+});
+$(".case-studies_checkbox-button").click(cardsTl.ScrollTrigger.refresh());
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
