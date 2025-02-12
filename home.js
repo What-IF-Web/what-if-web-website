@@ -2,13 +2,13 @@
 
 var morphPath = gsap.timeline({repeat: -1});
 
-morphPath.to(".path1", { duration: 1, morphSVG:".path2", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path3", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path4", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path5", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path6", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path7", duration: 2})
-morphPath.to(".path1", { duration: 1, morphSVG:".path1", duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path2", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path3", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path4", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path5", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path6", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path7", type: "rotational"}, duration: 2})
+morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path1", type: "rotational"}, duration: 2})
 
 //cards scroll through animation for the services section
 $(document).ready(function () {
