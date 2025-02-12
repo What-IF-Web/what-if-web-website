@@ -196,8 +196,8 @@ mm.add("(max-width: 991px)", () => {
   var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center", markers: true}});
 
   ctaMobile.from(".cta_heading-span", {y: 100, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1}, 0)
-  ctaMobile.from(".cta_form_input-wrapper", {y: 150, opacity: 0, duration: 1, ease: "power3.out"}, ">")
-  ctaMobile.from("#cta-form-bottom", {y: 200, opacity: 0, duration: 1, ease: "power3.out"}, ">")
+  ctaMobile.from(".cta_form_input-wrapper", {y: 150, opacity: 0, duration: .875, ease: "power3.out"}, ">-0.25")
+  ctaMobile.from("#cta-form-bottom", {y: 150, opacity: 0, duration: .75, ease: "power3.out"}, ">-0.5")
 
   ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
   ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");

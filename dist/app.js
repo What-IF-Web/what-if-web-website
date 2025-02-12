@@ -602,10 +602,10 @@ gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(MorphSVGPlugin);
 gsap.registerPlugin(ScrollSmoother);
-ScrollSmoother.create({
-    smooth: 1.5,
-    effects: true
-});
+// ScrollSmoother.create({
+//   smooth: 1.5,
+//   effects: true,
+// });
 const url = window.location.pathname;
 const homeHeader = document.querySelector(".section_home-header");
 const caseStudy = document.querySelector(".section_case-study-header");
