@@ -79,8 +79,7 @@ projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.0
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
 
-servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
-servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
+servicesLoad.from(".services_heading-wrapper > h2", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "top+=100 center"}});
@@ -192,4 +191,20 @@ mm.add("(max-width: 991px)", () => {
   processLoad.to(".process_critter", {y: -200, opacity: 0, ease: "power3.out"}, 1.2);
   processLoad.to(".process_card-container", {x: "-300rem", ease: "none", duration: 2}, ">-0.3");
 
+  //mobile cta load
+  var ctaMobile = gsap.timeline({scrollTrigger: {trigger: ".cta_component"}});
+  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center", markers: true}});
+
+  ctaMobile.from(".cta_heading-span", {y: 100, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1}, 0)
+  ctaMobile.from(".cta_form_input-wrapper", {y: 150, opacity: 0, duration: 1, ease: "power3.out"}, ">")
+  ctaMobile.from("#cta-form-bottom", {y: 200, opacity: 0, duration: 1, ease: "power3.out"}, ">")
+
+  ctaFormTrigger.from("#cta-form-orange", {color: "#0f2756", duration: .125, ease: "power3.out"}, "<.5");
+  ctaFormTrigger.to("#cta-form-orange", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, "<");
+  ctaFormTrigger.from(".cta_burst-lines > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+  ctaFormTrigger.to(".cta_burst-lines > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+  ctaFormTrigger.to(".cta_burst-lines > svg > path", {opacity: 0, duration: 0}, ">-0.05");
+  ctaFormTrigger.from(".cta_scribble > svg > path", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<+0.125");
+  ctaFormTrigger.to(".cta_scribble > svg > path", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+  ctaFormTrigger.to(".cta_scribble > svg > path", {opacity: 0, duration: 0}, ">-0.02");
 });
