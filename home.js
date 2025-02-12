@@ -185,11 +185,9 @@ mm.add("(min-width: 991px)", () => {
 });
 //mobile
 mm.add("(max-width: 991px)", () => {
-  var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".process_content-top"}});
+  var processMobile = gsap.timeline({scrollTrigger: {trigger: ".process_component"}});
 
-  processLoad.to("#process-heading", {y: -300, opacity: 0, ease: "power3.out"}, 1.15);
-  processLoad.to(".process_critter", {y: -200, opacity: 0, ease: "power3.out"}, 1.2);
-  processLoad.to(".process_card-container", {x: "-300rem", ease: "none", duration: 2}, ">-0.3");
+  processMobile.from(".process_heading-span", {y: 100, stagger: 0.1, opacity: 0, ease: "power3.out"}, 1.15);
 
   //mobile cta load
   var ctaMobile = gsap.timeline({scrollTrigger: {trigger: ".cta_component"}});
