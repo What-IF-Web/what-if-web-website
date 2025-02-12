@@ -639,7 +639,6 @@ document.addEventListener("DOMContentLoaded", function() {
         slidesPerView: 1,
         centeredSlides: true,
         spaceBetween: 8,
-        draggable: true,
         grabCursor: true,
         pagination: {
             el: ".swiper_pagination",
@@ -705,28 +704,75 @@ document.addEventListener("DOMContentLoaded", function() {
     if (footerForm) footerForm.addEventListener("submit", function(event) {
         formConfetti();
     });
-});
-//case studies card testing
-//case studies cards animation
-const cards = document.querySelectorAll(".case-studies_item");
-var cardsTl = gsap.timeline();
-cards.forEach((card, index)=>{
-    cardsTl.from(card, {
-        scrollTrigger: {
+}); //case studies card testing
+ //case studies cards animation
+ // const cards = document.querySelectorAll(".case-studies_item");
+ // var cardsTl = gsap.timeline();
+ // cards.forEach((card, index) => {
+ //   cardsTl.from(card, {
+ //     scrollTrigger: {
+ //       trigger: card,
+ //       start: "top bottom",
+ //       end: "top 50%",
+ //       scrub: true,
+ //       markers: false
+ //     },
+ //     scale: 0.8,
+ //     y: 100,
+ //     ease: "power3.out",
+ //     rotateX: 5,
+ //     opacity: 0
+ //   });
+ // });
+ // $(".case-studies_checkbox-button").click(cardsTl.ScrollTrigger.refresh());
+ /*
+const initCardsAnimation = () => {
+  // Kill all existing ScrollTriggers and GSAP animations
+  ScrollTrigger.getAll().forEach(st => st.kill());
+  gsap.killTweensOf(".case-studies_image-wrapper");
+
+  // Wait for the DOM update before selecting elements
+  requestAnimationFrame(() => {
+    const cards = document.querySelectorAll(".case-studies_image-wrapper");
+
+    cards.forEach((card) => {
+      gsap.fromTo(card, 
+        {
+          scale: 0.8,
+          y: 100,
+          opacity: 0
+        },
+        {
+          scrollTrigger: {
             trigger: card,
             start: "top bottom",
             end: "top 50%",
             scrub: true,
             markers: false
-        },
-        scale: 0.8,
-        y: 100,
-        ease: "power3.out",
-        rotateX: 45,
-        opacity: 0
+          },
+          scale: 1,
+          y: 0,
+          opacity: 1,
+          ease: "power3.out"
+        }
+      );
     });
+
+    // Refresh ScrollTrigger after new elements are in place
+    ScrollTrigger.refresh();
+  });
+};
+
+// Run animation setup initially
+initCardsAnimation();
+
+// Reinitialize on filter change
+$(".case-studies_checkbox-button").click(() => {
+  setTimeout(() => {
+    initCardsAnimation();
+  }, 100); // Small delay to ensure the DOM updates first
 });
-$(".case-studies_checkbox-button").click(cardsTl.ScrollTrigger.refresh());
+*/ 
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
