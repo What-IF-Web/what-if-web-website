@@ -1,4 +1,4 @@
-//home page and general stuff
+//home page stuff
 
 var morphPath = gsap.timeline({repeat: -1});
 
@@ -78,9 +78,6 @@ projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.0
 
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
-
-//pinned service element
-var servicesPinTrigger = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top top", end: "bottom bottom", scrub: true, pin: ".services_content-top-wrapper", pinSpacing: false}});
 
 servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
@@ -183,7 +180,10 @@ mm.add("(min-width: 991px)", () => {
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
   //process + cta ends here
-  });
+
+  //pinned service element
+  var servicesPinTrigger = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top top", end: "bottom bottom", scrub: true, pin: ".services_content-top-wrapper", pinSpacing: false}});
+});
 //mobile
 mm.add("(max-width: 991px)", () => {
   var processLoad = gsap.timeline({scrollTrigger: {trigger: ".process_component", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".process_content-top"}});
