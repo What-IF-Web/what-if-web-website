@@ -37,7 +37,7 @@ $(document).ready(function () {
         scrollTrigger: {
           trigger: `#${item.linkTargetID}`, // Trigger based on the ID
           start: "top 90%", // Adjust to trigger when card enters viewport
-          end: "top 20%",
+          end: "top 40%",
           scrub: true, 
           markers: false
         }
