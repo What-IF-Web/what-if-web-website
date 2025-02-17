@@ -2,7 +2,6 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(MorphSVGPlugin);
 gsap.registerPlugin(ScrollSmoother)
 
 ScrollSmoother.create({
