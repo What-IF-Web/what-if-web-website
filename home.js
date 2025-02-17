@@ -1,5 +1,10 @@
 //home page stuff
 
+$(document).ready(function () {
+  $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
+  $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
+});
+
 var morphPath = gsap.timeline({repeat: -1});
 
 morphPath.to(".path1", { duration: 1, morphSVG:{shape: ".path2", type: "rotational"}, duration: 2})

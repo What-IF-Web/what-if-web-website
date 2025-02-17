@@ -222,8 +222,3 @@ $(".case-studies_checkbox-button").click(() => {
   }, 100); // Small delay to ensure the DOM updates first
 });
 */
-
-$(document).ready(function () {
-  $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
-  $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
-});
