@@ -5,7 +5,8 @@ gsap.registerPlugin(MotionPathPlugin);
 gsap.registerPlugin(MorphSVGPlugin);
 gsap.registerPlugin(ScrollSmoother)
 
-ScrollSmoother.create(".main-wrapper", {
+ScrollSmoother.create({
+  content: ".main-wrapper",
   smooth: 1.5,
   effects: true,
 });
