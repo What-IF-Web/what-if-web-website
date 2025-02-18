@@ -7,7 +7,7 @@ csHeaderLoad.from(".case-studies_content-top > p", {y: 100, duration: 1, opacity
 csHeaderLoad.from(".case-studies_filter-item", {y: 120, duration: 0.75, stagger: 0.125, ease: "power3.out"}, "<0.5");
 csHeaderLoad.from(".reset-link", {y: 120, duration: 1, opacity: 0, ease: "power3.out"}, ">-0.25");
 
-var solutionsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_solutions", start: "+=400 center"}});
+var solutionsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_solutions", start: "-=400 center"}});
 
 solutionsLoad.from(".solutions_bespoke-item", {y: 100, opacity: 0, duration: 1, ease: "power4.out"}, 0);
 solutionsLoad.from(".solutions_bespoke-item > h2, .solutions_bespoke-item > p", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: "0.05"}, "<0.25");
@@ -15,14 +15,14 @@ solutionsLoad.from(".solutions_service-item", {y: 100, opacity: 0, duration: 1, 
 solutionsLoad.from(".solutions_service-item > .solutions_service-icon-wrapper > .solutions_service-icon", {y: 50, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.25);
 
 //testimonials section animation
-var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "+=400 center"}});
+var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "-=400 center"}});
 
 var testimonialSplit = new SplitText("#testimonial-heading", {type: "lines"});
 
 testimonialsLoad.from(".testimonials_star-wrapper > div", {opacity: 0, y: 75, duration: 0.75, ease: "power3.out"}).from(testimonialSplit.lines, {opacity: 0, y: 100, duration: 1, scale: 0.8, stagger: 0.125, ease: "power4.out"}, "<0.25");
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "+=400 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 

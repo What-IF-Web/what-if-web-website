@@ -6,7 +6,7 @@ var morph2 = gsap.to(".shape-3", { duration: 3, morphSVG:".shape-4", repeat:-1, 
 var morph3 = gsap.to(".shape-5", { duration: 3, morphSVG:".shape-6", repeat:-1, yoyo:true, repeatDelay:0})
 
 //quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "+=400 center"}});
+var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
 
 //main elements
 ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"power4.out"}).fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 300}, {opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out"}, "<0.5");
@@ -23,7 +23,7 @@ ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out
 ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
 
 //featured projects animation
-var projectsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_projects", start: "+=400 center"}});
+var projectsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_projects", start: "-=400 center"}});
 
 var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {type: "lines"});
 
@@ -37,7 +37,7 @@ projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 
 projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
 
 //solutions/services section animation
-var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "+=400 center"}});
+var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "-=400 center"}});
 
 servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
@@ -80,7 +80,7 @@ $(document).ready(function () {
 
   //FAQ section
 
-var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "+=400 center"}});
+var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=400 center"}});
 
 faqLoad.from("#faq-heading", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out"}, 0);
 faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "power4.out", stagger: 0.125}, 0.25);
@@ -89,7 +89,7 @@ faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.ou
 faqLoad.from()
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "+=400 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 

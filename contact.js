@@ -13,7 +13,7 @@ contactLoad.to(".button.is-form-submit", {duration: 0.25, scale: 1.05, ease: "po
 
 //FAQ section
 
-var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "+=400 center"}});
+var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=400 center"}});
 
 faqLoad.from("#faq-heading", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out"}, 0);
 faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "power4.out", stagger: 0.125}, 0.25);
@@ -21,12 +21,12 @@ faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.ou
 //need to add optional cta bit
 
 //blog section
-var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "+=400 center"}});
+var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
 
 blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "+=400 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 
