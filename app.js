@@ -1,8 +1,10 @@
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(ScrollSmoother);
+gsap.registerPlugin(
+  ScrollTrigger,
+  SplitText,
+  DrawSVGPlugin,
+  MotionPathPlugin,
+  ScrollSmoother
+);
 
 ScrollSmoother.create({
   content: ".main-wrapper",
@@ -11,66 +13,92 @@ ScrollSmoother.create({
 });
 
 const url = window.location.pathname;
-const homeHeader = document.querySelector(".section_home-header");
-const caseStudy = document.querySelector(".section_case-study-header");
-const caseStudies = document.querySelector(".section_case-studies");
-const notFound = document.querySelector(".section_not-found-header");
 
-function loadScript(src, id) {
-  // Remove existing script if it exists
-  const existingScript = document.getElementById(id);
-  if (existingScript) {
-    existingScript.remove();
-  }
-
-  // Create new script
-  const script = document.createElement("script");
-  script.type = "module";
-  script.src = `${src}?v=${new Date().getTime()}`; // Cache-busting
-  script.id = id;
-  script.async = true;
-  document.body.appendChild(script);
+// Function to preload scripts
+function preloadScript(src) {
+  const link = document.createElement("link");
+  link.rel = "preload";
+  link.as = "script";
+  link.href = src;
+  document.head.appendChild(link);
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-  if (document.querySelector(".section_home-header")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/home.js",
-      "home-script"
-    );
-  } else if (document.querySelector(".section_case-study-header")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-      "case-study-script"
-    );
-  } else if (document.querySelector(".section_case-studies")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-      "case-studies-script"
-    );
-  } else if (document.querySelector(".section_not-found-header")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/not-found.js",
-      "not-found-script"
-    );
-  } else if (window.location.pathname.includes("pricing")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/pricing.js",
-      "pricing-script"
-    );
-  } else if (window.location.pathname.includes("contact")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/contact.js",
-      "contact-script"
-    );
-  } else if (window.location.pathname.includes("roast")) {
-    loadScript(
-      "https://what-if-web.github.io/what-if-web-website/roast.js",
-      "roast-script"
-    );
-  } else {
-    console.log("No script loaded for this page.");
+// Function to load script from cache or fetch it
+function loadScript(src, id) {
+  const existingScript = document.getElementById(id);
+  if (existingScript) existingScript.remove();
+
+  const cachedScript = localStorage.getItem(id);
+  if (cachedScript) {
+    eval(cachedScript); // Load from cache instantly
+    return;
   }
+
+  fetch(src)
+    .then((res) => res.text())
+    .then((scriptContent) => {
+      localStorage.setItem(id, scriptContent);
+      eval(scriptContent);
+    })
+    .catch((err) => console.error("Failed to load script:", err));
+}
+
+// Preload all scripts (for faster loading)
+const scriptsToLoad = [
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/home.js",
+    id: "home-script",
+    selector: ".section_home-header",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
+    id: "case-study-script",
+    selector: ".section_case-study-header",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
+    id: "case-studies-script",
+    selector: ".section_case-studies",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
+    id: "not-found-script",
+    selector: ".section_not-found-header",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
+    id: "pricing-script",
+    condition: () => url.includes("pricing"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/contact.js",
+    id: "contact-script",
+    condition: () => url.includes("contact"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/roast.js",
+    id: "roast-script",
+    condition: () => url.includes("roast"),
+  },
+];
+
+// Preload all scripts first
+scriptsToLoad.forEach(({ src }) => preloadScript(src));
+
+document.addEventListener("DOMContentLoaded", function () {
+  let scriptLoaded = false;
+
+  scriptsToLoad.forEach(({ src, id, selector, condition }) => {
+    if (selector && document.querySelector(selector)) {
+      loadScript(src, id);
+      scriptLoaded = true;
+    } else if (condition && condition()) {
+      loadScript(src, id);
+      scriptLoaded = true;
+    }
+  });
+
+  if (!scriptLoaded) console.log("No script loaded for this page.");
 });
 
 /* testimonial slider */
