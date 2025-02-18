@@ -8,13 +8,13 @@ csTemplateHeader.from(".case-study-header_heading", {y: 80, opacity: 0, duration
 csTemplateHeader.from(".case-study-header_heading-content > p", {y: 50, opacity: 0, duration: 0.875, ease: "power4.out"}, "<0.2");
 csTemplateHeader.from(".case-study-header_bottom-content > .button", {opacity: 0, duration: 1, ease: "power4.out"}, "<0.5");
 
-var csTemplateBody = gsap.timeline({scrollTrigger: {trigger: ".section_case-study",  start: "top+=100 center"}})
+var csTemplateBody = gsap.timeline({scrollTrigger: {trigger: ".section_case-study",  start: "top+=400 center"}})
 
 csTemplateBody.from(".table-of-contents", {y: 80, opacity: 0, ease: "power3.out", duration: 1}, 0);
 csTemplateBody.from(".case-study_content", {y: 100, opacity: 0, ease: "power3.out", duration: 1}, 0.25);
 csTemplateBody.from(".case-study_content > div", {y: 25, opacity: 0, ease: "power4.out", duration: 1, stagger: 0.125}, "<0.125");
 
-var csTechStack = gsap.timeline({scrollTrigger: {trigger: ".section_tech-stack", start: "top+=100 center"}}); 
+var csTechStack = gsap.timeline({scrollTrigger: {trigger: ".section_tech-stack", start: "top+=400 center"}}); 
 
 csTechStack.from("#tech-stack-wrapper > h2", {y: 80, opacity: 0, ease: "power4.out", duration: 0.875}, 0);
 csTechStack.from("#tech-stack-wrapper > p", {y: 50, opacity: 0, ease: "power4.out", duration: 0.75}, 0.25);
@@ -23,7 +23,7 @@ csTechStack.from(".tech-stack_image", {y: 30, duration: 0.75, opacity: 0, stagge
 csTechStack.from(".tech-stack_item-front > h3", {y: 50, duration: 0.75, opacity: 0, stagger: 0.125, ease: "power.4out"}, "<0.125");
 
 //quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "top+=100 center"}});
+var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "top+=400 center"}});
 
 //main elements
 ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"power4.out"}).fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 300}, {opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out"}, "<0.5");
@@ -41,14 +41,14 @@ ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity
 //related section
 var relatedSplit = new SplitText(".related-case-studies_content-top > h2", {type: "lines"});
 
-var relatedLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-case-studies", start: "top+=100 center"}});
+var relatedLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-case-studies", start: "top+=400 center"}});
 
 relatedLoad.from(relatedSplit.lines, {y: 50, opacity: 0, ease: "power4.out", duration: 0.875, stagger: 0.125}, 0);
 relatedLoad.from(".related-case-studies_content-top > p", {y: 50, opacity: 0, ease: "power4.out", duration: 0.75}, 0.25);
 relatedLoad.from(".case-studies_item", {y: 100, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.125}, ">-0.5");
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=100 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 
