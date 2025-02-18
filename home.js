@@ -74,7 +74,7 @@ projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.0
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "-=400 center"}});
 
-servicesLoad.from(".services_heading-wrapper > h2", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
+servicesLoad.from(".services_heading-wrapper > h2", {y: 80, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "-=400 center"}});
@@ -99,23 +99,6 @@ aboutLoad.from(".home-about_card-wrapper.is-second", {x: 2500, rotation: 60, dur
 aboutLoad.from(".home-about_card-wrapper.is-third", {x: 2000, rotation: 130, duration: 1.5, ease: "power4.out"}, 0.125);
 
 aboutLoad.from(".home-about_lottie", {scale: 0, duration: 1, ease: "back.out(1.7)"}, ">0.125").from(".home-about_lottie-2", {scale: 0, duration: 1, ease: "back.out(1.7)"}, "<0.25");
-
-//quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
-
-//main elements
-ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"power4.out"}).fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 300}, {opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out"}, "<0.5");
-
-ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, 1);
-ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
-ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
-ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
-
-//content
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {y:100}, {y: 0, duration: 1, ease: "power2.out"}, "<.25");
-ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out", opacity: 0}, "<0.5");
-ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
 
 //blog section
 var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
@@ -169,7 +152,7 @@ mm.add("(min-width: 991px)", () => {
   processLoad.to(".process_heading-span", {y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, ">+.05");
   processLoad.to(".process_critter-wrapper", {y: -200, duration: 1, ease: "power3.out"}, "<+0.15");
   //critter grows
-  processLoad.to(".process_critter", {width: "100dvw", y: "-12.5dvw", height: "50dvw", ease: "power4.out"}, ">+0.5");
+  processLoad.to(".process_critter", {width: "100dvw", y: "0dvw", height: "50dvw", ease: "power4.out"}, ">+0.5");
   //cards path animation
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
