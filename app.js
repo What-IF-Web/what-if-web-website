@@ -28,7 +28,7 @@ function loadScript(src, id) {
   script.type = "module";
   script.src = `${src}?v=${new Date().getTime()}`; // Cache-busting
   script.id = id;
-  script.async = true;
+  script.defer = true;
   document.body.appendChild(script);
 }
 
