@@ -169,7 +169,7 @@ mm.add("(min-width: 991px)", () => {
   processLoad.to(".process_heading-span", {y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, ">+.05");
   processLoad.to(".process_critter-wrapper", {y: -200, duration: 1, ease: "power3.out"}, "<+0.15");
   //critter grows
-  processLoad.to(".process_critter", {width: "100dvw", y: 200, height: "50dvw", ease: "power4.out"}, ">+0.5");
+  processLoad.to(".process_critter", {width: "100dvw", y: "-25dvw", height: "50dvw", ease: "power4.out"}, ">+0.5");
   //cards path animation
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
