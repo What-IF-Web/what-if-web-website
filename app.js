@@ -14,36 +14,18 @@ ScrollSmoother.create({
 
 const url = window.location.pathname;
 
-// Function to preload scripts
-function preloadScript(src) {
-  const link = document.createElement("link");
-  link.rel = "preload";
-  link.as = "script";
-  link.href = src;
-  document.head.appendChild(link);
+// Optimized function to preload and execute scripts
+function preloadAndExecuteScript(src, id) {
+  if (document.getElementById(id)) return;
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.id = id;
+  script.async = true; // Make sure it's async for early execution
+  document.head.appendChild(script);
 }
 
-// Function to load script from cache or fetch it
-function loadScript(src, id) {
-  const existingScript = document.getElementById(id);
-  if (existingScript) existingScript.remove();
-
-  const cachedScript = localStorage.getItem(id);
-  if (cachedScript) {
-    eval(cachedScript); // Load from cache instantly
-    return;
-  }
-
-  fetch(src)
-    .then((res) => res.text())
-    .then((scriptContent) => {
-      localStorage.setItem(id, scriptContent);
-      eval(scriptContent);
-    })
-    .catch((err) => console.error("Failed to load script:", err));
-}
-
-// Preload all scripts (for faster loading)
+// List of scripts to load based on URL and selectors
 const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
@@ -82,23 +64,13 @@ const scriptsToLoad = [
   },
 ];
 
-// Preload all scripts first
-scriptsToLoad.forEach(({ src }) => preloadScript(src));
-
-document.addEventListener("DOMContentLoaded", function () {
-  let scriptLoaded = false;
-
-  scriptsToLoad.forEach(({ src, id, selector, condition }) => {
-    if (selector && document.querySelector(selector)) {
-      loadScript(src, id);
-      scriptLoaded = true;
-    } else if (condition && condition()) {
-      loadScript(src, id);
-      scriptLoaded = true;
-    }
-  });
-
-  if (!scriptLoaded) console.log("No script loaded for this page.");
+// Load scripts conditionally
+scriptsToLoad.forEach(({ src, id, selector, condition }) => {
+  if (selector && document.querySelector(selector)) {
+    preloadAndExecuteScript(src, id);
+  } else if (condition && condition()) {
+    preloadAndExecuteScript(src, id);
+  }
 });
 
 /* testimonial slider */

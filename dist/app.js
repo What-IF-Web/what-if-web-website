@@ -596,42 +596,64 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
-gsap.registerPlugin(ScrollTrigger);
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(DrawSVGPlugin);
-gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(ScrollSmoother);
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 1.5,
     effects: true
 });
 const url = window.location.pathname;
-const homeHeader = document.querySelector(".section_home-header");
-const caseStudy = document.querySelector(".section_case-study-header");
-const caseStudies = document.querySelector(".section_case-studies");
-const notFound = document.querySelector(".section_not-found-header");
-function loadScript(src, id) {
-    // Remove existing script if it exists
-    const existingScript = document.getElementById(id);
-    if (existingScript) existingScript.remove();
-    // Create new script
+// Optimized function to preload and execute scripts
+function preloadAndExecuteScript(src, id) {
+    if (document.getElementById(id)) return;
     const script = document.createElement("script");
-    script.type = "module";
-    script.src = `${src}?v=${new Date().getTime()}`; // Cache-busting
+    script.src = src;
     script.id = id;
-    script.defer = true;
-    document.body.appendChild(script);
+    script.async = true; // Make sure it's async for early execution
+    document.head.appendChild(script);
 }
-document.addEventListener("DOMContentLoaded", function() {
-    if (document.querySelector(".section_home-header")) loadScript("https://what-if-web.github.io/what-if-web-website/home.js", "home-script");
-    else if (document.querySelector(".section_case-study-header")) loadScript("https://what-if-web.github.io/what-if-web-website/case-studies-template.js", "case-study-script");
-    else if (document.querySelector(".section_case-studies")) loadScript("https://what-if-web.github.io/what-if-web-website/case-studies.js", "case-studies-script");
-    else if (document.querySelector(".section_not-found-header")) loadScript("https://what-if-web.github.io/what-if-web-website/not-found.js", "not-found-script");
-    else if (window.location.pathname.includes("pricing")) loadScript("https://what-if-web.github.io/what-if-web-website/pricing.js", "pricing-script");
-    else if (window.location.pathname.includes("contact")) loadScript("https://what-if-web.github.io/what-if-web-website/contact.js", "contact-script");
-    else if (window.location.pathname.includes("roast")) loadScript("https://what-if-web.github.io/what-if-web-website/roast.js", "roast-script");
-    else console.log("No script loaded for this page.");
+// List of scripts to load based on URL and selectors
+const scriptsToLoad = [
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/home.js",
+        id: "home-script",
+        selector: ".section_home-header"
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
+        id: "case-study-script",
+        selector: ".section_case-study-header"
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
+        id: "case-studies-script",
+        selector: ".section_case-studies"
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
+        id: "not-found-script",
+        selector: ".section_not-found-header"
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
+        id: "pricing-script",
+        condition: ()=>url.includes("pricing")
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/contact.js",
+        id: "contact-script",
+        condition: ()=>url.includes("contact")
+    },
+    {
+        src: "https://what-if-web.github.io/what-if-web-website/roast.js",
+        id: "roast-script",
+        condition: ()=>url.includes("roast")
+    }
+];
+// Load scripts conditionally
+scriptsToLoad.forEach(({ src, id, selector, condition })=>{
+    if (selector && document.querySelector(selector)) preloadAndExecuteScript(src, id);
+    else if (condition && condition()) preloadAndExecuteScript(src, id);
 });
 /* testimonial slider */ $(document).ready(function() {
     var testimonialsSlider = new Swiper("#testimonials-slider", {
