@@ -36,48 +36,48 @@ projectsLoad.from("#projects-line > svg > path", {drawSVG: '0% 0%', duration: 0.
 projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 0.6, ease: "power3.out"}, ">-0.3");
 projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
 
+
 //solutions/services section animation
 var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "-=400 center"}});
 
-servicesLoad.from(".services_heading-wrapper > h2", {y: 200, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
-servicesLoad.from(".services_service-list > .services_service-item", {y: 100, opacity: 0, duration: .5, stagger: 0.25, ease: "power.4out"}, "<0.5");
+servicesLoad.from(".services_heading-wrapper > h2", {y: 80, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
+
 
 //cards scroll through animation for the services section
 $(document).ready(function () {
-    let cardsArray = [];
-  
-    // Select all .card.is-services elements inside .services_list
-    $('.services_list .card.is-services').each(function () {
-      let card = $(this);
-      let linkTargetID = card.find('.card_link-target').attr('id');
-  
-      // Push the card element and ID into the array as an object
-      cardsArray.push({
-        cardElement: card,
-        linkTargetID: linkTargetID
-      });
-    });
-    cardsArray.forEach(function (item) {
-      // GSAP ScrollTrigger animation for each card
-      gsap.fromTo(item.cardElement,
-        { opacity: 0, scale: 0.2, y: 0 }, 
-        { 
-          opacity: 1,
-          scale: 1,
-          y: 0,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: `#${item.linkTargetID}`, // Trigger based on the ID
-            start: "top 90%", // Adjust to trigger when card enters viewport
-            end: "top 20%",
-            scrub: true, 
-            markers: false
-          }
-        }
-      );
+  let cardsArray = [];
+
+  // Select all .card.is-services elements inside .services_list
+  $('.services_list .card.is-services').each(function () {
+    let card = $(this);
+    let linkTargetID = card.find('.card_link-target').attr('id');
+
+    // Push the card element and ID into the array as an object
+    cardsArray.push({
+      cardElement: card,
+      linkTargetID: linkTargetID
     });
   });
-
+  cardsArray.forEach(function (item) {
+    // GSAP ScrollTrigger animation for each card
+    gsap.fromTo(item.cardElement,
+      { opacity: 0, scale: 0.2, y: 0 }, 
+      { 
+        opacity: 1,
+        scale: 1,
+        y: 0,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: `#${item.linkTargetID}`, // Trigger based on the ID
+          start: "top 90%", // Adjust to trigger when card enters viewport
+          end: "top 40%",
+          scrub: true, 
+          markers: false
+        }
+      }
+    );
+  });
+});
   //FAQ section
 
 var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=400 center"}});
