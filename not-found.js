@@ -7,7 +7,7 @@ notFoundLoad.from('.not-found-header_component > .button', {y: 100, opacity: 0, 
 
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=100 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 

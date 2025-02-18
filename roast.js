@@ -1,5 +1,5 @@
 //testimonials section animation
-var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "top+=100 center"}});
+var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "-=400 center"}});
 
 var testimonialSplit = new SplitText("#testimonial-heading", {type: "lines"});
 
@@ -7,14 +7,14 @@ testimonialsLoad.from(".testimonials_star-wrapper > div", {opacity: 0, y: 75, du
 
 //FAQ section
 
-var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "top+=100 center"}});
+var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=400 center"}});
 
 faqLoad.from("#faq-heading", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out"}, 0);
 faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "power4.out", stagger: 0.125}, 0.25);
 faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.25}, "<0.5");
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=100 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 
