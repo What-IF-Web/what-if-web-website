@@ -58,7 +58,7 @@ heroLoad.from(".home-header_lottie.is-brazzo", {y: -200, x: 240, duration: 0.625
 heroLoad.from(".home-header_lottie.is-slice", {y: -100, x: -200, duration: 0.75, scale: 0, ease: "power4.out"}, "<-0.125");
 
 //featured projects animation
-var projectsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_projects", start: "top+=100 center"}});
+var projectsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_projects", start: "-=400 center"}});
 
 var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {type: "lines"});
 
@@ -72,12 +72,12 @@ projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 
 projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
 
 //solutions/services section animation
-var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top+=100 center"}});
+var servicesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "-=400 center"}});
 
 servicesLoad.from(".services_heading-wrapper > h2", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"});
 
 //testimonials section animation
-var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "top+=100 center"}});
+var testimonialsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_testimonials", start: "-=400 center"}});
 
 var testimonialSplit = new SplitText("#testimonial-heading", {type: "lines"});
 
@@ -101,7 +101,7 @@ aboutLoad.from(".home-about_card-wrapper.is-third", {x: 2000, rotation: 130, dur
 aboutLoad.from(".home-about_lottie", {scale: 0, duration: 1, ease: "back.out(1.7)"}, ">0.125").from(".home-about_lottie-2", {scale: 0, duration: 1, ease: "back.out(1.7)"}, "<0.25");
 
 //quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "top+=100 center"}});
+var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
 
 //main elements
 ctaLoad.from(".quote-cta_component", {scale: 0.7, y: 400, duration: 1.75, ease:"power4.out"}).fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 300}, {opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out"}, "<0.5");
@@ -118,12 +118,12 @@ ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out
 ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
 
 //blog section
-var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "top+=100 center"}});
+var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
 
 blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list", {opacity: 0, duration: .5, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
 
 //footer animation
-var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top+=100 center"}});
+var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {type: "lines"});
 
@@ -138,7 +138,7 @@ let mm = gsap.matchMedia();
 // desktop
 mm.add("(min-width: 991px)", () => {
   //cta form + process animation starts here 
-  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center", markers: true}});
+  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "-=400 center", markers: true}});
   var ctaFormLoad = gsap.timeline({scrollTrigger: {trigger: ".cta_form-block", scrub: true, start: "top top", end: "bottom bottom", markers: false, pin: ".cta_form", pinSpacing: false}});
   //contents fade in
   ctaFormLoad.from(".cta_heading-span", {y: 200, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, 0);
@@ -169,7 +169,7 @@ mm.add("(min-width: 991px)", () => {
   processLoad.to(".process_heading-span", {y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, ">+.05");
   processLoad.to(".process_critter-wrapper", {y: -200, duration: 1, ease: "power3.out"}, "<+0.15");
   //critter grows
-  processLoad.to(".process_critter", {width: "100dvw", y: 200, height: "50dvw", ease: "power4.out"}, ">+0.5");
+  processLoad.to(".process_critter", {width: "100dvw", y: "-12.5dvw", height: "50dvw", ease: "power4.out"}, ">+0.5");
   //cards path animation
   gsap.set(".process_card-wrapper > .card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
   processLoad.to(".process_card-wrapper > .card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
@@ -186,7 +186,7 @@ mm.add("(max-width: 991px)", () => {
 
   //mobile cta load
   var ctaMobile = gsap.timeline({scrollTrigger: {trigger: ".cta_component"}});
-  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "top+=100 center", markers: true}});
+  var ctaFormTrigger = gsap.timeline({scrollTrigger: {trigger: ".cta_form", start: "-=400 center", markers: true}});
 
   ctaMobile.from(".cta_heading-span", {y: 100, opacity: 0, duration: 1, ease: "power3.out", stagger: 0.1}, 0)
   ctaMobile.from(".cta_form_input-wrapper", {y: 150, opacity: 0, duration: .875, ease: "power3.out"}, ">-0.25")

@@ -6,6 +6,7 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
+
 ScrollSmoother.create({
   content: ".main-wrapper",
   smooth: 1.5,
