@@ -2,7 +2,7 @@ gsap.registerPlugin(ScrollTrigger);
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(DrawSVGPlugin);
 gsap.registerPlugin(MotionPathPlugin);
-gsap.registerPlugin(ScrollSmoother)
+gsap.registerPlugin(ScrollSmoother);
 
 ScrollSmoother.create({
   content: ".main-wrapper",
@@ -28,7 +28,7 @@ function loadScript(src, id) {
   script.type = "module";
   script.src = `${src}?v=${new Date().getTime()}`; // Cache-busting
   script.id = id;
-  script.defer = true;
+  script.async = true;
   document.body.appendChild(script);
 }
 
