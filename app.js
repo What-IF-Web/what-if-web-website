@@ -6,7 +6,6 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
-
 ScrollSmoother.create({
   content: ".main-wrapper",
   smooth: 1.5,
@@ -17,16 +16,49 @@ ScrollSmoother.create({
 var morphPath = gsap.timeline({ repeat: -1 });
 
 morphPath
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path2", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path3", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path4", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path5", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path6", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path7", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path2", shapeIndex: "auto" } })
-  .to(".path1", {duration: 2, morphSVG: { shape: ".path1", shapeIndex: "auto" } });
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path2", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path3", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path4", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path5", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path6", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path7", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path2", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path1", shapeIndex: "auto" },
+  });
 
-const url = window.location.pathname;
+// Wait for the window to fully load
+window.addEventListener("load", function () {
+  // Hide the preloader after the page has loaded
+  const preloader = document.getElementById("preloader"); // Use your preloader's ID or class
+  if (preloader) {
+    preloader.style.display = "none"; // Hide preloader
+  }
+});
+
+let url = window.location.pathname;
 
 // Optimized function to preload and execute scripts
 function preloadAndExecuteScript(src, id) {
@@ -35,7 +67,8 @@ function preloadAndExecuteScript(src, id) {
   const script = document.createElement("script");
   script.src = src;
   script.id = id;
-  script.async = true; // Make sure it's async for early execution
+  script.async = true;
+  script.defer = true;
   document.head.appendChild(script);
 }
 
@@ -44,7 +77,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
     id: "home-script",
-    selector: ".section_home-header",
+    condition: () => url.includes("/"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
@@ -54,7 +87,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
     id: "case-studies-script",
-    selector: ".section_case-studies",
+    condition: () => url.includes("case-studies"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
@@ -164,19 +197,56 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
+var ctaLoad = gsap.timeline({
+  scrollTrigger: { trigger: ".section_quote-cta", start: "-=400 center" },
+});
 
 //main elements
-ctaLoad.from(".quote-cta_component", {y: 100, duration: 1, ease:"power4.out"})
-.fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 300}, {opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out"}, "<0.5");
+ctaLoad
+  .from(".quote-cta_component", { y: 100, duration: 1, ease: "power4.out" })
+  .fromTo(
+    ".quote-cta_heading-wrapper",
+    { opacity: 0, scale: 0, y: 300 },
+    { opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out" },
+    "<0.5"
+  );
 
-ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, 1);
-ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
-ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
-ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
+ctaLoad.to(
+  ".quote-cta_heading > .text-color-alternate",
+  { scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3 },
+  1
+);
+ctaLoad.from(
+  ".quote-cta_heading > .text-color-alternate",
+  { color: "#fff9f3", duration: 0.125, ease: "power3.out" },
+  "<.125"
+);
+ctaLoad.from(
+  "#ctaScribble",
+  { drawSVG: "0% 0%", duration: 1, ease: "power3.out" },
+  "<"
+);
+ctaLoad.to(
+  "#ctaScribble",
+  { drawSVG: "100% 100%", duration: 1, ease: "power3.out" },
+  ">-0.3"
+);
+ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
 
 //content
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {y:100}, {y: 0, duration: 1, ease: "power2.out"}, "<.25");
-ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out", opacity: 0}, "<0.5");
-ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
+ctaLoad.fromTo(
+  ".quote-cta_heading-wrapper",
+  { y: 100 },
+  { y: 0, duration: 1, ease: "power2.out" },
+  "<.25"
+);
+ctaLoad.from(
+  ".quote-cta_subheading",
+  { y: 150, duration: 0.875, ease: "power2.out", opacity: 0 },
+  "<0.5"
+);
+ctaLoad.from(
+  "#ctaButton",
+  { y: 200, duration: 0.875, ease: "power2.out", opacity: 0 },
+  "<0.125"
+);
