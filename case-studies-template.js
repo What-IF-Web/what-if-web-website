@@ -57,3 +57,12 @@ footerLoad.from(".footer_top-wrapper > p", {scale: 0.8, opacity: 0, y: 100, ease
 footerLoad.from(".footer_form_component", {scale: 0.8, opacity: 0, y: 100, ease: "power3.out", duration: 1}, "<0.125");
 footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25}, "<0.5");
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
+
+
+let mm = gsap.matchMedia();
+
+// desktop
+mm.add("(min-width: 991px)", () => {
+  // case studies table of contents pin
+  var contentsPin = gsap.timeline({scrollTrigger: {trigger: ".case-study_component", start: "top top", end: "bottom bottom", scrub: true, pin: ".table-of-contents_wrapper", pinSpacing: false}});
+});

@@ -5,6 +5,21 @@ $(document).ready(function () {
   $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
 });
 
+
+//case studies blob morph
+var morphPath = gsap.timeline({ repeat: -1 });
+
+morphPath
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path2", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path3", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path4", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path5", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path6", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path7", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path2", shapeIndex: "auto" } })
+  .to(".path1", {duration: 2, morphSVG: { shape: ".path1", shapeIndex: "auto" } });
+
+
 //cards scroll through animation for the services section
 $(document).ready(function () {
   let cardsArray = [];
@@ -413,6 +428,7 @@ mm.add("(min-width: 991px)", () => {
   );
 
   //process section animation
+
   var processLoad = gsap.timeline({
     scrollTrigger: {
       trigger: ".process_component",
@@ -423,6 +439,7 @@ mm.add("(min-width: 991px)", () => {
       pin: ".process_content-top",
     },
   });
+
   //contents fade in
   processLoad.from(
     ".process_heading-span",
@@ -442,48 +459,15 @@ mm.add("(min-width: 991px)", () => {
     "<"
   );
   //contents fade out
-  processLoad.to(
-    ".process_heading-span",
-    {
-      y: -400,
-      scale: 0.95,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.05,
-      ease: "power3.out",
-    },
-    ">+.05"
-  );
-  processLoad.to(
-    ".process_critter-wrapper",
-    { y: -200, duration: 1, ease: "power3.out" },
-    "<+0.15"
-  );
+  processLoad.to(".process_heading-span", {y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05, ease: "power3.out"}, ">");
+  processLoad.to(".process_critter-wrapper", {y: -200, duration: 1, ease: "power3.out"}, "<+0.15");
   //critter grows
-  processLoad.to(
-    ".process_critter",
-    { width: "100dvw", y: "0dvw", height: "50dvw", ease: "power4.out" },
-    ">+0.5"
-  );
+  processLoad.to(".process_critter", {width: "100dvw", height: "150dvh", ease: "power4.out", borderTopRightRadius: 0, borderTopLeftRadius: 0, border: "transparent"}, "<");
+  processLoad.to(".process_critter-eyes", {opacity: 0, duration: 0.125}, "<")
   //cards path animation
-  gsap.set(".process_card-wrapper > .card", {
-    xPercent: -50,
-    yPercent: -50,
-    transformOrigin: "50%, 50%",
-  });
-  processLoad.to(
-    ".process_card-wrapper > .card",
-    {
-      stagger: 0.1,
-      ease: "none",
-      motionPath: {
-        path: "#process-path",
-        align: "#process-path",
-        autoRotate: 180,
-      },
-    },
-    ">"
-  );
+  gsap.set(".process_card-wrapper > .process_card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
+  processLoad.to(".process_card-wrapper > .process_card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
+
   //process + cta ends here
 
   //pinned service element
