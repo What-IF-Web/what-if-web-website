@@ -789,7 +789,7 @@ var ctaLoad = gsap.timeline({
 });
 //main elements
 ctaLoad.from(".quote-cta_component", {
-    y: 200,
+    y: 100,
     scale: 0.9,
     duration: .875,
     ease: "power4.out"
@@ -801,17 +801,30 @@ ctaLoad.fromTo(".quote-cta_heading-wrapper", {
 }, {
     opacity: 1,
     scale: 1,
-    y: 100,
-    duration: .75,
+    y: 0,
+    duration: 1,
     ease: "power4.out"
 }, "<+0.125");
+//content
+ctaLoad.from(".quote-cta_subheading", {
+    y: 150,
+    duration: 0.875,
+    ease: "power2.out",
+    opacity: 0
+}, "<.25");
+ctaLoad.from("#ctaButton", {
+    y: 200,
+    duration: 0.875,
+    ease: "power2.out",
+    opacity: 0
+}, "<0.125");
 ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
     scale: 1.1,
     repeat: 1,
     yoyo: true,
     ease: "power2.inOut",
     duration: 0.3
-}, 1);
+}, ">-0.5");
 ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
     color: "#fff9f3",
     duration: .125,
@@ -831,26 +844,6 @@ ctaLoad.to("#ctaScribble", {
     opacity: 0,
     duration: 0
 }, ">-0.02");
-//content
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {
-    y: 100
-}, {
-    y: 0,
-    duration: 1,
-    ease: "power2.out"
-}, "<-1");
-ctaLoad.from(".quote-cta_subheading", {
-    y: 150,
-    duration: 0.875,
-    ease: "power2.out",
-    opacity: 0
-}, ">");
-ctaLoad.from("#ctaButton", {
-    y: 200,
-    duration: 0.875,
-    ease: "power2.out",
-    opacity: 0
-}, "<0.125");
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
