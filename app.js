@@ -6,24 +6,6 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
-// Wait for the window to fully load
-window.addEventListener("load", function () {
-  // Show the preloader in case it was hidden by default
-  const preloader = document.getElementById("preloader");
-  if (preloader) {
-    preloader.style.display = "block"; // Ensure it's shown when the page starts loading
-
-    // Fade out the preloader using GSAP
-    gsap.to(preloader, {
-      opacity: 0,
-      duration: 1,
-      onComplete: () => {
-        preloader.style.display = "none"; // Hide preloader after fade out
-      },
-    });
-  }
-});
-
 // Now that the preloader is hidden, you can run your GSAP code
 ScrollSmoother.create({
   content: ".main-wrapper",
@@ -67,6 +49,68 @@ morphPath
     duration: 2,
     morphSVG: { shape: ".path1", shapeIndex: "auto" },
   });
+
+let url = window.location.pathname;
+
+// Optimized function to preload and execute scripts
+function preloadAndExecuteScript(src, id) {
+  if (document.getElementById(id)) return;
+
+  const script = document.createElement("script");
+  script.src = src;
+  script.id = id;
+  script.async = true;
+  script.defer = true;
+  document.head.appendChild(script);
+}
+
+// List of scripts to load based on URL and selectors
+const scriptsToLoad = [
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/home.js",
+    id: "home-script",
+    condition: () => url.includes("/"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
+    id: "case-study-script",
+    selector: ".section_case-study-header",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
+    id: "case-studies-script",
+    condition: () => url.includes("case-studies"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
+    id: "not-found-script",
+    selector: ".section_not-found-header",
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
+    id: "pricing-script",
+    condition: () => url.includes("pricing"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/contact.js",
+    id: "contact-script",
+    condition: () => url.includes("contact"),
+  },
+  {
+    src: "https://what-if-web.github.io/what-if-web-website/roast.js",
+    id: "roast-script",
+    condition: () => url.includes("roast"),
+  },
+];
+
+// Load scripts conditionally
+scriptsToLoad.forEach(({ src, id, selector, condition }) => {
+  if (selector && document.querySelector(selector)) {
+    preloadAndExecuteScript(src, id);
+  } else if (condition && condition()) {
+    preloadAndExecuteScript(src, id);
+  }
+});
 
 // Testimonial slider initialization
 var testimonialsSlider = new Swiper("#testimonials-slider", {
