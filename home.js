@@ -59,11 +59,11 @@ heroLoad
     y: 500,
     stagger: 0.125,
   })
-  .from(".home-header_heading", {
-    scale: 0.6,
-    duration: 0.625,
-    ease: "back.out(1.7)",
-  });
+  .from(
+    ".home-header_heading",
+    { scale: 0.6, duration: 0.625, ease: "back.out(1.7)" },
+    ">-0.5"
+  );
 heroLoad.from(
   ".home-header_subheading",
   { duration: 0.875, y: 300, opacity: 0, ease: "power4.out" },
