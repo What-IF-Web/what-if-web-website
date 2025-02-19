@@ -789,20 +789,22 @@ var ctaLoad = gsap.timeline({
 });
 //main elements
 ctaLoad.from(".quote-cta_component", {
-    y: 100,
-    duration: 1,
+    y: 200,
+    scale: 0.9,
+    duration: .875,
     ease: "power4.out"
-}).fromTo(".quote-cta_heading-wrapper", {
+});
+ctaLoad.fromTo(".quote-cta_heading-wrapper", {
     opacity: 0,
     scale: 0,
-    y: 300
+    y: 400
 }, {
     opacity: 1,
     scale: 1,
     y: 100,
-    duration: 1,
+    duration: .75,
     ease: "power4.out"
-}, "<0.5");
+}, "<+0.125");
 ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
     scale: 1.1,
     repeat: 1,
@@ -836,13 +838,13 @@ ctaLoad.fromTo(".quote-cta_heading-wrapper", {
     y: 0,
     duration: 1,
     ease: "power2.out"
-}, "<.25");
+}, "<-1");
 ctaLoad.from(".quote-cta_subheading", {
     y: 150,
     duration: 0.875,
     ease: "power2.out",
     opacity: 0
-}, "<0.5");
+}, ">");
 ctaLoad.from("#ctaButton", {
     y: 200,
     duration: 0.875,
