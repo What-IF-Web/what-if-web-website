@@ -602,14 +602,15 @@ ScrollSmoother.create({
     smooth: 1.5,
     effects: true
 });
-const url = window.location.pathname;
+let url = window.location.pathname;
 // Optimized function to preload and execute scripts
 function preloadAndExecuteScript(src, id) {
     if (document.getElementById(id)) return;
     const script = document.createElement("script");
     script.src = src;
     script.id = id;
-    script.async = true; // Make sure it's async for early execution
+    script.async = true;
+    script.defer = true; // Make sure it's async for early execution
     document.head.appendChild(script);
 }
 // List of scripts to load based on URL and selectors
@@ -617,7 +618,7 @@ const scriptsToLoad = [
     {
         src: "https://what-if-web.github.io/what-if-web-website/home.js",
         id: "home-script",
-        selector: ".section_home-header"
+        condition: ()=>url.includes("/")
     },
     {
         src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
@@ -627,7 +628,7 @@ const scriptsToLoad = [
     {
         src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
         id: "case-studies-script",
-        selector: ".section_case-studies"
+        condition: ()=>url.includes("case-studies")
     },
     {
         src: "https://what-if-web.github.io/what-if-web-website/not-found.js",

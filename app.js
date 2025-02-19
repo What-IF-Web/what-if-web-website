@@ -6,14 +6,22 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
-
 ScrollSmoother.create({
   content: ".main-wrapper",
   smooth: 1.5,
   effects: true,
 });
 
-const url = window.location.pathname;
+// Wait for the window to fully load
+window.addEventListener("load", function () {
+  // Hide the preloader after the page has loaded
+  const preloader = document.getElementById("preloader"); // Use your preloader's ID or class
+  if (preloader) {
+    preloader.style.display = "none"; // Hide preloader
+  }
+});
+
+let url = window.location.pathname;
 
 // Optimized function to preload and execute scripts
 function preloadAndExecuteScript(src, id) {
@@ -22,7 +30,8 @@ function preloadAndExecuteScript(src, id) {
   const script = document.createElement("script");
   script.src = src;
   script.id = id;
-  script.async = true; // Make sure it's async for early execution
+  script.async = true;
+  script.defer = true;
   document.head.appendChild(script);
 }
 
@@ -31,7 +40,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
     id: "home-script",
-    selector: ".section_home-header",
+    condition: () => url.includes("/"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
@@ -41,7 +50,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
     id: "case-studies-script",
-    selector: ".section_case-studies",
+    condition: () => url.includes("case-studies"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
