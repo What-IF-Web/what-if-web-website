@@ -597,6 +597,23 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
+// // Wait for the window to fully load
+// window.addEventListener("load", function () {
+//   // Show the preloader in case it was hidden by default
+//   const preloader = document.getElementById("preloader");
+//   if (preloader) {
+//     preloader.style.display = "block"; // Ensure it's shown when the page starts loading
+//     // Fade out the preloader using GSAP
+//     gsap.to(preloader, {
+//       opacity: 0,
+//       duration: 1,
+//       onComplete: () => {
+//         preloader.style.display = "none"; // Hide preloader after fade out
+//       },
+//     });
+//   }
+// });
+// Now that the preloader is hidden, you can run your GSAP code
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 1.5,

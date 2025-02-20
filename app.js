@@ -6,6 +6,7 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
+// Now that the preloader is hidden, you can run your GSAP code
 ScrollSmoother.create({
   content: ".main-wrapper",
   smooth: 1.5,
@@ -14,6 +15,45 @@ ScrollSmoother.create({
 
 const url = window.location.pathname;
 
+// case studies blob morph animation
+var morphPath = gsap.timeline({ repeat: -1 });
+
+morphPath
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path2", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path3", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path4", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path5", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path6", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path7", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path2", shapeIndex: "auto" },
+  })
+  .to(".path1", {
+    duration: 2,
+    morphSVG: { shape: ".path1", shapeIndex: "auto" },
+  });
+
+let url = window.location.pathname;
+
 // Optimized function to preload and execute scripts
 function preloadAndExecuteScript(src, id) {
   if (document.getElementById(id)) return;
@@ -21,7 +61,8 @@ function preloadAndExecuteScript(src, id) {
   const script = document.createElement("script");
   script.src = src;
   script.id = id;
-  script.async = true; // Make sure it's async for early execution
+  script.async = true;
+  script.defer = true;
   document.head.appendChild(script);
 }
 
@@ -30,7 +71,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
     id: "home-script",
-    selector: ".section_home-header",
+    condition: () => url.includes("/"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
@@ -40,7 +81,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
     id: "case-studies-script",
-    selector: ".section_case-studies",
+    condition: () => url.includes("case-studies"),
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
@@ -73,42 +114,39 @@ scriptsToLoad.forEach(({ src, id, selector, condition }) => {
   }
 });
 
-/* testimonial slider */
-$(document).ready(function () {
-  var testimonialsSlider = new Swiper("#testimonials-slider", {
-    loop: true,
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 8,
-    grabCursor: true,
-    pagination: {
-      el: ".swiper_pagination",
-      clickable: true,
+// Testimonial slider initialization
+var testimonialsSlider = new Swiper("#testimonials-slider", {
+  loop: true,
+  slidesPerView: 1,
+  centeredSlides: true,
+  spaceBetween: 8,
+  grabCursor: true,
+  pagination: {
+    el: ".swiper_pagination",
+    clickable: true,
+  },
+  autoplay: {
+    delay: 2200,
+    disableOnInteraction: false,
+  },
+  speed: 600,
+  breakpoints: {
+    478: {
+      slidesPerView: 2,
     },
-    autoplay: {
-      delay: 2200,
-      disableOnInteraction: false,
+    991: {
+      slidesPerView: 3,
+      spaceBetween: 16,
     },
-    speed: 600,
-    breakpoints: {
-      478: {
-        slidesPerView: 2,
-      },
-      991: {
-        slidesPerView: 3,
-        spaceBetween: 16,
-      },
-      1366: {
-        slidesPerView: 4,
-      },
+    1366: {
+      slidesPerView: 4,
     },
-  });
+  },
 });
 
-//confetti on form submit
-document.addEventListener("DOMContentLoaded", function () {
-  const form = document.querySelector("#email-form");
-  const footerForm = document.querySelector("#footer-form");
+// Confetti on form submit
+const form = document.querySelector("#email-form");
+const footerForm = document.querySelector("#footer-form");
 
   let formConfetti = function () {
     setTimeout(function () {
@@ -148,3 +186,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+
+//quote CTA animation
+var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
+
+//main elements
+ctaLoad.from(".quote-cta_component", {y: 100, scale: 0.9, duration: .875, ease:"power4.out"})
+ctaLoad.fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 400}, {opacity: 1, scale: 1, y: 0, duration: 1, ease: "power4.out"}, "<+0.125");
+//content
+ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out", opacity: 0}, "<.25");
+ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
+
+ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, ">-0.5");
+ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
+ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
+ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
+ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
+
