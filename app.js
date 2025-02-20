@@ -31,7 +31,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
     id: "home-script",
-    condition: () => url.includes("/"),
+    selector: ".section_home-header",
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",

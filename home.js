@@ -319,7 +319,7 @@ mm.add("(min-width: 991px)", () => {
     scrollTrigger: {
       trigger: ".cta_form",
       start: "-=400 center",
-      markers: true,
+      markers: false,
     },
   });
   var ctaFormLoad = gsap.timeline({
@@ -498,7 +498,7 @@ mm.add("(max-width: 991px)", () => {
     scrollTrigger: {
       trigger: ".cta_form",
       start: "-=400 center",
-      markers: true,
+      markers: false,
     },
   });
 
