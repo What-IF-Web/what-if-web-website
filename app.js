@@ -12,8 +12,6 @@ ScrollSmoother.create({
   smooth: 1.5,
   effects: true,
 });
-
-
 let url = window.location.pathname;
 
 // Optimized function to preload and execute scripts
