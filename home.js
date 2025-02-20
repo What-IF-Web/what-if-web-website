@@ -125,8 +125,8 @@ projectsLoad.from(projectsSplit.lines, {
 });
 projectsLoad.from(
   ".projects_content > .projects_item > .projects_card",
-  { duration: 1, opacity: 0, y: 100, ease: "power3.out", stagger: 0.125 },
-  ">-0.5"
+  { duration: 0.75, opacity: 0, y: 60, ease: "power3.out", stagger: 0.1 },
+  ">-0.75"
 );
 projectsLoad.from(
   ".projects_component > a",
@@ -329,7 +329,7 @@ mm.add("(min-width: 991px)", () => {
       start: "top top",
       end: "bottom bottom",
       markers: false,
-      pin: ".cta_form",
+      pin: ".cta_form-block",
       pinSpacing: false,
     },
   });
