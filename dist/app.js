@@ -597,36 +597,21 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-// // Wait for the window to fully load
-// window.addEventListener("load", function () {
-//   // Show the preloader in case it was hidden by default
-//   const preloader = document.getElementById("preloader");
-//   if (preloader) {
-//     preloader.style.display = "block"; // Ensure it's shown when the page starts loading
-//     // Fade out the preloader using GSAP
-//     gsap.to(preloader, {
-//       opacity: 0,
-//       duration: 1,
-//       onComplete: () => {
-//         preloader.style.display = "none"; // Hide preloader after fade out
-//       },
-//     });
-//   }
-// });
 // Now that the preloader is hidden, you can run your GSAP code
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 1.5,
     effects: true
 });
-const url = window.location.pathname;
+let url = window.location.pathname;
 // Optimized function to preload and execute scripts
 function preloadAndExecuteScript(src, id) {
     if (document.getElementById(id)) return;
     const script = document.createElement("script");
     script.src = src;
     script.id = id;
-    script.async = true; // Make sure it's async for early execution
+    script.async = true;
+    script.defer = true;
     document.head.appendChild(script);
 }
 // List of scripts to load based on URL and selectors
@@ -672,77 +657,74 @@ scriptsToLoad.forEach(({ src, id, selector, condition })=>{
     if (selector && document.querySelector(selector)) preloadAndExecuteScript(src, id);
     else if (condition && condition()) preloadAndExecuteScript(src, id);
 });
-/* testimonial slider */ $(document).ready(function() {
-    var testimonialsSlider = new Swiper("#testimonials-slider", {
-        loop: true,
-        slidesPerView: 1,
-        centeredSlides: true,
-        spaceBetween: 8,
-        grabCursor: true,
-        pagination: {
-            el: ".swiper_pagination",
-            clickable: true
+// Testimonial slider initialization
+var testimonialsSlider = new Swiper("#testimonials-slider", {
+    loop: true,
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 8,
+    grabCursor: true,
+    pagination: {
+        el: ".swiper-pagination",
+        clickable: true
+    },
+    autoplay: {
+        delay: 2200,
+        disableOnInteraction: false
+    },
+    speed: 600,
+    breakpoints: {
+        478: {
+            slidesPerView: 2
         },
-        autoplay: {
-            delay: 2200,
-            disableOnInteraction: false
+        991: {
+            slidesPerView: 3,
+            spaceBetween: 16
         },
-        speed: 600,
-        breakpoints: {
-            478: {
-                slidesPerView: 2
-            },
-            991: {
-                slidesPerView: 3,
-                spaceBetween: 16
-            },
-            1366: {
-                slidesPerView: 4
-            }
+        1366: {
+            slidesPerView: 4
         }
-    });
+    }
 });
-//confetti on form submit
-document.addEventListener("DOMContentLoaded", function() {
-    const form = document.querySelector("#email-form");
-    const footerForm = document.querySelector("#footer-form");
-    let formConfetti = function() {
-        setTimeout(function() {
-            confetti({
-                particleCount: 150,
-                startVelocity: 30,
-                spread: 360,
-                scalar: 3,
-                flat: true,
-                origin: {
-                    x: 0.5,
-                    y: 0
-                },
-                shapes: [
-                    "square",
-                    "diamonds"
-                ],
-                colors: [
-                    "#A41212",
-                    "#FE0D04",
-                    "#C36A66",
-                    "#008B47",
-                    "#FFFF00",
-                    "#0074E3",
-                    "#FF9CD2",
-                    "#3FDCE3",
-                    "#FFC25D",
-                    "#CDEAF2"
-                ]
-            });
-        }, 1600);
-    };
-    if (form) form.addEventListener("submit", function(event) {
-        formConfetti();
-    });
-    if (footerForm) footerForm.addEventListener("submit", function(event) {
-        formConfetti();
-    });
+// Confetti on form submit
+const form = document.querySelector("#email-form");
+const footerForm = document.querySelector("#footer-form");
+let formConfetti = function() {
+    setTimeout(function() {
+        confetti({
+            particleCount: 150,
+            startVelocity: 30,
+            spread: 360,
+            scalar: 3,
+            flat: true,
+            origin: {
+                x: 0.5,
+                y: 0
+            },
+            shapes: [
+                "square",
+                "diamonds"
+            ],
+            colors: [
+                "#A41212",
+                "#FE0D04",
+                "#C36A66",
+                "#008B47",
+                "#FFFF00",
+                "#0074E3",
+                "#FF9CD2",
+                "#3FDCE3",
+                "#FFC25D",
+                "#CDEAF2"
+            ]
+        });
+    }, 1600);
+};
+if (form) form.addEventListener("submit", function(event) {
+    formConfetti();
+});
+if (footerForm) footerForm.addEventListener("submit", function(event) {
+    formConfetti();
 });
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
