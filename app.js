@@ -13,7 +13,6 @@ ScrollSmoother.create({
   effects: true,
 });
 
-
 // case studies blob morph animation
 var morphPath = gsap.timeline({ repeat: -1 });
 
@@ -187,18 +186,54 @@ const footerForm = document.querySelector("#footer-form");
 
 
 //quote CTA animation
-var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
+var ctaLoad = gsap.timeline({
+  scrollTrigger: { trigger: ".section_quote-cta", start: "-=400 center" },
+});
 
 //main elements
-ctaLoad.from(".quote-cta_component", {y: 100, scale: 0.9, duration: .875, ease:"power4.out"})
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 400}, {opacity: 1, scale: 1, y: 0, duration: 1, ease: "power4.out"}, "<+0.125");
+ctaLoad.from(".quote-cta_component", {
+  y: 100,
+  scale: 0.9,
+  duration: 0.875,
+  ease: "power4.out",
+});
+ctaLoad.fromTo(
+  ".quote-cta_heading-wrapper",
+  { opacity: 0, scale: 0, y: 400 },
+  { opacity: 1, scale: 1, y: 0, duration: 1, ease: "power4.out" },
+  "<+0.125"
+);
 //content
-ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, ease: "power2.out", opacity: 0}, "<.25");
-ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, ease: "power2.out", opacity: 0,}, "<0.125");
+ctaLoad.from(
+  ".quote-cta_subheading",
+  { y: 150, duration: 0.875, ease: "power2.out", opacity: 0 },
+  "<.25"
+);
+ctaLoad.from(
+  "#ctaButton",
+  { y: 200, duration: 0.875, ease: "power2.out", opacity: 0 },
+  "<0.125"
+);
 
-ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, ">-0.5");
-ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125, ease: "power3.out"}, "<.125");
-ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%', duration: 1, ease: "power3.out"}, "<");
-ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%', duration: 1, ease: "power3.out"}, ">-0.3");
-ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
+ctaLoad.to(
+  ".quote-cta_heading > .text-color-alternate",
+  { scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3 },
+  ">-0.5"
+);
+ctaLoad.from(
+  ".quote-cta_heading > .text-color-alternate",
+  { color: "#fff9f3", duration: 0.125, ease: "power3.out" },
+  "<.125"
+);
+ctaLoad.from(
+  "#ctaScribble",
+  { drawSVG: "0% 0%", duration: 1, ease: "power3.out" },
+  "<"
+);
+ctaLoad.to(
+  "#ctaScribble",
+  { drawSVG: "100% 100%", duration: 1, ease: "power3.out" },
+  ">-0.3"
+);
+ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
 
