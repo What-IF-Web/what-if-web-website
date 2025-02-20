@@ -324,7 +324,7 @@ mm.add("(min-width: 991px)", () => {
   });
   var ctaFormLoad = gsap.timeline({
     scrollTrigger: {
-      trigger: ".cta_form-block",
+      trigger: ".cta_component",
       scrub: true,
       start: "top top",
       end: "bottom bottom",
