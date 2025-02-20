@@ -125,7 +125,7 @@ projectsLoad.from(projectsSplit.lines, {
 });
 projectsLoad.from(
   ".projects_content > .projects_item > .projects_card",
-  { duration: 1.5, opacity: 0, y: 100, ease: "power3.out", stagger: 0.125 },
+  { duration: 1, opacity: 0, y: 100, ease: "power3.out", stagger: 0.125 },
   ">-0.5"
 );
 projectsLoad.from(
