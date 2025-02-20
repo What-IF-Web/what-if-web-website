@@ -103,6 +103,23 @@ var testimonialsSlider = new Swiper("#testimonials-slider", {
     },
   },
 });
+//testimonial pagination script
+// Find the Testimonials component and its variant
+const testimonialsComponent = document.querySelector('.testimonials'); // Change this to the correct selector for the component
+const variantField = document.querySelector('.wf-variant-dropdown'); // Selector for the variant dropdown
+
+// Check if the "White" variant is selected and apply styles
+if (variantField && variantField.value === 'White') {
+  const style = document.createElement('style');
+  style.innerHTML = `
+    .swiper-pagination-bullet {
+      background-color: var(--background-color--background-black) !important;
+    }
+
+  document.head.appendChild(style);
+}`
+}
+
 
 // Confetti on form submit
 const form = document.querySelector("#email-form");
@@ -146,3 +163,11 @@ const footerForm = document.querySelector("#footer-form");
     });
   };
 
+  $(document).ready(function () {
+    $(".navbar_menu-button").on("click", function () {
+      $("body").toggleClass("no-scroll");
+    });
+  });
+  $(document).on("click", ".button.is-small.is-navbar.is-open", function () {
+      $("body").toggleClass("no-scroll");
+  });
