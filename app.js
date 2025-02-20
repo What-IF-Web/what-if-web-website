@@ -146,31 +146,44 @@ var testimonialsSlider = new Swiper("#testimonials-slider", {
 const form = document.querySelector("#email-form");
 const footerForm = document.querySelector("#footer-form");
 
-let formConfetti = function () {
-  setTimeout(function () {
-    confetti({
-      particleCount: 150,
-      startVelocity: 30,
-      spread: 360,
-      scalar: 3,
-      flat: true,
-      origin: { x: 0.5, y: 0 },
-      shapes: ["square", "diamonds"],
-      colors: [
-        "#A41212",
-        "#FE0D04",
-        "#C36A66",
-        "#008B47",
-        "#FFFF00",
-        "#0074E3",
-        "#FF9CD2",
-        "#3FDCE3",
-        "#FFC25D",
-        "#CDEAF2",
-      ],
+  let formConfetti = function () {
+    setTimeout(function () {
+      confetti({
+        particleCount: 150,
+        startVelocity: 30,
+        spread: 360,
+        scalar: 3,
+        flat: true,
+        origin: { x: 0.5, y: 0 },
+        shapes: ["square", "diamonds"],
+        colors: [
+          "#A41212",
+          "#FE0D04",
+          "#C36A66",
+          "#008B47",
+          "#FFFF00",
+          "#0074E3",
+          "#FF9CD2",
+          "#3FDCE3",
+          "#FFC25D",
+          "#CDEAF2",
+        ],
+      });
+    }, 1600);
+  };
+
+  if (form) {
+    form.addEventListener("submit", function (event) {
+      formConfetti();
     });
-  }, 1600);
-};
+  }
+
+  if (footerForm) {
+    footerForm.addEventListener("submit", function (event) {
+      formConfetti();
+    });
+  };
+
 
 //quote CTA animation
 var ctaLoad = gsap.timeline({
@@ -224,69 +237,3 @@ ctaLoad.to(
 );
 ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
 
-if (form) {
-  form.addEventListener("submit", function (event) {
-    formConfetti();
-  });
-}
-
-if (footerForm) {
-  footerForm.addEventListener("submit", function (event) {
-    formConfetti();
-  });
-}
-
-// Quote CTA animation
-var ctaLoad = gsap.timeline({
-  scrollTrigger: { trigger: ".section_quote-cta", start: "-=400 center" },
-});
-
-// Main elements
-ctaLoad
-  .from(".quote-cta_component", { y: 100, duration: 1, ease: "power4.out" })
-  .fromTo(
-    ".quote-cta_heading-wrapper",
-    { opacity: 0, scale: 0, y: 300 },
-    { opacity: 1, scale: 1, y: 100, duration: 1, ease: "power4.out" },
-    "<0.5"
-  );
-
-ctaLoad.to(
-  ".quote-cta_heading > .text-color-alternate",
-  { scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3 },
-  1
-);
-ctaLoad.from(
-  ".quote-cta_heading > .text-color-alternate",
-  { color: "#fff9f3", duration: 0.125, ease: "power3.out" },
-  "<.125"
-);
-ctaLoad.from(
-  "#ctaScribble",
-  { drawSVG: "0% 0%", duration: 1, ease: "power3.out" },
-  "<"
-);
-ctaLoad.to(
-  "#ctaScribble",
-  { drawSVG: "100% 100%", duration: 1, ease: "power3.out" },
-  ">-0.3"
-);
-ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
-
-// Content animations
-ctaLoad.fromTo(
-  ".quote-cta_heading-wrapper",
-  { y: 100 },
-  { y: 0, duration: 1, ease: "power2.out" },
-  "<.25"
-);
-ctaLoad.from(
-  ".quote-cta_subheading",
-  { y: 150, duration: 0.875, ease: "power2.out", opacity: 0 },
-  "<0.5"
-);
-ctaLoad.from(
-  "#ctaButton",
-  { y: 200, duration: 0.875, ease: "power2.out", opacity: 0 },
-  "<0.125"
-);
