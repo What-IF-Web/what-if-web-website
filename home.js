@@ -329,7 +329,7 @@ mm.add("(min-width: 991px)", () => {
       start: "top top",
       end: "bottom bottom",
       markers: false,
-      pin: ".cta_form",
+      pin: ".cta_form-block",
       pinSpacing: false,
     },
   });
