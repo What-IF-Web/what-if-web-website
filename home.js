@@ -462,7 +462,7 @@ mm.add("(min-width: 991px)", () => {
   processLoad.to(".process_critter-eyes", {opacity: 0, duration: 0.125}, "<")
   //cards path animation
   gsap.set(".process_card-wrapper > .process_card", {xPercent: -50, yPercent: -50, transformOrigin: "50%, 50%"});
-  processLoad.to(".process_card-wrapper > .process_card", {stagger: 0.1, duration: 3, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
+  processLoad.to(".process_card-wrapper > .process_card", {stagger: 0.1, ease: "none", motionPath: {path: "#process-path", align: "#process-path", autoRotate: 180}}, ">");
 
   //process + cta ends here
 

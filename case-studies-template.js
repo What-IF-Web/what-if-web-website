@@ -59,10 +59,10 @@ footerLoad.from(".footer_links-wrapper > a", {opacity: 0, stagger: 0.125, ease: 
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 1}, "<0.5");
 
 
-let mm = gsap.matchMedia();
+let gm = gsap.matchMedia();
 
 // desktop
-mm.add("(min-width: 991px)", () => {
+gm.add("(min-width: 991px)", () => {
   // case studies table of contents pin
   var contentsPin = gsap.timeline({scrollTrigger: {trigger: ".case-study_component", start: "top top", end: "bottom bottom", scrub: true, pin: ".table-of-contents_wrapper", pinSpacing: false}});
 });
