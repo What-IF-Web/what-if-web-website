@@ -90,12 +90,12 @@ $(document).ready(function () {
 
 
 
-//pricing header load in
-// var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
+// pricing header load in
+var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
 
-// pricingLoad.from(".pricing_content-top > h1", {y: 100, opacity: 0, duration: 1, ease: 'power4.out'});
-// pricingLoad.from(".pricing_paragraph-wrapper", {y: 150, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
-// pricingLoad.from(".pricing_content-bottom", {y: 200, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
+pricingLoad.from(".pricing_content-top > h1", {y: 100, opacity: 0, duration: 1, ease: 'power4.out'});
+pricingLoad.from(".pricing_paragraph-wrapper", {y: 150, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
+pricingLoad.from(".pricing_content-bottom", {y: 200, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
 
 //FAQ section
 
@@ -120,21 +120,6 @@ let mm = gsap.matchMedia();
 
 // desktop
 mm.add("(min-width: 991px)", () => {
-  var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
-
-  pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
-
-  pricingLoad.from(".pricing_card.is-left", {y: 200, opacity: 0, scale: 0.9, rotateZ: -15, duration: 1, ease: "power4.out"}, 0.25);
-  pricingLoad.from(".pricing_card.is-centre", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.375);
-  pricingLoad.from(".pricing_card.is-right", {y: 200, opacity: 0, scale: 0.9, rotateZ: 15, duration: 1, ease: "power4.out"}, 0.5);
    //pinned service element
    var servicesPinTrigger = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top top", end: "bottom bottom", scrub: true, pin: ".services_content-top-wrapper", pinSpacing: false}});
-});
-//mobile
-mm.add("(max-width: 991px)", () => {
-  var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
-
-pricingLoad.from(".pricing_content-top > h1, .pricing_content-top > .pricing_paragraph-wrapper", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out", stagger: 0.125}, 0);
-
-pricingLoad.from(".pricing_card", {y: 200, opacity: 0, scale: 0.9, duration: 1, ease: "power4.out"}, 0.25);
 });
