@@ -82,7 +82,7 @@ var testimonialsSlider = new Swiper("#testimonials-slider", {
   spaceBetween: 8,
   grabCursor: true,
   pagination: {
-    el: ".swiper_pagination",
+    el: ".swiper-pagination",
     clickable: true,
   },
   autoplay: {
