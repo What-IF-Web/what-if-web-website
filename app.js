@@ -13,7 +13,6 @@ ScrollSmoother.create({
   effects: true,
 });
 
-const url = window.location.pathname;
 
 // case studies blob morph animation
 var morphPath = gsap.timeline({ repeat: -1 });
@@ -184,8 +183,7 @@ const footerForm = document.querySelector("#footer-form");
     footerForm.addEventListener("submit", function (event) {
       formConfetti();
     });
-  }
-});
+  };
 
 
 //quote CTA animation
