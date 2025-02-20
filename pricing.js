@@ -91,11 +91,11 @@ $(document).ready(function () {
 
 
 //pricing header load in
-var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
+// var pricingLoad = gsap.timeline({scrollTrigger: {trigger: ".section_pricing"}});
 
-pricingLoad.from(".pricing_content-top > h1", {y: 100, opacity: 0, duration: 1, ease: 'power4.out'});
-pricingLoad.from(".pricing_paragraph-wrapper", {y: 150, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
-pricingLoad.from(".pricing_content-bottom", {y: 200, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
+// pricingLoad.from(".pricing_content-top > h1", {y: 100, opacity: 0, duration: 1, ease: 'power4.out'});
+// pricingLoad.from(".pricing_paragraph-wrapper", {y: 150, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
+// pricingLoad.from(".pricing_content-bottom", {y: 200, opacity: 0, duration: 1, ease: 'power4.out'}, "<+0.25");
 
 //FAQ section
 
@@ -104,8 +104,6 @@ var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=
 faqLoad.from("#faq-heading", {y: 80, opacity: 0, duration: 0.875, ease: "power3.out"}, 0);
 faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "power4.out", stagger: 0.125}, 0.25);
 faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.25}, "<0.5");
-
-faqLoad.from()
 
 //footer animation
 var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
