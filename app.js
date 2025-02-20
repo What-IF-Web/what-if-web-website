@@ -31,7 +31,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/home.js",
     id: "home-script",
-    condition: () => url.includes("/"),
+    selector: ".section_home-header",
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
@@ -41,7 +41,7 @@ const scriptsToLoad = [
   {
     src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
     id: "case-studies-script",
-    condition: () => url.includes("case-studies"),
+    selector: ".section_case-studies",
   },
   {
     src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
