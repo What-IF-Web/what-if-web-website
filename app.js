@@ -160,20 +160,4 @@ document.addEventListener("DOMContentLoaded", () => {
       document.body.classList.toggle("no-scroll");
     }
   });
-
-  $(document).on("click", ".button.is-small.is-navbar.is-open", function () {
-      $("body").toggleClass("no-scroll");
-  });
-
-  $('.navbar_logo-link').click(function(e) {
-    e.preventDefault();
-      var linkUrl = $(this).attr('href');
-      setTimeout(function(url) { window.location = url; }, 750, linkUrl);
-});
-
-//resources animations
-
-// var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
-
-// resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
 });
