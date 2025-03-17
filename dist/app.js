@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
         breakpoints: {
             478: {
                 slidesPerView: 2
-                  },
+            },
             991: {
                 slidesPerView: 3,
                 spaceBetween: 16
@@ -105,36 +105,6 @@ document.addEventListener("DOMContentLoaded", ()=>{
             }
         }
     });
-//testimonial pagination script
-// Find the Testimonials component and its variant
-const testimonialsComponent = document.querySelector('.testimonials'); // Change this to the correct selector for the component
-const variantField = document.querySelector('.wf-variant-dropdown'); // Selector for the variant dropdown
-// Check if the "White" variant is selected and apply styles
-if (variantField && variantField.value === 'White') {
-    const style = document.createElement('style');
-    style.innerHTML = `
-    .swiper-pagination-bullet {
-      background-color: var(--background-color--background-black) !important;
-    }
-
-  document.head.appendChild(style);
-}`;
-}
-// Confetti on form submit
-const form = document.querySelector("#email-form");
-const footerForm = document.querySelector("#footer-form");
-let formConfetti = function() {
-    setTimeout(function() {
-        confetti({
-            particleCount: 150,
-            startVelocity: 30,
-            spread: 360,
-            scalar: 3,
-            flat: true,
-            origin: {
-                x: 0.5,
-                y: 0
-
     // Testimonial pagination color change based on variant
     const variantField = document.querySelector(".wf-variant-dropdown");
     if (variantField?.value === "White") {
@@ -181,34 +151,6 @@ let formConfetti = function() {
     document.addEventListener("click", (event)=>{
         if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
     });
-});
-$(document).ready(function() {
-    $(".navbar_menu-button").on("click", function() {
-        $("body").toggleClass("no-scroll");
-    });
-});
-$(document).on("click", ".button.is-small.is-navbar.is-open", function() {
-    $("body").toggleClass("no-scroll");
-});
-$('.navbar_logo-link').click(function(e) {
-    e.preventDefault();
-    var linkUrl = $(this).attr('href');
-    setTimeout(function(url) {
-        window.location = url;
-    }, 750, linkUrl);
-});
-//resources animations
-var resourcesLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_resources"
-    }
-});
-resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {
-    y: 100,
-    stagger: 0.125,
-    ease: "power4.out",
-    duration: 1,
-    opacity: 0
 });
 
 
