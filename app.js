@@ -6,127 +6,122 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
-// Now that the preloader is hidden, you can run your GSAP code
 ScrollSmoother.create({
   content: ".main-wrapper",
-  smooth: 1.5,
+  smooth: 0.8,
   effects: true,
 });
-let url = window.location.pathname;
 
-// Optimized function to preload and execute scripts
-function preloadAndExecuteScript(src, id) {
-  if (document.getElementById(id)) return;
+document.addEventListener("DOMContentLoaded", () => {
+  const url = window.location.pathname;
 
-  const script = document.createElement("script");
-  script.src = src;
-  script.id = id;
-  script.async = true;
-  script.defer = true;
-  document.head.appendChild(script);
-}
+  const scriptsMap = new Map([
+    [
+      ".section_home-header",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/home.js",
+        id: "home-script",
+      },
+    ],
+    [
+      ".section_case-study-header",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
+        id: "case-study-script",
+      },
+    ],
+    [
+      ".section_case-studies",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
+        id: "case-studies-script",
+      },
+    ],
+    [
+      ".section_not-found-header",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
+        id: "not-found-script",
+      },
+    ],
+  ]);
 
-// List of scripts to load based on URL and selectors
-const scriptsToLoad = [
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/home.js",
-    id: "home-script",
-    selector: ".section_home-header",
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-    id: "case-study-script",
-    selector: ".section_case-study-header",
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-    id: "case-studies-script",
-    selector: ".section_case-studies",
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-    id: "not-found-script",
-    selector: ".section_not-found-header",
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-    id: "pricing-script",
-    condition: () => url.includes("pricing"),
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-    id: "contact-script",
-    condition: () => url.includes("contact"),
-  },
-  {
-    src: "https://what-if-web.github.io/what-if-web-website/roast.js",
-    id: "roast-script",
-    condition: () => url.includes("roast"),
-  },
-];
+  const urlScriptsMap = new Map([
+    [
+      "pricing",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
+        id: "pricing-script",
+      },
+    ],
+    [
+      "contact",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/contact.js",
+        id: "contact-script",
+      },
+    ],
+    [
+      "roast",
+      {
+        src: "https://what-if-web.github.io/what-if-web-website/roast.js",
+        id: "roast-script",
+      },
+    ],
+  ]);
 
-// Load scripts conditionally
-scriptsToLoad.forEach(({ src, id, selector, condition }) => {
-  if (selector && document.querySelector(selector)) {
-    preloadAndExecuteScript(src, id);
-  } else if (condition && condition()) {
-    preloadAndExecuteScript(src, id);
-  }
-});
-
-// Testimonial slider initialization
-var testimonialsSlider = new Swiper("#testimonials-slider", {
-  loop: true,
-  slidesPerView: 1,
-  centeredSlides: true,
-  spaceBetween: 8,
-  grabCursor: true,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  autoplay: {
-    delay: 2200,
-    disableOnInteraction: false,
-  },
-  speed: 600,
-  breakpoints: {
-    478: {
-      slidesPerView: 2,
-    },
-    991: {
-      slidesPerView: 3,
-      spaceBetween: 16,
-    },
-    1366: {
-      slidesPerView: 4,
-    },
-  },
-});
-//testimonial pagination script
-// Find the Testimonials component and its variant
-const testimonialsComponent = document.querySelector('.testimonials'); // Change this to the correct selector for the component
-const variantField = document.querySelector('.wf-variant-dropdown'); // Selector for the variant dropdown
-
-// Check if the "White" variant is selected and apply styles
-if (variantField && variantField.value === 'White') {
-  const style = document.createElement('style');
-  style.innerHTML = `
-    .swiper-pagination-bullet {
-      background-color: var(--background-color--background-black) !important;
+  function preloadAndExecuteScript(src, id) {
+    if (!document.getElementById(id)) {
+      const script = document.createElement("script");
+      script.src = src;
+      script.id = id;
+      script.defer = true;
+      document.head.appendChild(script);
     }
+  }
 
-  document.head.appendChild(style);
-}`
-}
+  // Load scripts based on elements found in DOM
+  scriptsMap.forEach(({ src, id }, selector) => {
+    if (document.querySelector(selector)) {
+      preloadAndExecuteScript(src, id);
+    }
+  });
 
+  // Load scripts based on URL matching
+  urlScriptsMap.forEach(({ src, id }, key) => {
+    if (url.includes(key)) {
+      preloadAndExecuteScript(src, id);
+    }
+  });
 
-// Confetti on form submit
-const form = document.querySelector("#email-form");
-const footerForm = document.querySelector("#footer-form");
+  // Testimonial slider initialization
+  new Swiper("#testimonials-slider", {
+    loop: true,
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 8,
+    grabCursor: true,
+    pagination: { el: ".swiper-pagination", clickable: true },
+    autoplay: { delay: 2200, disableOnInteraction: false },
+    speed: 600,
+    breakpoints: {
+      478: { slidesPerView: 2 },
+      991: { slidesPerView: 3, spaceBetween: 16 },
+      1366: { slidesPerView: 4 },
+    },
+  });
 
-  let formConfetti = function () {
-    setTimeout(function () {
+  // Testimonial pagination color change based on variant
+  const variantField = document.querySelector(".wf-variant-dropdown");
+  if (variantField?.value === "White") {
+    const style = document.createElement("style");
+    style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
+    document.head.appendChild(style);
+  }
+
+  // Confetti on form submit
+  const confettiEffect = () => {
+    setTimeout(() => {
       confetti({
         particleCount: 150,
         startVelocity: 30,
@@ -151,23 +146,21 @@ const footerForm = document.querySelector("#footer-form");
     }, 1600);
   };
 
-  if (form) {
-    form.addEventListener("submit", function (event) {
-      formConfetti();
-    });
-  }
-
-  if (footerForm) {
-    footerForm.addEventListener("submit", function (event) {
-      formConfetti();
-    });
-  };
-
-  $(document).ready(function () {
-    $(".navbar_menu-button").on("click", function () {
-      $("body").toggleClass("no-scroll");
-    });
+  document.querySelectorAll("#email-form, #footer-form").forEach((form) => {
+    form.addEventListener("submit", confettiEffect);
   });
+
+  // Navbar toggle
+  document.addEventListener("click", (event) => {
+    if (
+      event.target.matches(
+        ".navbar_menu-button, .button.is-small.is-navbar.is-open"
+      )
+    ) {
+      document.body.classList.toggle("no-scroll");
+    }
+  });
+
   $(document).on("click", ".button.is-small.is-navbar.is-open", function () {
       $("body").toggleClass("no-scroll");
   });
@@ -183,3 +176,4 @@ const footerForm = document.querySelector("#footer-form");
 // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
 
 // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
+});
