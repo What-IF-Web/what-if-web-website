@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const script = document.createElement("script");
       script.src = src;
       script.id = id;
-      script.defer = true;
+      script.async = true;
       script.onerror = () => {
         console.error(`Failed to load script: ${src}`);
       };
