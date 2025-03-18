@@ -15,6 +15,7 @@ ScrollSmoother.create({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
+  console.log("✅ DOM fully loaded. Running app.js...");
   const url = window.location.pathname;
 
   const scriptsMap = new Map([

@@ -597,18 +597,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 console.log("\u2705 app.js loaded. Checking for home.js...");
-function preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) {
-        console.log(`\u{1F4E1} Attempting to load: ${src}`);
-        const script = document.createElement("script");
-        script.src = src + "?v=" + Date.now(); // Prevents caching issues
-        script.id = id;
-        script.defer = true;
-        script.onload = ()=>console.log(`\u{2705} Successfully loaded: ${src}`);
-        script.onerror = ()=>console.error(`\u{274C} Failed to load: ${src}`);
-        document.head.appendChild(script);
-    } else console.log(`\u{1F539} Script ${id} already loaded.`);
-}
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
@@ -616,6 +604,7 @@ ScrollSmoother.create({
     effects: true
 });
 document.addEventListener("DOMContentLoaded", ()=>{
+    console.log("\u2705 DOM fully loaded. Running app.js...");
     const url = window.location.pathname;
     const scriptsMap = new Map([
         [
@@ -670,6 +659,18 @@ document.addEventListener("DOMContentLoaded", ()=>{
             }
         ]
     ]);
+    function preloadAndExecuteScript(src, id) {
+        if (!document.getElementById(id)) {
+            console.log(`\u{1F4E1} Attempting to load: ${src}`);
+            const script = document.createElement("script");
+            script.src = src + "?v=" + Date.now(); // Prevents caching issues
+            script.id = id;
+            script.defer = true;
+            script.onload = ()=>console.log(`\u{2705} Successfully loaded: ${src}`);
+            script.onerror = ()=>console.error(`\u{274C} Failed to load: ${src}`);
+            document.head.appendChild(script);
+        } else console.log(`\u{1F539} Script ${id} already loaded.`);
+    }
     // Load scripts based on elements found in DOM
     scriptsMap.forEach(({ src, id }, selector)=>{
         if (document.querySelector(selector)) preloadAndExecuteScript(src, id);
