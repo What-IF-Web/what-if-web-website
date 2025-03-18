@@ -16,7 +16,7 @@ ScrollSmoother.create({
   effects: true,
 });
 
-document.addEventListener("onload", () => {
+document.addEventListener("load", () => {
   console.log("✅ DOM fully loaded. Running app.js...");
   const url = window.location.pathname;
 
