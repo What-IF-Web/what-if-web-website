@@ -597,14 +597,19 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 console.log("\u2705 app.js loaded. Checking for home.js...");
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-console.log("\u2705 GSAP plugins registered...");
-ScrollSmoother.create({
-    content: ".main-wrapper",
-    smooth: 0.8,
-    effects: true
-});
-document.addEventListener("load", ()=>{
+// gsap.registerPlugin(
+//   ScrollTrigger,
+//   SplitText,
+//   DrawSVGPlugin,
+//   MotionPathPlugin,
+//   ScrollSmoother
+// );
+// ScrollSmoother.create({
+//   content: ".main-wrapper",
+//   smooth: 0.8,
+//   effects: true,
+// });
+document.addEventListener("DOMContentLoaded", ()=>{
     console.log("\u2705 DOM fully loaded. Running app.js...");
     const url = window.location.pathname;
     const scriptsMap = new Map([
