@@ -598,6 +598,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 var _about = require("./about");
 console.log("this is in localhost");
+const parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
