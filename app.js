@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function preloadAndExecuteScript(src, id) {
     if (!document.getElementById(id)) {
       const script = document.createElement("script");
-      script.src = `${src}?v=${Date.now()}`;
+      script.src = src;
       script.id = id;
       script.defer = true;
       script.onerror = () => console.error(`Failed to load script: ${src}`);
@@ -94,24 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
       preloadAndExecuteScript(src, id);
     }
   });
-
-  // Observer to catch dynamically added elements
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      mutation.addedNodes.forEach((node) => {
-        if (node.nodeType === 1) {
-          scriptsMap.forEach(({ src, id }, selector) => {
-            if (node.matches(selector) && !document.getElementById(id)) {
-              preloadAndExecuteScript(src, id);
-              observer.disconnect(); // Stop observing after loading script
-            }
-          });
-        }
-      });
-    });
-  });
-
-  observer.observe(document.body, { childList: true, subtree: true });
 
   // Testimonial slider initialization
   new Swiper("#testimonials-slider", {
