@@ -12,7 +12,7 @@ ScrollSmoother.create({
   effects: true,
 });
 
-document.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const url = window.location.pathname;
 
   const scriptsMap = new Map([
