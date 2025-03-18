@@ -95,6 +95,24 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  // Observer to catch dynamically added elements
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      mutation.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) {
+          scriptsMap.forEach(({ src, id }, selector) => {
+            if (node.matches(selector) && !document.getElementById(id)) {
+              preloadAndExecuteScript(src, id);
+              observer.disconnect(); // Stop observing after loading script
+            }
+          });
+        }
+      });
+    });
+  });
+
+  observer.observe(document.body, { childList: true, subtree: true });
+
   // Testimonial slider initialization
   new Swiper("#testimonials-slider", {
     loop: true,
