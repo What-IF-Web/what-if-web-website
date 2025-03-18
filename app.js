@@ -1,3 +1,5 @@
+console.log("this is in localhost");
+
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
@@ -11,6 +13,8 @@ ScrollSmoother.create({
   smooth: 0.8,
   effects: true,
 });
+
+import "./about";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
@@ -66,13 +70,13 @@ const urlScriptsMap = new Map([
       id: "roast-script",
     },
   ],
-  [
-    "about",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/about.js",
-      id: "about-script",
-    },
-  ],
+  // [
+  //   "about",
+  //   {
+  //     src: "https://what-if-web.github.io/what-if-web-website/about.js",
+  //     id: "about-script",
+  //   },
+  // ],
 ]);
 
 function preloadAndExecuteScript(src, id) {

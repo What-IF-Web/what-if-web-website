@@ -596,36 +596,52 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"3PNHe":[function(require,module,exports,__globalThis) {
-//home page and general stuff
-//morphing shape for the projects section
-var morph1 = gsap.to(".shape-1", {
-    duration: 3,
-    morphSVG: ".shape-2",
-    repeat: -1,
-    yoyo: true,
-    repeatDelay: 0
+//home page stuff
+$(document).ready(function() {
+    $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
+    $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
 });
-var morph2 = gsap.to(".shape-3", {
-    duration: 3,
-    morphSVG: ".shape-4",
+//case studies blob morph
+var morphPath = gsap.timeline({
     repeat: -1,
-    yoyo: true,
-    repeatDelay: 0
+    yoyo: true
 });
-var morph3 = gsap.to(".shape-5", {
-    duration: 3,
-    morphSVG: ".shape-6",
-    repeat: -1,
-    yoyo: true,
-    repeatDelay: 0
+morphPath.to(".path1", {
+    duration: 2,
+    morphSVG: ".path2",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path3",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path4",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path5",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path6",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path7",
+    ease: "power1.inOut"
+}).to(".path1", {
+    duration: 2,
+    morphSVG: ".path2",
+    ease: "power1.inOut"
 });
 //cards scroll through animation for the services section
 $(document).ready(function() {
     let cardsArray = [];
     // Select all .card.is-services elements inside .services_list
-    $('.services_list .card.is-services').each(function() {
+    $(".services_list .card.is-services").each(function() {
         let card = $(this);
-        let linkTargetID = card.find('.card_link-target').attr('id');
+        let linkTargetID = card.find(".card_link-target").attr("id");
         // Push the card element and ID into the array as an object
         cardsArray.push({
             cardElement: card,
@@ -646,7 +662,7 @@ $(document).ready(function() {
             scrollTrigger: {
                 trigger: `#${item.linkTargetID}`,
                 start: "top 90%",
-                end: "top 20%",
+                end: "top 40%",
                 scrub: true,
                 markers: false
             }
@@ -676,13 +692,13 @@ heroLoad.from(heroSplit.lines, {
     ease: "back.out(1.7)"
 }, ">-0.5");
 heroLoad.from(".home-header_subheading", {
-    duration: .875,
+    duration: 0.875,
     y: 300,
     opacity: 0,
     ease: "power4.out"
 }, ">-0.25");
 heroLoad.from(".home-header_component > a", {
-    duration: .875,
+    duration: 0.875,
     y: 200,
     opacity: 0,
     ease: "power3.out"
@@ -713,7 +729,7 @@ heroLoad.from(".home-header_lottie.is-slice", {
 var projectsLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_projects",
-        start: "top+=100 center"
+        start: "-=400 center"
     }
 });
 var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
@@ -728,12 +744,12 @@ projectsLoad.from(projectsSplit.lines, {
     stagger: 0.125
 });
 projectsLoad.from(".projects_content > .projects_item > .projects_card", {
-    duration: 1.5,
+    duration: 0.75,
     opacity: 0,
-    y: 100,
+    y: 60,
     ease: "power3.out",
-    stagger: 0.125
-}, ">-0.5");
+    stagger: 0.1
+}, ">-0.75");
 projectsLoad.from(".projects_component > a", {
     y: 100,
     opacity: 0,
@@ -752,98 +768,38 @@ projectsLoad.from("#projects-highlight", {
     ease: "power2.out"
 }, "<0.4");
 projectsLoad.from("#projects-line > svg > path", {
-    drawSVG: 0,
+    drawSVG: "0% 0%",
     duration: 0.6,
     ease: "power3.out"
 }, "<");
+projectsLoad.to("#projects-line > svg > path", {
+    drawSVG: "100% 100%",
+    duration: 0.6,
+    ease: "power3.out"
+}, ">-0.3");
+projectsLoad.to("#projects-line > svg > path", {
+    opacity: 0,
+    duration: 0
+}, ">-0.01");
 //solutions/services section animation
 var servicesLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_services",
-        start: "top+=100 center"
+        start: "-=400 center"
     }
 });
 servicesLoad.from(".services_heading-wrapper > h2", {
-    y: 200,
+    y: 80,
     scale: 0.8,
     opacity: 0,
     duration: 1,
     ease: "power3.out"
 });
-servicesLoad.from(".services_service-list > .services_service-item", {
-    y: 100,
-    opacity: 0,
-    duration: .5,
-    stagger: 0.25,
-    ease: "power.4out"
-}, "<0.5");
-//CTA FORM ANIMATION
-var ctaFormTrigger = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".cta_form",
-        start: "top+=100 center"
-    }
-});
-//CTA FORM ELEMENTS POP IN
-ctaFormTrigger.to("#cta-star-1", {
-    duration: 0.4,
-    scale: 1.6,
-    ease: "power3.inOut",
-    repeat: 1,
-    yoyo: true
-}, 0);
-ctaFormTrigger.to("#cta-star-2", {
-    duration: 0.3,
-    scale: 1.4,
-    ease: "power3.inOut",
-    repeat: 1,
-    yoyo: true
-}, 0.25);
-ctaFormTrigger.from(".cta_lottie", {
-    duration: 0.75,
-    scale: 0.8,
-    y: 200,
-    ease: "power3.out"
-}, "<");
-ctaFormTrigger.from(".cta_burst-lines > svg > path", {
-    drawSVG: 0,
-    opacity: 0,
-    scale: 0.9,
-    duration: .25,
-    ease: "power2.in"
-}, "<.25");
-ctaFormTrigger.from("#cta-form-orange", {
-    color: "#0f2756",
-    duration: .125,
-    ease: "power3.out"
-}, "<.5");
-ctaFormTrigger.to("#cta-form-orange", {
-    scale: 1.1,
-    repeat: 1,
-    yoyo: true,
-    ease: "power2.inOut",
-    duration: 0.3
-}, "<");
-ctaFormTrigger.from(".cta_scribble > svg > path", {
-    drawSVG: 0,
-    duration: 0.75,
-    ease: "power4.in"
-}, "<0.125");
-//process section animation
-var processLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".process_component",
-        scrub: true,
-        start: "top bottom",
-        end: "bottom bottom",
-        markers: false
-    }
-});
 //testimonials section animation
 var testimonialsLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_testimonials",
-        start: "top+=100 center"
+        start: "-=400 center"
     }
 });
 var testimonialSplit = new SplitText("#testimonial-heading", {
@@ -921,88 +877,71 @@ aboutLoad.from(".home-about_lottie", {
 var ctaLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_quote-cta",
-        start: "top+=100 center"
+        start: "-=400 center"
     }
 });
 //main elements
 ctaLoad.from(".quote-cta_component", {
-    scale: 0.7,
-    y: 400,
-    duration: 1.75,
+    y: 100,
+    scale: 0.9,
+    duration: .875,
     ease: "power4.out"
-}).fromTo(".quote-cta_heading-wrapper", {
+});
+ctaLoad.fromTo(".quote-cta_heading-wrapper", {
     opacity: 0,
     scale: 0,
-    y: 300
+    y: 400
 }, {
     opacity: 1,
     scale: 1,
-    y: 100,
-    duration: 1,
-    ease: "power4.out"
-}, "<0.5");
-ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
-    scale: 1.1,
-    repeat: 1,
-    yoyo: true,
-    ease: "power2.inOut",
-    duration: 0.3
-}, 1);
-ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
-    color: "#fff9f3",
-    duration: .125,
-    ease: "power3.out"
-}, "<.125");
-ctaLoad.from("#ctaScribble", {
-    drawSVG: 0,
-    duration: 1,
-    ease: "power4.in"
-}, "<");
-//content
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {
-    y: 100
-}, {
     y: 0,
     duration: 1,
-    ease: "power2.out"
-}, "<.25");
+    ease: "power4.out"
+}, "<+0.125");
+//content
 ctaLoad.from(".quote-cta_subheading", {
     y: 150,
     duration: 0.875,
     ease: "power2.out",
     opacity: 0
-}, "<0.5");
+}, "<.25");
 ctaLoad.from("#ctaButton", {
     y: 200,
     duration: 0.875,
     ease: "power2.out",
     opacity: 0
 }, "<0.125");
-//blog section
-var blogLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_related-blog",
-        start: "top+=100 center"
-    }
-});
-blogLoad.from(".related-blog_heading-wrapper > div", {
-    y: 100,
-    scale: 0.8,
-    opacity: 0,
+ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
+    scale: 1.1,
+    repeat: 1,
+    yoyo: true,
+    ease: "power2.inOut",
+    duration: 0.3
+}, ">-0.5");
+ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
+    color: "#fff9f3",
+    duration: .125,
+    ease: "power3.out"
+}, "<.125");
+ctaLoad.from("#ctaScribble", {
+    drawSVG: '0% 0%',
     duration: 1,
     ease: "power3.out"
-}).from(".related-blog_list > .related-blog_item", {
-    y: 180,
-    opacity: 0,
+}, "<");
+ctaLoad.to("#ctaScribble", {
+    drawSVG: '100% 100%',
     duration: 1,
-    ease: "power4.out",
-    stagger: 0.125
-}, "<0.5");
+    ease: "power3.out"
+}, ">-0.3");
+ctaLoad.to("#ctaScribble", {
+    opacity: 0,
+    duration: 0
+}, ">-0.02");
 //footer animation
 var footerLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".footer_component",
-        start: "top+=100 center"
+        start: "-=400 center"
     }
 });
 var footerSplit = new SplitText(".footer_top-wrapper > h2", {
@@ -1046,32 +985,170 @@ footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
 let mm = gsap.matchMedia();
 // desktop
 mm.add("(min-width: 991px)", ()=>{
-    processLoad.fromTo("#process-heading", {
-        lineHeight: "2"
-    }, {
-        lineHeight: "0.79"
-    }, 0);
-    processLoad.to("#process-heading", {
-        y: -700,
+    //cta form + process animation starts here
+    var ctaFormTrigger = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".cta_form",
+            start: "-=400 center",
+            markers: false
+        }
+    });
+    var ctaFormLoad = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".cta_component",
+            scrub: true,
+            start: "top top",
+            end: "bottom bottom",
+            markers: false,
+            pin: ".cta_form-block",
+            pinSpacing: false
+        }
+    });
+    //contents fade in
+    ctaFormLoad.from(".cta_heading-span", {
+        y: 200,
+        scale: 0.95,
         opacity: 0,
+        duration: 1,
+        stagger: 0.05,
         ease: "power3.out"
-    }, .5);
-    processLoad.fromTo("#process-heading", {
-        lineHeight: "0.79"
-    }, {
-        lineHeight: "1.5"
+    }, 0);
+    ctaFormLoad.from(".cta_form_input-wrapper", {
+        y: 300,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
     }, "<");
+    ctaFormLoad.from("#cta-form-bottom", {
+        y: 400,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "<");
+    //form field wobble or something
+    // ctaFormLoad.to("", {}, ">+0.25");
+    //contents fade out
+    ctaFormLoad.to(".cta_heading-span", {
+        y: -400,
+        stagger: 0.05,
+        scale: 0.95,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, ">+0.25");
+    ctaFormLoad.to(".cta_form_input-wrapper", {
+        y: -300,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "<+.05");
+    ctaFormLoad.to("#cta-form-bottom", {
+        y: -200,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "<");
+    ctaFormTrigger.from("#cta-form-orange", {
+        color: "#0f2756",
+        duration: 0.125,
+        ease: "power3.out"
+    }, "<.5");
+    ctaFormTrigger.to("#cta-form-orange", {
+        scale: 1.1,
+        repeat: 1,
+        yoyo: true,
+        ease: "power2.inOut",
+        duration: 0.3
+    }, "<");
+    ctaFormTrigger.from(".cta_burst-lines > svg > path", {
+        drawSVG: "0% 0%",
+        duration: 1,
+        ease: "power3.out"
+    }, "<");
+    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
+        drawSVG: "100% 100%",
+        duration: 1,
+        ease: "power3.out"
+    }, ">-0.3");
+    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
+        opacity: 0,
+        duration: 0
+    }, ">-0.05");
+    ctaFormTrigger.from(".cta_scribble > svg > path", {
+        drawSVG: "0% 0%",
+        duration: 1,
+        ease: "power3.out"
+    }, "<+0.125");
+    ctaFormTrigger.to(".cta_scribble > svg > path", {
+        drawSVG: "100% 100%",
+        duration: 1,
+        ease: "power3.out"
+    }, ">-0.3");
+    ctaFormTrigger.to(".cta_scribble > svg > path", {
+        opacity: 0,
+        duration: 0
+    }, ">-0.02");
+    //process section animation
+    var processLoad = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".process_component",
+            scrub: true,
+            start: "top top",
+            end: "bottom bottom",
+            markers: false,
+            pin: ".process_content-top"
+        }
+    });
+    //contents fade in
+    processLoad.from(".process_heading-span", {
+        y: 200,
+        scale: 0.95,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "power3.out"
+    }, 0);
+    processLoad.from(".process_critter-wrapper", {
+        y: 300,
+        scale: 0.9,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out"
+    }, "<");
+    //contents fade out
+    processLoad.to(".process_heading-span", {
+        y: -400,
+        scale: 0.95,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.05,
+        ease: "power3.out"
+    }, ">");
+    processLoad.to(".process_critter-wrapper", {
+        y: -200,
+        duration: 1,
+        ease: "power3.out"
+    }, "<+0.15");
+    //critter grows
     processLoad.to(".process_critter", {
         width: "100dvw",
-        height: "50dvw",
-        ease: "power4.out"
-    }, ">-0.5");
-    gsap.set(".process_card-wrapper > .card", {
+        height: "150dvh",
+        ease: "power4.out",
+        borderTopRightRadius: 0,
+        borderTopLeftRadius: 0,
+        border: "transparent"
+    }, "<");
+    processLoad.to(".process_critter-eyes", {
+        opacity: 0,
+        duration: 0.125
+    }, "<");
+    //cards path animation
+    gsap.set(".process_card-wrapper > .process_card", {
         xPercent: -50,
         yPercent: -50,
         transformOrigin: "50%, 50%"
     });
-    processLoad.to(".process_card-wrapper > .card", {
+    processLoad.to(".process_card-wrapper > .process_card", {
         stagger: 0.1,
         ease: "none",
         motionPath: {
@@ -1080,59 +1157,104 @@ mm.add("(min-width: 991px)", ()=>{
             autoRotate: 180
         }
     }, ">");
-    var ctaFormLoad = gsap.timeline({
+    //process + cta ends here
+    //pinned service element
+    var servicesPinTrigger = gsap.timeline({
         scrollTrigger: {
-            trigger: ".cta_form-block",
-            scrub: true,
-            start: "top bottom",
+            trigger: ".section_services",
+            start: "top top",
             end: "bottom bottom",
-            markers: false
+            scrub: true,
+            pin: ".services_content-top-wrapper",
+            pinSpacing: false
         }
     });
-    ctaFormLoad.from(".cta_graphic", {
-        scale: 0.5,
-        ease: "power3.out"
-    }, 0);
-    ctaFormLoad.from(".cta_form", {
-        gap: 300,
-        ease: "power3.out"
-    }, 0.25);
-    ctaFormLoad.to(".cta_form", {
-        gap: 80,
-        ease: "power3.out"
-    }, ">");
-    ctaFormLoad.to(".cta_form", {
-        y: -300,
-        ease: "power3.out"
-    }, "<");
-    ctaFormLoad.from("#cta-form-bottom", {
-        opacity: "0",
-        y: 700,
-        ease: "power4.out"
-    }, "<-0.125");
-    ctaFormLoad.to(".cta_graphic", {
-        y: -600,
-        opacity: "0",
-        ease: "power4.out"
-    }, "<");
 });
 //mobile
 mm.add("(max-width: 991px)", ()=>{
-    processLoad.to("#process-heading", {
-        y: -300,
+    var processMobile = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".process_component"
+        }
+    });
+    processMobile.from(".process_heading-span", {
+        y: 100,
+        stagger: 0.1,
         opacity: 0,
         ease: "power3.out"
     }, 1.15);
-    processLoad.to(".process_critter", {
-        y: -200,
+    //mobile cta load
+    var ctaMobile = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".cta_component"
+        }
+    });
+    var ctaFormTrigger = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".cta_form",
+            start: "-=400 center",
+            markers: false
+        }
+    });
+    ctaMobile.from(".cta_heading-span", {
+        y: 100,
         opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        stagger: 0.1
+    }, 0);
+    ctaMobile.from(".cta_form_input-wrapper", {
+        y: 150,
+        opacity: 0,
+        duration: 0.875,
         ease: "power3.out"
-    }, 1.2);
-    processLoad.to(".process_card-container", {
-        x: "-300rem",
-        ease: "none",
-        duration: 2
+    }, ">-0.25");
+    ctaMobile.from("#cta-form-bottom", {
+        y: 150,
+        opacity: 0,
+        duration: 0.75,
+        ease: "power3.out"
+    }, ">-0.5");
+    ctaFormTrigger.from("#cta-form-orange", {
+        color: "#0f2756",
+        duration: 0.125,
+        ease: "power3.out"
+    }, "<.5");
+    ctaFormTrigger.to("#cta-form-orange", {
+        scale: 1.1,
+        repeat: 1,
+        yoyo: true,
+        ease: "power2.inOut",
+        duration: 0.3
+    }, "<");
+    ctaFormTrigger.from(".cta_burst-lines > svg > path", {
+        drawSVG: "0% 0%",
+        duration: 1,
+        ease: "power3.out"
+    }, "<");
+    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
+        drawSVG: "100% 100%",
+        duration: 1,
+        ease: "power3.out"
     }, ">-0.3");
+    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
+        opacity: 0,
+        duration: 0
+    }, ">-0.05");
+    ctaFormTrigger.from(".cta_scribble > svg > path", {
+        drawSVG: "0% 0%",
+        duration: 1,
+        ease: "power3.out"
+    }, "<+0.125");
+    ctaFormTrigger.to(".cta_scribble > svg > path", {
+        drawSVG: "100% 100%",
+        duration: 1,
+        ease: "power3.out"
+    }, ">-0.3");
+    ctaFormTrigger.to(".cta_scribble > svg > path", {
+        opacity: 0,
+        duration: 0
+    }, ">-0.02");
 });
 
 },{}]},["fXRFu"], null, "parcelRequire94c2")
