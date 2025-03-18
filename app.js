@@ -1,5 +1,3 @@
-console.log("✅ app.js loaded. Checking for home.js...");
-
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
@@ -14,9 +12,7 @@ ScrollSmoother.create({
   effects: true,
 });
 
-console.log("✅ DOM fully loaded. Running app.js...");
 const url = window.location.pathname;
-
 const scriptsMap = new Map([
   [
     ".section_home-header",
@@ -74,16 +70,11 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    console.log(`📡 Attempting to load: ${src}`);
     const script = document.createElement("script");
-    script.src = src + "?v=" + Date.now(); // Prevents caching issues
+    script.src = src;
     script.id = id;
     script.defer = true;
-    script.onload = () => console.log(`✅ Successfully loaded: ${src}`);
-    script.onerror = () => console.error(`❌ Failed to load: ${src}`);
     document.head.appendChild(script);
-  } else {
-    console.log(`🔹 Script ${id} already loaded.`);
   }
 }
 
