@@ -1,5 +1,3 @@
-console.log("this is in localhost");
-
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
