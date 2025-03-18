@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function preloadAndExecuteScript(src, id) {
     if (!document.getElementById(id)) {
       const script = document.createElement("script");
-      script.src = src;
+      script.src = `${src}?v=${Date.now()}`;
       script.id = id;
       script.defer = true;
       script.onerror = () => console.error(`Failed to load script: ${src}`);
