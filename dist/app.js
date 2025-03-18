@@ -604,7 +604,7 @@ ScrollSmoother.create({
     smooth: 0.8,
     effects: true
 });
-document.addEventListener("DOMContentLoaded", ()=>{
+document.addEventListener("onload", ()=>{
     console.log("\u2705 DOM fully loaded. Running app.js...");
     const url = window.location.pathname;
     const scriptsMap = new Map([
