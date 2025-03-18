@@ -1,22 +1,20 @@
 console.log("✅ app.js loaded. Checking for home.js...");
 
-gsap.registerPlugin(
-  ScrollTrigger,
-  SplitText,
-  DrawSVGPlugin,
-  MotionPathPlugin,
-  ScrollSmoother
-);
+// gsap.registerPlugin(
+//   ScrollTrigger,
+//   SplitText,
+//   DrawSVGPlugin,
+//   MotionPathPlugin,
+//   ScrollSmoother
+// );
 
-console.log("✅ GSAP plugins registered...");
+// ScrollSmoother.create({
+//   content: ".main-wrapper",
+//   smooth: 0.8,
+//   effects: true,
+// });
 
-ScrollSmoother.create({
-  content: ".main-wrapper",
-  smooth: 0.8,
-  effects: true,
-});
-
-document.addEventListener("load", () => {
+document.addEventListener("DOMContentLoaded", () => {
   console.log("✅ DOM fully loaded. Running app.js...");
   const url = window.location.pathname;
 
