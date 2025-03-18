@@ -65,6 +65,8 @@ const urlScriptsMap = new Map([
       src: "https://what-if-web.github.io/what-if-web-website/roast.js",
       id: "roast-script",
     },
+  ],
+  [
     "about",
     {
       src: "https://what-if-web.github.io/what-if-web-website/about.js",
