@@ -1,5 +1,20 @@
 console.log("✅ app.js loaded. Checking for home.js...");
 
+function preloadAndExecuteScript(src, id) {
+  if (!document.getElementById(id)) {
+    console.log(`📡 Attempting to load: ${src}`);
+    const script = document.createElement("script");
+    script.src = src + "?v=" + Date.now(); // Prevents caching issues
+    script.id = id;
+    script.defer = true;
+    script.onload = () => console.log(`✅ Successfully loaded: ${src}`);
+    script.onerror = () => console.error(`❌ Failed to load: ${src}`);
+    document.head.appendChild(script);
+  } else {
+    console.log(`🔹 Script ${id} already loaded.`);
+  }
+}
+
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
@@ -15,20 +30,6 @@ ScrollSmoother.create({
 });
 
 document.addEventListener("DOMContentLoaded", () => {
-  function preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) {
-      console.log(`📡 Attempting to load: ${src}`);
-      const script = document.createElement("script");
-      script.src = src + "?v=" + Date.now(); // Prevents caching issues
-      script.id = id;
-      script.defer = true;
-      script.onload = () => console.log(`✅ Successfully loaded: ${src}`);
-      script.onerror = () => console.error(`❌ Failed to load: ${src}`);
-      document.head.appendChild(script);
-    } else {
-      console.log(`🔹 Script ${id} already loaded.`);
-    }
-  }
   const url = window.location.pathname;
 
   const scriptsMap = new Map([
