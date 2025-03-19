@@ -20,7 +20,7 @@ csTemplateHeader.from(
   "<0.25"
 );
 csTemplateHeader.from(
-  ".case-study-header_heading-content > p",
+  ".case-study-header_heading-content > .max-width-custom",
   { y: 50, opacity: 0, duration: 0.875, ease: "power4.out" },
   "<0.2"
 );
@@ -209,7 +209,7 @@ gm.add("(min-width: 991px)", () => {
     scrollTrigger: {
       trigger: ".case-study_component",
       start: "top top",
-      end: "bottom bottom",
+      end: "bottom+=520 bottom",
       scrub: true,
       pin: ".table-of-contents_wrapper",
       pinSpacing: false,
