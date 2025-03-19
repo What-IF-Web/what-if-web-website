@@ -1,3 +1,6 @@
+/*uncomment the below when in localhost */
+// window.parceled = true;
+
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
@@ -13,7 +16,7 @@ ScrollSmoother.create({
 });
 
 /*this is where you add imports for localhost */
-// import "./about";
+// import "./case-studies-template";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
@@ -89,9 +92,11 @@ function preloadAndExecuteScript(src, id) {
 }
 
 // Load scripts based on elements found in DOM
-scriptsMap.forEach(({ src, id }, selector) => {
-  if (document.querySelector(selector)) {
-    preloadAndExecuteScript(src, id);
+scriptsMap.forEach((scriptInfo, selector) => {
+  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+    if (document.querySelector(selector)) {
+      preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+    }
   }
 });
 
@@ -101,24 +106,6 @@ urlScriptsMap.forEach(({ src, id }, key) => {
     preloadAndExecuteScript(src, id);
   }
 });
-
-// Observer to catch dynamically added elements
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    mutation.addedNodes.forEach((node) => {
-      if (node.nodeType === 1) {
-        scriptsMap.forEach(({ src, id }, selector) => {
-          if (node.matches(selector) && !document.getElementById(id)) {
-            preloadAndExecuteScript(src, id);
-            observer.disconnect(); // Stop observing after loading script
-          }
-        });
-      }
-    });
-  });
-});
-
-observer.observe(document.body, { childList: true, subtree: true });
 
 // Testimonial slider initialization
 new Swiper("#testimonials-slider", {
