@@ -17,6 +17,7 @@ ScrollSmoother.create({
 
 /*this is where you add imports for localhost */
 // import "./case-studies-template";
+// import "./roast";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
@@ -65,13 +66,13 @@ const urlScriptsMap = new Map([
       id: "contact-script",
     },
   ],
-  [
-    "roast",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/roast.js",
-      id: "roast-script",
-    },
-  ],
+  // [
+  //   "roast",
+  //   {
+  //     src: "https://what-if-web.github.io/what-if-web-website/roast.js",
+  //     id: "roast-script",
+  //   },
+  // ],
   // [
   //   "about",
   //   {
