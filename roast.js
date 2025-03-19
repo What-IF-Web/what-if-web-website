@@ -87,16 +87,18 @@ footerLoad.from(
   "<0.5"
 );
 
+let gm = gsap.matchMedia();
+
 // desktop
 gm.add("(min-width: 991px)", () => {
   // roast page cards pin
   var contentsPin = gsap.timeline({
     scrollTrigger: {
-      trigger: ".hot-it-works_component",
+      trigger: ".how-it-works_component",
       start: "top top",
       end: "bottom bottom",
       scrub: true,
-      pin: ".how-it-works_content-right",
+      pin: ".how-it-works_content",
       pinSpacing: false,
     },
   });
