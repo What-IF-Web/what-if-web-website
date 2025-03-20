@@ -481,7 +481,7 @@ mm.add("(min-width: 991px)", () => {
 //mobile
 mm.add("(max-width: 991px)", () => {
   var processMobile = gsap.timeline({
-    scrollTrigger: { trigger: ".process_component" },
+    scrollTrigger: { trigger: ".process_component", start: 'top top' },
   });
 
   processMobile.from(
