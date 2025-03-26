@@ -66,20 +66,41 @@ const urlScriptsMap = new Map([
       id: "contact-script",
     },
   ],
-  // [
-  //   "roast",
-  //   {
-  //     src: "https://what-if-web.github.io/what-if-web-website/roast.js",
-  //     id: "roast-script",
-  //   },
-  // ],
-  // [
-  //   "about",
-  //   {
-  //     src: "https://what-if-web.github.io/what-if-web-website/about.js",
-  //     id: "about-script",
-  //   },
-  // ],
+  [
+    "blog-template",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
+      id: "blog-template-script",
+    },
+  ],
+  [
+    "services",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/services.js",
+      id: "services-script",
+    },
+  ],
+  [
+    "cloneables",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
+      id: "cloneables-script",
+    },
+  ],
+  [
+    "code-snippet",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
+      id: "code-snippet-script",
+    },
+  ],
+  [
+    "about",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/about.js",
+      id: "about-script",
+    },
+  ],
 ]);
 
 function preloadAndExecuteScript(src, id) {
