@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel app.js",
+    "start": "parcel serve app.js",
     "build": "parcel build app.js"
   },
   "author": "",

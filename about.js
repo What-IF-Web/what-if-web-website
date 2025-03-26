@@ -3,29 +3,55 @@
 let am = gsap.matchMedia();
 
 am.add("(min-width: 991px)", () => {
+  var aboutScroll = gsap.timeline({
+    scrollTrigger: {
+      trigger: ".section_about-header",
+      scrub: true,
+      start: "top top",
+      end: "bottom bottom",
+      pin: ".about-header_component",
+    },
+  });
 
-var aboutScroll = gsap.timeline({scrollTrigger: {trigger: ".section_about-header", scrub: true, start: "top top", end: "bottom bottom", pin: ".about-header_component"}});
-
-aboutScroll.to(".about-header_frame", {x: "-300dvw"});
-
+  aboutScroll.to(".about-header_frame", { x: "-300dvw" });
 });
 //about page animations
 
 //about hero load
-var aboutHero = gsap.timeline({scrollTrigger: {trigger: ".section_about-header"}});
+var aboutHero = gsap.timeline({
+  scrollTrigger: { trigger: ".section_about-header" },
+});
 
-var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {type: "lines"});
+var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
+  type: "lines",
+});
 
-aboutHero.from(aboutSplit.lines, {opacity: 0, y: 100, ease: "power4.out", duration: 1, stagger: 0.125}, "0");
-aboutHero.from(".home-about_card-wrapper", {opacity: 0, y: 50, ease: "power3.out", duration: 1, stagger: 0.125}, "0.5")
+aboutHero.from(
+  aboutSplit.lines,
+  { opacity: 0, y: 100, ease: "power4.out", duration: 1, stagger: 0.125 },
+  "0"
+);
+aboutHero.from(
+  ".home-about_card-wrapper",
+  { opacity: 0, y: 50, ease: "power3.out", duration: 1, stagger: 0.125 },
+  "0.5"
+);
 
 //team load
-var teamLoad = gsap.timeline({scrollTrigger: {trigger: ".section_team"}});
+var teamLoad = gsap.timeline({ scrollTrigger: { trigger: ".section_team" } });
 
-teamLoad.from(".team_content-top", {y: 75, opacity: 0, duration: 1, ease: "power4.out"}, "0");
-teamLoad.from(".team_item", {y: 150, opacity: 0, stagger: 0.125, duration: 1, ease: "power4.out"}, "0.25");
+teamLoad.from(
+  ".team_content-top",
+  { y: 75, opacity: 0, duration: 1, ease: "power4.out" },
+  "0"
+);
+teamLoad.from(
+  ".team_item",
+  { y: 150, opacity: 0, stagger: 0.125, duration: 1, ease: "power4.out" },
+  "0.25"
+);
 
- //testimonials section animation
+//testimonials section animation
 var testimonialsLoad = gsap.timeline({
   scrollTrigger: { trigger: ".section_testimonials", start: "-=400 center" },
 });
@@ -52,7 +78,7 @@ testimonialsLoad
     "<0.25"
   );
 
-  //footer animation
+//footer animation
 var footerLoad = gsap.timeline({
   scrollTrigger: { trigger: ".footer_component", start: "-=400 center" },
 });

@@ -20,11 +20,11 @@ faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0 , duration: 1, ease: "p
 faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.25}, "<0.5");
 //need to add optional cta bit
 
-//blog section
+/*blog section
 var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
 
 blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
-
+*/
 //footer animation
 var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});
 
