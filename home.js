@@ -123,6 +123,7 @@ projectsLoad.from(projectsSplit.lines, {
   ease: "power3.out",
   stagger: 0.125,
 });
+projectsLoad.from(".projects_video-wrapper", {duration: 0.875, opacity: 0, ease: "power4.out", y: 100}, ">-0.5");
 projectsLoad.from(
   ".projects_content > .projects_item > .projects_card",
   { duration: 0.75, opacity: 0, y: 60, ease: "power3.out", stagger: 0.1 },
@@ -207,7 +208,7 @@ var aboutLoad = gsap.timeline({
   scrollTrigger: { trigger: ".section_home-about", start: "top center" },
 });
 
-var aboutSplit = new SplitText(".home-about_content-left > h2", {
+var aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
   type: "lines",
 });
 
@@ -481,13 +482,13 @@ mm.add("(min-width: 991px)", () => {
 //mobile
 mm.add("(max-width: 991px)", () => {
   var processMobile = gsap.timeline({
-    scrollTrigger: { trigger: ".process_component" },
+    scrollTrigger: { trigger: ".process_component",  },
   });
 
   processMobile.from(
     ".process_heading-span",
     { y: 100, stagger: 0.1, opacity: 0, ease: "power3.out" },
-    1.15
+    0
   );
 
   //mobile cta load
