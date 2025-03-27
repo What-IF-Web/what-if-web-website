@@ -2,8 +2,7 @@
 
 var resourceTemplateHeader = gsap.timeline({scrollTrigger: {trigger: ".section_blog-header"}});
 
-resourceTemplateHeader.from(".blog-header_image-wrapper", {y: 50, opacity: 0, rotateX: 35, ease: "power3.out", duration: 1.5}, 0);
-resourceTemplateHeader.from(".resources-heading", {y: 80, opacity: 0, duration: 1, ease: "power4.out"}, "<0.25");
+resourceTemplateHeader.from(".resources-heading", {y: 80, opacity: 0, duration: 1, ease: "power4.out"}, 0);
 resourceTemplateHeader.from(".blog-header_subheading", {y: 50, opacity: 0, duration: 0.875, ease: "power4.out"}, "<0.2");
 
 var resourceTemplateBody = gsap.timeline({scrollTrigger: {trigger: ".section_blog-content",  start: "top-=400 center"}})

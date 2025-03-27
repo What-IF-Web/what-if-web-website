@@ -16,8 +16,7 @@ ScrollSmoother.create({
 });
 
 /*this is where you add imports for localhost */
-// import "./case-studies-template";
-// import "./roast";
+// import "./blog-template"
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
