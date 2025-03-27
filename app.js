@@ -100,6 +100,13 @@ const urlScriptsMap = new Map([
       id: "about-script",
     },
   ],
+  [
+    "resources",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/resources.js",
+      id: "resources-script",
+    },
+  ],
 ]);
 
 function preloadAndExecuteScript(src, id) {
