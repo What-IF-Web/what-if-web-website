@@ -1,15 +1,13 @@
 //code snippet
 
-var codeSnippetsHeader = gsap.timeline({scrollTrigger: {trigger: ".section_code-header"}});
+var codeSnippetsHeader = gsap.timeline({scrollTrigger: {trigger: ".code-content_heading-wrapper"}});
 
-codeSnippetsHeader.from(".code-header_image-wrapper", {y: 50, opacity: 0, rotateX: 35, ease: "power3.out", duration: 1.5}, 0);
 codeSnippetsHeader.from(".resources-heading", {y: 80, opacity: 0, duration: 1, ease: "power4.out"}, "<0.25");
-codeSnippetsHeader.from(".code-header_component > p", {y: 50, opacity: 0, duration: 0.875, ease: "power4.out"}, "<0.2");
+codeSnippetsHeader.from(".code-content_heading-wrapper > p", {y: 50, opacity: 0, duration: 0.875, ease: "power4.out"}, "<0.2");
 
 var codeSnippetsTemplateBody = gsap.timeline({scrollTrigger: {trigger: ".section_code-content",  start: "top-=400 center"}})
 
-codeSnippetsTemplateBody.from(".is-content-1, .code-content_content-wrapper", {y: 80, opacity: 0, stagger: 0.125, ease: "power3.out", duration: 1}, 0);
-codeSnippetsTemplateBody.from(".is-content-2", {y: 100, opacity: 0, ease: "power3.out", duration: 1}, 0.25);
+codeSnippetsTemplateBody.from(".text-rich-text, .code-content_content-wrapper", {y: 80, opacity: 0, stagger: 0.125, ease: "power3.out", duration: 1}, 0);
 
 //quote CTA animation
 var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
@@ -42,11 +40,3 @@ footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {y: 50, opacit
 var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
 
 blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
-
-let gm = gsap.matchMedia();
-
-// desktop
-gm.add("(min-width: 991px)", () => {
-  // case studies table of contents pin
-  var contentsPin = gsap.timeline({scrollTrigger: {trigger: ".blog-content_component", start: "top top", end: "bottom bottom", scrub: true, pin: ".blog-content_content-left", pinSpacing: false}});
-});
