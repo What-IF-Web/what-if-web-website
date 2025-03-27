@@ -1,6 +1,5 @@
 /*uncomment the below when in localhost */
-window.parceled = true;
-console.log(window.parceled)
+// window.parceled = true;
 
 gsap.registerPlugin(
   ScrollTrigger,
