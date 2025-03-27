@@ -7,10 +7,10 @@ resourceHeaderLoad.from(".resources_top-content > p", {y: 100, duration: 1, opac
 resourceHeaderLoad.from(".resources_tab-link", {y: 120, duration: 0.75, stagger: 0.125, ease: "power3.out"}, "<0.5");
 
 //simplified cards animation
-const cards = document.querySelectorAll(".resources_card-wrapper");
+const cards = document.querySelectorAll(".resources_item");
 var cardsLoad = gsap.timeline({scrollTrigger: {trigger: ".resources_list"}});
 
-cardsLoad.from(cards, {y: 300, opacity: 0, duration: 1.5, stagger: 0.125, ease: "power4.out"});
+cardsLoad.from(cards, {y: 400, opacity: 0, duration: 1.5, stagger: 0.125, ease: "power4.out"});
 
 //footer animation
 var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "-=400 center"}});

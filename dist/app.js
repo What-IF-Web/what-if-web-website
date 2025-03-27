@@ -596,15 +596,14 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ /*this is where you add imports for localhost */ var _blogTemplate = require("./blog-template");
-window.parceled = true;
-console.log(window.parceled);
+/*uncomment the below when in localhost */ // window.parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 0.8,
     effects: true
 });
+/*this is where you add imports for localhost */ // import "./blog-template"
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
@@ -651,13 +650,13 @@ const urlScriptsMap = new Map([
             id: "contact-script"
         }
     ],
-    // [
-    //   "blog",
-    //   {
-    //     src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-    //     id: "blog-template-script",
-    //   },
-    // ],
+    [
+        "blog",
+        {
+            src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
+            id: "blog-template-script"
+        }
+    ],
     [
         "services",
         {
@@ -684,6 +683,13 @@ const urlScriptsMap = new Map([
         {
             src: "https://what-if-web.github.io/what-if-web-website/about.js",
             id: "about-script"
+        }
+    ],
+    [
+        "resources",
+        {
+            src: "https://what-if-web.github.io/what-if-web-website/resources.js",
+            id: "resources-script"
         }
     ]
 ]);
@@ -793,189 +799,6 @@ $(".navbar_logo-link").click(function(e) {
 }); //resources animations
  // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
  // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
-
-},{"./blog-template":"2wt92"}],"2wt92":[function(require,module,exports,__globalThis) {
-//blog template
-var resourceTemplateHeader = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_blog-header"
-    }
-});
-resourceTemplateHeader.from(".resources-heading", {
-    y: 80,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out"
-}, 0);
-resourceTemplateHeader.from(".blog-header_subheading", {
-    y: 50,
-    opacity: 0,
-    duration: 0.875,
-    ease: "power4.out"
-}, "<0.2");
-var resourceTemplateBody = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_blog-content",
-        start: "top-=400 center"
-    }
-});
-resourceTemplateBody.from(".author-card, .table-of-contents", {
-    y: 80,
-    opacity: 0,
-    stagger: 0.125,
-    ease: "power3.out",
-    duration: 1
-}, 0);
-resourceTemplateBody.from(".blog_content-wrapper", {
-    y: 100,
-    opacity: 0,
-    ease: "power3.out",
-    duration: 1
-}, 0.25);
-//quote CTA animation
-var ctaLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_quote-cta",
-        start: "-=400 center"
-    }
-});
-//main elements
-ctaLoad.from(".quote-cta_component", {
-    y: 100,
-    scale: 0.9,
-    duration: .875,
-    ease: "power4.out"
-});
-ctaLoad.fromTo(".quote-cta_heading-wrapper", {
-    opacity: 0,
-    scale: 0,
-    y: 400
-}, {
-    opacity: 1,
-    scale: 1,
-    y: 0,
-    duration: 1,
-    ease: "power4.out"
-}, "<+0.125");
-//content
-ctaLoad.from(".quote-cta_subheading", {
-    y: 150,
-    duration: 0.875,
-    ease: "power2.out",
-    opacity: 0
-}, "<.25");
-ctaLoad.from("#ctaButton", {
-    y: 200,
-    duration: 0.875,
-    ease: "power2.out",
-    opacity: 0
-}, "<0.125");
-ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
-    scale: 1.1,
-    repeat: 1,
-    yoyo: true,
-    ease: "power2.inOut",
-    duration: 0.3
-}, ">-0.5");
-ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
-    color: "#fff9f3",
-    duration: .125,
-    ease: "power3.out"
-}, "<.125");
-ctaLoad.from("#ctaScribble", {
-    drawSVG: '0% 0%',
-    duration: 1,
-    ease: "power3.out"
-}, "<");
-ctaLoad.to("#ctaScribble", {
-    drawSVG: '100% 100%',
-    duration: 1,
-    ease: "power3.out"
-}, ">-0.3");
-ctaLoad.to("#ctaScribble", {
-    opacity: 0,
-    duration: 0
-}, ">-0.02");
-//footer animation
-var footerLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".footer_component",
-        start: "top-=400 center"
-    }
-});
-var footerSplit = new SplitText(".footer_top-wrapper > h2", {
-    type: "lines"
-});
-footerLoad.from(footerSplit.lines, {
-    scale: 0.8,
-    opacity: 0,
-    y: 100,
-    stagger: 0.125,
-    ease: "power3.out",
-    duration: 1
-}, 0);
-footerLoad.from(".footer_top-wrapper > p", {
-    scale: 0.8,
-    opacity: 0,
-    y: 100,
-    ease: "power3.out",
-    duration: 1
-}, "<0.25");
-footerLoad.from(".footer_form_component", {
-    scale: 0.8,
-    opacity: 0,
-    y: 100,
-    ease: "power3.out",
-    duration: 1
-}, "<0.125");
-footerLoad.from(".footer_links-wrapper > a", {
-    opacity: 0,
-    stagger: 0.125,
-    ease: "power4.out",
-    duration: 0.25
-}, "<0.5");
-footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
-    y: 50,
-    opacity: 0,
-    stagger: 0.125,
-    ease: "power4.out",
-    duration: 1
-}, "<0.5");
-//blog section
-var blogLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_related-blog",
-        start: "-=400 center"
-    }
-});
-blogLoad.from(".related-blog_heading-wrapper > div", {
-    y: 100,
-    scale: 0.8,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-}).from(".related-blog_list > .related-blog_item", {
-    y: 180,
-    opacity: 0,
-    duration: 1,
-    ease: "power4.out",
-    stagger: 0.125
-}, "<0.5");
-let gm = gsap.matchMedia();
-// desktop
-gm.add("(min-width: 991px)", ()=>{
-    // case studies table of contents pin
-    var contentsPin = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".blog-content_component",
-            start: "top-=150 top",
-            end: "bottom bottom",
-            scrub: true,
-            pin: ".blog-content_content-left",
-            pinSpacing: false
-        }
-    });
-});
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 

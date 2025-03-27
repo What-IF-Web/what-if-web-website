@@ -48,8 +48,6 @@ ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
 //sub services section
 var subServices = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services"}});
 
-var subServicesPin = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services", scrub: true, pin: ".sub-services_content-wrapper", end: "bottom bottom"}});
-
 subServices.from(".sub-services_tag", {y: 80, opacity: 0, ease: "power4.out", duration: 0.875}, 0);
 subServices.from(".sub-services_content-wrapper > .services-rich-text > h2", {y: 80, opacity: 0, ease: "power4.out", duration: 0.875, stagger: 0.125}, "<+0.25");
 subServices.from(".sub-services_content-wrapper > p", {y: 100, opacity: 0, ease: "power4.out", duration: 1}, "<+0.25");
@@ -104,3 +102,10 @@ testimonialsLoad
     },
     "<0.25"
 );
+
+let gm = gsap.matchMedia();
+
+// desktop
+gm.add("(min-width: 991px)", () => {
+    var subServicesPin = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services", scrub: true, pin: ".sub-services_content-wrapper", end: "bottom bottom"}});    
+});
