@@ -47,5 +47,5 @@ let gm = gsap.matchMedia();
 // desktop
 gm.add("(min-width: 991px)", () => {
   // case studies table of contents pin
-  var contentsPin = gsap.timeline({scrollTrigger: {trigger: ".blog-content_component", start: "top-=150 top", end: "bottom bottom", scrub: true, pin: ".blog-content_content-left", pinSpacing: false}});
+  var contentsPin = gsap.timeline({scrollTrigger: {trigger: ".blog-content_component", start: "top-=150 top", end: "bottom center+=200", scrub: true, pin: ".blog-content_content-left", pinSpacing: false}});
 });
