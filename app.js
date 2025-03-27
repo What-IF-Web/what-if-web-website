@@ -67,7 +67,7 @@ const urlScriptsMap = new Map([
     },
   ],
   [
-    "blog-template",
+    "blog",
     {
       src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
       id: "blog-template-script",
