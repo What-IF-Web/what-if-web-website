@@ -78,7 +78,7 @@ footerLoad.from(
 );
 footerLoad.from(
   ".footer_links-wrapper > a",
-  { opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25 },
+  { y: 32, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25 },
   "<0.5"
 );
 footerLoad.from(
