@@ -191,7 +191,7 @@ footerLoad.from(
 );
 footerLoad.from(
   ".footer_links-wrapper > a",
-  { y: 32, opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.25 },
+  { opacity: 0, stagger: 0.125, ease: "power4.out", duration: 0.5 },
   "<0.5"
 );
 footerLoad.from(
