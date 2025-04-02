@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"eCF1U":[function(require,module,exports,__globalThis) {
+})({"fFtu9":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "138b6a135baa4167";
+module.bundle.HMR_BUNDLE_ID = "f1da0e86905f6534";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -595,212 +595,308 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"igcvL":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ // window.parceled = true;
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-ScrollSmoother.create({
-    content: ".main-wrapper",
-    smooth: 0.8,
-    effects: true
-});
-/*this is where you add imports for localhost */ // import "./blog-template"
-// import "./game"
-const url = window.location.pathname;
-const scriptsMap = new Map([
-    [
-        ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
-    ],
-    [
-        ".section_case-study-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-            id: "case-study-script"
-        }
-    ],
-    [
-        ".section_case-studies",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-            id: "case-studies-script"
-        }
-    ],
-    [
-        ".section_not-found-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-            id: "not-found-script"
-        }
-    ]
-]);
-const urlScriptsMap = new Map([
-    [
-        "pricing",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-            id: "pricing-script"
-        }
-    ],
-    [
-        "contact",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-            id: "contact-script"
-        }
-    ],
-    [
-        "blog",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-            id: "blog-template-script"
-        }
-    ],
-    [
-        "services",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/services.js",
-            id: "services-script"
-        }
-    ],
-    [
-        "cloneables",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
-            id: "cloneables-script"
-        }
-    ],
-    [
-        "code-snippet",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
-            id: "code-snippet-script"
-        }
-    ],
-    [
-        "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
-    ],
-    [
-        "resources",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/resources.js",
-            id: "resources-script"
-        }
-    ]
-]);
-function preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) {
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
+},{}],"5JiMD":[function(require,module,exports,__globalThis) {
+// game.js (Modified)
+console.log("game.js loaded");
+function startGame() {
+    console.log("start game started");
+    // --- Game Constants ---
+    // (Keep these as they are)
+    const PADDLE_SPEED = 400;
+    const BALL_START_SPEED = 300;
+    // ... (other constants) ...
+    const POWERUP_SPEED = 100;
+    // --- Game Dimensions (MATCH YOUR MODAL/CANVAS SIZE) ---
+    // !! IMPORTANT: Adjust these to the pixel dimensions you want the game canvas to have inside the modal !!
+    const GAME_WIDTH = 800;
+    const GAME_HEIGHT = 600;
+    // Check if Kaboom is already initialized on this canvas to prevent errors on rapid open/close
+    const canvas = document.getElementById("game-canvas");
+    if (!canvas || canvas.dataset.kaboomInitialized === "true") {
+        if (canvas) console.log("Kaboom already initialized on this canvas.");
+        // Optionally refocus if re-opening without full re-init
+        // if (canvas) canvas.focus();
+        return; // Exit if no canvas or already initialized
     }
-}
-// Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-        if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
-});
-// Load scripts based on URL matching
-urlScriptsMap.forEach(({ src, id }, key)=>{
-    if (url.includes(key)) preloadAndExecuteScript(src, id);
-});
-// Testimonial slider initialization
-new Swiper("#testimonials-slider", {
-    loop: true,
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 8,
-    grabCursor: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-    },
-    autoplay: {
-        delay: 2200,
-        disableOnInteraction: false
-    },
-    speed: 600,
-    breakpoints: {
-        478: {
-            slidesPerView: 2
-        },
-        991: {
-            slidesPerView: 3,
-            spaceBetween: 16
-        },
-        1366: {
-            slidesPerView: 4
-        }
-    }
-});
-// Testimonial pagination color change based on variant
-const variantField = document.querySelector(".wf-variant-dropdown");
-if (variantField?.value === "White") {
-    const style = document.createElement("style");
-    style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
-    document.head.appendChild(style);
-}
-// Confetti on form submit
-const confettiEffect = ()=>{
-    setTimeout(()=>{
-        confetti({
-            particleCount: 150,
-            startVelocity: 30,
-            spread: 360,
-            scalar: 3,
-            flat: true,
-            origin: {
-                x: 0.5,
-                y: 0
+    if (window.kaboomInstance) // A simple way to try and reset if needed - might not be perfect
+    // Ideally, Kaboom would offer a destroy() method.
+    // For now, we rely on the MutationObserver setting the flag below.
+    console.log("Attempting to reuse Kaboom context (may have issues).");
+    // Initialize Kaboom on the specific canvas
+    const k = kaboom({
+        // global: true, // Keep global for simplicity unless you need fine-grained control/cleanup
+        width: GAME_WIDTH,
+        height: GAME_HEIGHT,
+        canvas: canvas,
+        background: [
+            0,
+            0,
+            0
+        ],
+        debug: false
+    });
+    // Mark the canvas as having Kaboom initialized
+    canvas.dataset.kaboomInitialized = "true";
+    window.kaboomInstance = k; // Store instance globally if needed (e.g., for manual stop attempts)
+    // --- Asset Loading (Placeholders) ---
+    // (Keep these as they are or add your actual assets)
+    // k.loadSprite(...)
+    // k.loadSound(...)
+    // --- Game Scene ---
+    k.scene("game", ({ level, score, lives })=>{
+        // --- Setup Layers ---
+        k.layers([
+            'bg',
+            'obj',
+            'ui'
+        ], 'obj');
+        // --- UI Elements ---
+        // Use k.width() and k.height() which now refer to GAME_WIDTH/GAME_HEIGHT
+        const scoreLabel = k.add([
+            k.text(`Score: ${score}`),
+            k.pos(10, 10),
+            k.layer('ui'),
+            {
+                value: score
             },
-            shapes: [
-                "square",
-                "diamonds"
-            ],
-            colors: [
-                "#A41212",
-                "#FE0D04",
-                "#C36A66",
-                "#008B47",
-                "#FFFF00",
-                "#0074E3",
-                "#FF9CD2",
-                "#3FDCE3",
-                "#FFC25D",
-                "#CDEAF2"
-            ]
+            k.scale(2)
+        ]);
+        const levelLabel = k.add([
+            k.text(`Level: ${level}`),
+            k.pos(k.width() * 0.5, 10),
+            k.origin('center'),
+            k.layer('ui'),
+            {
+                value: level
+            },
+            k.scale(2)
+        ]);
+        const livesLabel = k.add([
+            k.text(`Lives: ${lives}`),
+            k.pos(k.width() - 10, 10),
+            k.origin('topright'),
+            k.layer('ui'),
+            {
+                value: lives
+            },
+            k.scale(2)
+        ]);
+        // --- Add Paddle ---
+        const paddle = k.add([
+            k.rect(PADDLE_WIDTH, PADDLE_HEIGHT),
+            k.pos(k.width() / 2, k.height() - 40),
+            k.origin('center'),
+            k.area(),
+            k.color(255, 255, 255),
+            "paddle"
+        ]);
+        // --- Paddle Movement ---
+        k.onKeyDown('left', ()=>{
+            paddle.move(-PADDLE_SPEED, 0);
+            if (paddle.pos.x < PADDLE_WIDTH / 2) paddle.pos.x = PADDLE_WIDTH / 2;
         });
-    }, 1600);
-};
-document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
-    form.addEventListener("submit", confettiEffect);
-});
-// Navbar toggle
-document.addEventListener("click", (event)=>{
-    if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
-});
-$(document).on("click", ".button.is-small.is-navbar.is-open", function() {
-    $("body").toggleClass("no-scroll");
-});
-$(".navbar_logo-link").click(function(e) {
-    e.preventDefault();
-    var linkUrl = $(this).attr("href");
-    setTimeout(function(url) {
-        window.location = url;
-    }, 750, linkUrl);
-}); //resources animations
- // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
- // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
+        k.onKeyDown('right', ()=>{
+            paddle.move(PADDLE_SPEED, 0);
+            if (paddle.pos.x > k.width() - PADDLE_WIDTH / 2) paddle.pos.x = k.width() - PADDLE_WIDTH / 2;
+        });
+        // --- Function to Create a Ball ---
+        function spawnBall(startPos) {
+            const currentBallSpeed = BALL_START_SPEED + (level - 1) * 25;
+            const ball = k.add([
+                k.pos(startPos),
+                k.circle(BALL_RADIUS),
+                k.color(255, 255, 0),
+                k.area({
+                    width: BALL_RADIUS * 2,
+                    height: BALL_RADIUS * 2
+                }),
+                k.origin('center'),
+                {
+                    dir: k.vec2(Math.random() < 0.5 ? 1 : -1, -1).normalize(),
+                    speed: currentBallSpeed
+                },
+                "ball"
+            ]);
+            ball.onUpdate(()=>{
+                ball.move(ball.dir.scale(ball.speed));
+                // Bounce off left/right walls
+                if (ball.pos.x < BALL_RADIUS || ball.pos.x > k.width() - BALL_RADIUS) ball.dir.x = -ball.dir.x;
+                // Bounce off top wall
+                if (ball.pos.y < BALL_RADIUS) ball.dir.y = -ball.dir.y;
+                // Ball fell off bottom
+                if (ball.pos.y > k.height()) {
+                    k.destroy(ball);
+                    // k.play("loseLife", { volume: 0.5 });
+                    if (k.get("ball").length === 0) {
+                        livesLabel.value--;
+                        livesLabel.text = `Lives: ${livesLabel.value}`;
+                        if (livesLabel.value <= 0) // Stop music maybe? music?.stop();
+                        k.go("gameOver", {
+                            score: scoreLabel.value
+                        });
+                        else {
+                            paddle.pos = k.vec2(k.width() / 2, k.height() - 40);
+                            spawnBall(paddle.pos.sub(0, PADDLE_HEIGHT / 2 + BALL_RADIUS + 5));
+                        }
+                    }
+                }
+            });
+        }
+        // Spawn initial ball
+        spawnBall(paddle.pos.sub(0, PADDLE_HEIGHT / 2 + BALL_RADIUS + 5));
+        // --- Brick Building ---
+        const brickLayout = [
+            "33333333",
+            "22222222",
+            "11111111"
+        ]; // Example
+        const totalBrickWidth = brickLayout[0].length * (BRICK_WIDTH + BRICK_PADDING) - BRICK_PADDING;
+        const startX = (k.width() - totalBrickWidth) / 2;
+        const startY = 60;
+        let brickCount = 0;
+        const levelConf = {
+            width: BRICK_WIDTH + BRICK_PADDING,
+            height: BRICK_HEIGHT + BRICK_PADDING,
+            pos: k.vec2(startX, startY),
+            "1": ()=>[
+                    k.rect(BRICK_WIDTH, BRICK_HEIGHT),
+                    k.color(0, 255, 0),
+                    k.area(),
+                    k.origin('topleft'),
+                    {
+                        strength: 1
+                    },
+                    "brick",
+                    "brick-1"
+                ],
+            "2": ()=>[
+                    k.rect(BRICK_WIDTH, BRICK_HEIGHT),
+                    k.color(255, 165, 0),
+                    k.area(),
+                    k.origin('topleft'),
+                    {
+                        strength: 2
+                    },
+                    "brick",
+                    "brick-2"
+                ],
+            "3": ()=>[
+                    k.rect(BRICK_WIDTH, BRICK_HEIGHT),
+                    k.color(255, 0, 0),
+                    k.area(),
+                    k.origin('topleft'),
+                    {
+                        strength: 3
+                    },
+                    "brick",
+                    "brick-3"
+                ]
+        };
+        k.addLevel(brickLayout, levelConf);
+        brickCount = k.get("brick").length;
+        // --- Collision Logic ---
+        k.onCollide("ball", "paddle", (ball, paddle)=>{
+            ball.dir.y = -Math.abs(ball.dir.y);
+            let hitPos = (ball.pos.x - paddle.pos.x) / (PADDLE_WIDTH / 2);
+            ball.dir.x = k.clamp(hitPos * 1.5, -1.5, 1.5); // Clamp extreme angles
+            ball.dir = ball.dir.normalize();
+        // k.play("bounce", { volume: 0.3 });
+        });
+        k.onCollide("ball", "brick", (ball, brick)=>{
+            ball.dir.y = -ball.dir.y;
+            brick.strength--;
+            // k.play("bounce", { volume: 0.2 });
+            // Update color visual feedback (example)
+            if (brick.is("brick-3")) brick.color = brick.strength === 2 ? k.rgb(255, 165, 0) : k.rgb(0, 255, 0);
+            else if (brick.is("brick-2")) brick.color = k.rgb(0, 255, 0);
+            if (brick.strength <= 0) {
+                k.destroy(brick);
+                k.shake(3);
+                // k.play("break", { volume: 0.5 });
+                scoreLabel.value += 10 * level;
+                scoreLabel.text = `Score: ${scoreLabel.value}`;
+                brickCount--;
+                if (k.rand() < 0.2) spawnPowerUp(brick.pos.add(BRICK_WIDTH / 2, BRICK_HEIGHT / 2)); // Pass center pos
+                if (brickCount <= 0) // music?.stop();
+                k.go("game", {
+                    level: level + 1,
+                    score: scoreLabel.value,
+                    lives: livesLabel.value
+                });
+            }
+        });
+        // --- Power-up Logic ---
+        function spawnPowerUp(spawnPos) {
+            const powerUpType = k.choose([
+                "extraLife",
+                "extraBall"
+            ]);
+            let puColor = k.rgb(0, 150, 255);
+            let puTag = "powerup";
+            if (powerUpType === "extraLife") {
+                puColor = k.rgb(0, 255, 150);
+                puTag = "powerup-life";
+            } else if (powerUpType === "extraBall") {
+                puColor = k.rgb(255, 255, 100);
+                puTag = "powerup-ball";
+            }
+            const powerup = k.add([
+                k.rect(15, 15),
+                k.pos(spawnPos),
+                k.origin('center'),
+                k.color(puColor),
+                k.area(),
+                k.move(k.DOWN, POWERUP_SPEED),
+                k.cleanup(),
+                puTag,
+                powerUpType
+            ]);
+        }
+        k.onCollide("paddle", "powerup-life", (paddle, powerup)=>{
+            k.destroy(powerup);
+            livesLabel.value++;
+            livesLabel.text = `Lives: ${livesLabel.value}`;
+        // k.play("powerup", { volume: 0.6 });
+        });
+        k.onCollide("paddle", "powerup-ball", (paddle, powerup)=>{
+            k.destroy(powerup);
+            spawnBall(paddle.pos.sub(0, PADDLE_HEIGHT / 2 + BALL_RADIUS + 5));
+        // k.play("powerup", { volume: 0.6 });
+        });
+        // --- Start Music (if loaded) ---
+        // const music = k.play("music", { loop: true, volume: 0.4 });
+        // Focus the canvas when the game scene starts to capture keys
+        canvas.focus();
+    }); // End of "game" scene definition
+    // --- Game Over Scene ---
+    k.scene("gameOver", ({ score })=>{
+        k.add([
+            k.text(`Game Over!\nScore: ${score}\n\nPress SPACE to Restart`, {
+                size: Math.min(30, k.width() / 15)
+            }),
+            k.pos(k.width() / 2, k.height() / 2),
+            k.origin('center'),
+            k.color(255, 255, 255)
+        ]);
+        k.onKeyPress("space", ()=>{
+            // NOTE: This restarts the game scene but doesn't fully re-run startGame() unless the modal was closed/opened.
+            k.go("game", {
+                level: 1,
+                score: 0,
+                lives: 3
+            });
+        });
+    // Optional: Attempt to unfocus canvas on game over
+    // canvas.blur();
+    });
+    // --- Start the Game ---
+    k.go("game", {
+        level: 1,
+        score: 0,
+        lives: 3
+    });
+} // End of startGame() function
 
-},{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
+},{}]},["fFtu9","5JiMD"], "5JiMD", "parcelRequire94c2")
 
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=game.js.map
