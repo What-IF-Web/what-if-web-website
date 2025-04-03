@@ -596,7 +596,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ // window.parceled = true;
+/*uncomment the below when in localhost */ window.parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
@@ -604,7 +604,6 @@ ScrollSmoother.create({
     effects: true
 });
 /*this is where you add imports for localhost */ // import "./blog-template"
-// import "./game"
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
