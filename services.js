@@ -105,7 +105,9 @@ testimonialsLoad
 
 let gm = gsap.matchMedia();
 
+const offset = window.innerHeight - 520;
+
 // desktop
 gm.add("(min-width: 991px)", () => {
-    var subServicesPin = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services", scrub: true, pin: ".sub-services_content-wrapper", end: "bottom bottom"}});    
+    var subServicesPin = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services", markers: true, scrub: true, pin: ".sub-services_content-wrapper", end: 'bottom top+${offset}px'}});    
 });

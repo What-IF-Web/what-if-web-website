@@ -123,7 +123,7 @@ projectsLoad.from(projectsSplit.lines, {
   ease: "power3.out",
   stagger: 0.125,
 });
-projectsLoad.from(".projects_video-wrapper", {duration: 0.875, opacity: 0, ease: "power4.out", y: 100}, ">-0.5");
+projectsLoad.fromTo(".projects_video-wrapper", {duration: 0.875, opacity: 0, ease: "power4.out", y: 100}, {opacity: 1, y: 0}, ">-0.5");
 projectsLoad.from(
   ".projects_content > .projects_item > .projects_card",
   { duration: 0.75, opacity: 0, y: 60, ease: "power3.out", stagger: 0.1 },
