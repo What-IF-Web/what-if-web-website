@@ -142,14 +142,14 @@
       this[globalName] = mainExports;
     }
   }
-})({"eCF1U":[function(require,module,exports,__globalThis) {
+})({"fFtu9":[function(require,module,exports,__globalThis) {
 var global = arguments[3];
 var HMR_HOST = null;
 var HMR_PORT = null;
 var HMR_SECURE = false;
 var HMR_ENV_HASH = "d6ea1d42532a7575";
 var HMR_USE_SSE = false;
-module.bundle.HMR_BUNDLE_ID = "138b6a135baa4167";
+module.bundle.HMR_BUNDLE_ID = "f1da0e86905f6534";
 "use strict";
 /* global HMR_HOST, HMR_PORT, HMR_ENV_HASH, HMR_SECURE, HMR_USE_SSE, chrome, browser, __parcel__import__, __parcel__importScripts__, ServiceWorkerGlobalScope */ /*::
 import type {
@@ -595,211 +595,162 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
     }
 }
 
-},{}],"igcvL":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ window.parceled = true;
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-ScrollSmoother.create({
-    content: ".main-wrapper",
-    smooth: 0.8,
-    effects: true
-});
-/*this is where you add imports for localhost */ // import "./services"
-const url = window.location.pathname;
-const scriptsMap = new Map([
-    [
-        ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
-    ],
-    [
-        ".section_case-study-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-            id: "case-study-script"
-        }
-    ],
-    [
-        ".section_case-studies",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-            id: "case-studies-script"
-        }
-    ],
-    [
-        ".section_not-found-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-            id: "not-found-script"
-        }
-    ]
-]);
-const urlScriptsMap = new Map([
-    [
-        "pricing",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-            id: "pricing-script"
-        }
-    ],
-    [
-        "contact",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-            id: "contact-script"
-        }
-    ],
-    [
-        "blog",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-            id: "blog-template-script"
-        }
-    ],
-    [
-        "services",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/services.js",
-            id: "services-script"
-        }
-    ],
-    [
-        "cloneables",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
-            id: "cloneables-script"
-        }
-    ],
-    [
-        "code-snippet",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
-            id: "code-snippet-script"
-        }
-    ],
-    [
-        "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
-    ],
-    [
-        "resources",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/resources.js",
-            id: "resources-script"
-        }
-    ]
-]);
-function preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) {
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
-    }
-}
-// Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-        if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
-});
-// Load scripts based on URL matching
-urlScriptsMap.forEach(({ src, id }, key)=>{
-    if (url.includes(key)) preloadAndExecuteScript(src, id);
-});
-// Testimonial slider initialization
-new Swiper("#testimonials-slider", {
-    loop: true,
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 8,
-    grabCursor: true,
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true
-    },
-    autoplay: {
-        delay: 2200,
-        disableOnInteraction: false
-    },
-    speed: 600,
-    breakpoints: {
-        478: {
-            slidesPerView: 2
-        },
-        991: {
-            slidesPerView: 3,
-            spaceBetween: 16
-        },
-        1366: {
-            slidesPerView: 4
-        }
-    }
-});
-// Testimonial pagination color change based on variant
-const variantField = document.querySelector(".wf-variant-dropdown");
-if (variantField?.value === "White") {
-    const style = document.createElement("style");
-    style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
-    document.head.appendChild(style);
-}
-// Confetti on form submit
-const confettiEffect = ()=>{
-    setTimeout(()=>{
-        confetti({
-            particleCount: 150,
-            startVelocity: 30,
-            spread: 360,
-            scalar: 3,
-            flat: true,
-            origin: {
-                x: 0.5,
-                y: 0
-            },
-            shapes: [
-                "square",
-                "diamonds"
-            ],
-            colors: [
-                "#A41212",
-                "#FE0D04",
-                "#C36A66",
-                "#008B47",
-                "#FFFF00",
-                "#0074E3",
-                "#FF9CD2",
-                "#3FDCE3",
-                "#FFC25D",
-                "#CDEAF2"
-            ]
+},{}],"5JiMD":[function(require,module,exports,__globalThis) {
+window.startGame = function() {
+    kaboom({
+        canvas: document.getElementById('game-canvas'),
+        background: [
+            0,
+            83,
+            255
+        ]
+    });
+    loadFont("calimate", "https://cdn.prod.website-files.com/67e5fcb6db0c048933236084/67e5fcb6db0c048933236096_Calimate-Black.woff2");
+    scene("game", ()=>{
+        // Define game constants
+        const PADDLE_WIDTH = 100;
+        const PADDLE_HEIGHT = 20;
+        const BALL_SIZE = 10;
+        const BALL_SPEED = 200;
+        const BRICK_ROWS = 5;
+        const BRICK_COLS = 10;
+        const GAP = 5;
+        const MARGIN = 10;
+        const brickWidth = (width() - MARGIN * 2 - GAP * (BRICK_COLS - 1)) / BRICK_COLS;
+        const brickHeight = 20;
+        // Initialize score system
+        let score = 0;
+        const scoreLabel = add([
+            text("Score: 0", 16),
+            pos(10, 10),
+            fixed()
+        ]);
+        // Pause system variables
+        let isPaused = false;
+        let pauseText;
+        // Listen for both "p" and "escape" keys to toggle pause
+        [
+            "p",
+            "escape"
+        ].forEach((key)=>{
+            onKeyPress(key, ()=>{
+                if (!isPaused) {
+                    isPaused = true;
+                    pauseText = add([
+                        text("Pausedddd", 32, {
+                            font: "calimate"
+                        }),
+                        pos(width() / 2, height() / 2),
+                        anchor("center"),
+                        fixed()
+                    ]);
+                } else {
+                    isPaused = false;
+                    destroy(pauseText);
+                }
+            });
         });
-    }, 1600);
+        // Add paddle
+        const paddle = add([
+            rect(PADDLE_WIDTH, PADDLE_HEIGHT),
+            pos(width() / 2, height() - 30),
+            anchor("center"),
+            area(),
+            color(0, 255, 0),
+            "paddle"
+        ]);
+        // Add ball
+        const ball = add([
+            rect(BALL_SIZE, BALL_SIZE),
+            pos(width() / 2, height() - 50),
+            anchor("center"),
+            area(),
+            color(255, 255, 255),
+            {
+                vel: vec2(BALL_SPEED, -BALL_SPEED)
+            }
+        ]);
+        // Create a grid of bricks
+        for(let row = 0; row < BRICK_ROWS; row++)for(let col = 0; col < BRICK_COLS; col++)add([
+            rect(brickWidth, brickHeight),
+            pos(MARGIN + col * (brickWidth + GAP), MARGIN + row * (brickHeight + GAP)),
+            area(),
+            color(255, 0, 0),
+            "brick"
+        ]);
+        // Paddle controls: move left and right (only when not paused)
+        onKeyDown("left", ()=>{
+            if (isPaused) return;
+            paddle.move(-400, 0);
+            if (paddle.pos.x - PADDLE_WIDTH / 2 < 0) paddle.pos.x = PADDLE_WIDTH / 2;
+        });
+        onKeyDown("right", ()=>{
+            if (isPaused) return;
+            paddle.move(400, 0);
+            if (paddle.pos.x + PADDLE_WIDTH / 2 > width()) paddle.pos.x = width() - PADDLE_WIDTH / 2;
+        });
+        // Update ball movement and handle wall collisions (skipped when paused)
+        ball.onUpdate(()=>{
+            if (isPaused) return;
+            ball.move(ball.vel);
+            // Bounce off left/right walls
+            if (ball.pos.x < BALL_SIZE / 2 || ball.pos.x > width() - BALL_SIZE / 2) ball.vel.x = -ball.vel.x;
+            // Bounce off top wall
+            if (ball.pos.y < BALL_SIZE / 2) ball.vel.y = -ball.vel.y;
+            // Lose condition: ball falls below the bottom
+            if (ball.pos.y > height()) go("lose", {
+                score: score
+            });
+        });
+        // Bounce the ball off the paddle and adjust horizontal speed based on impact position
+        ball.onCollide("paddle", ()=>{
+            if (isPaused) return;
+            ball.vel.y = -Math.abs(ball.vel.y);
+            const diff = ball.pos.x - paddle.pos.x;
+            ball.vel.x = diff * 5;
+        });
+        // Bounce the ball off a brick, destroy the brick, and update score
+        ball.onCollide("brick", (brick)=>{
+            if (isPaused) return;
+            ball.vel.y = -ball.vel.y;
+            destroy(brick);
+            score += 100;
+            scoreLabel.text = "Score: " + score;
+        });
+        // Check if all bricks are destroyed (win condition) when not paused
+        onUpdate(()=>{
+            if (isPaused) return;
+            if (get("brick").length === 0) go("win", {
+                score: score
+            });
+        });
+    });
+    // Lose Scene
+    scene("lose", ({ score })=>{
+        add([
+            text("Game Over\nScore: " + score, 32),
+            pos(width() / 2, height() / 2),
+            anchor("center")
+        ]);
+        wait(2, ()=>{
+            go("game");
+        });
+    });
+    // Win Scene
+    scene("win", ({ score })=>{
+        add([
+            text("You Win!\nScore: " + score, 32),
+            pos(width() / 2, height() / 2),
+            anchor("center")
+        ]);
+        wait(2, ()=>{
+            go("game");
+        });
+    });
+    // Start the game scene
+    go("game");
 };
-document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
-    form.addEventListener("submit", confettiEffect);
-});
-// Navbar toggle
-document.addEventListener("click", (event)=>{
-    if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
-});
-$(document).on("click", ".button.is-small.is-navbar.is-open", function() {
-    $("body").toggleClass("no-scroll");
-});
-$(".navbar_logo-link").click(function(e) {
-    e.preventDefault();
-    var linkUrl = $(this).attr("href");
-    setTimeout(function(url) {
-        window.location = url;
-    }, 750, linkUrl);
-}); //resources animations
- // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
- // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
 
-},{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
+},{}]},["fFtu9","5JiMD"], "5JiMD", "parcelRequire94c2")
 
-//# sourceMappingURL=app.js.map
+//# sourceMappingURL=game.js.map
