@@ -603,7 +603,7 @@ ScrollSmoother.create({
     smooth: 0.8,
     effects: true
 });
-/*this is where you add imports for localhost */ // import "./home"
+/*this is where you add imports for localhost */ // import "./services"
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
