@@ -105,9 +105,18 @@ testimonialsLoad
 
 let gm = gsap.matchMedia();
 
-const offset = window.innerHeight - 520;
+let subContainer = document.querySelector(".sub-services_content-wrapper");
 
-// desktop
+const offset = window.innerHeight - subContainer.offsetHeight - 256;
+
 gm.add("(min-width: 991px)", () => {
-    var subServicesPin = gsap.timeline({scrollTrigger: {trigger: ".section_sub-services", markers: true, scrub: true, pin: ".sub-services_content-wrapper", end: 'bottom top+${offset}px'}});    
+    let subServicesPin = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section_sub-services",
+            scrub: true,
+            pin: ".sub-services_content-wrapper",
+            pinSpacing: false,
+            end: () => `bottom bottom-=${offset}px`
+        }
+    });
 });
