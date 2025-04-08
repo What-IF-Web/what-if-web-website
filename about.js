@@ -28,14 +28,31 @@ var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
 
 aboutHero.from(
   aboutSplit.lines,
-  { opacity: 0, y: 100, ease: "power4.out", duration: 1, stagger: 0.125 },
+  { opacity: 0, y: 100, ease: "power4.out", duration: 1.5, stagger: 0.125 },
   "0"
 );
 aboutHero.from(
-  ".home-about_card-wrapper",
-  { opacity: 0, y: 50, ease: "power3.out", duration: 1, stagger: 0.125 },
+  ".home-about_card-wrapper.is-about-2",
+  { opacity: 0, y: 700, x: 400, rotation: "50", ease: "power3.out", duration: 1},
   "0.5"
 );
+aboutHero.from(
+  ".home-about_card-wrapper.is-about-1",
+  { opacity: 0, y: 600, x: 300, rotation: "40", ease: "power3.out", duration: 1},
+  "0.75"
+);
+
+var aboutHeroLast = gsap.timeline({scrollTrigger: {trigger: ".about-header_trigger"}});
+
+aboutHeroLast.from(".about-header_minimal-card.is-first", {opacity: 0, y: -900, x: -150, rotation: "50", ease: "power3.out", duration: 1}, 0);
+aboutHeroLast.from(".about-header_minimal-card.is-second", {opacity: 0, y: -1000, x: -300, rotation: "64", ease: "power3.out", duration: 1}, 0.125);
+aboutHeroLast.from(".about-header_minimal-card.is-last", {opacity: 0, y: -1200, x: -50, rotation: "80", ease: "power3.out", duration: 1}, 0.25);
+
+aboutHeroLast.from(".about-header_subheading", {y: 100, opacity: 0, duration: 1, ease: 'power3.out'}, 0.25);
+aboutHeroLast.from(".about-header_text", {y: 100, opacity: 0, duration: 1, ease: 'power3.out'}, 0.5);
+aboutHeroLast.from(".about-header_paragraph-wrapper", {y: 100, opacity: 0, duration: 1, ease: 'power3.out'}, 0.75);
+aboutHeroLast.from(".about-header_card-ghost", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out'}, 0.5);
+aboutHeroLast.from(".about-header_card-brazzo", {y: 80, scale: 0.8, opacity: 0, duration: 1, ease: 'power3.out'}, 0.75);
 
 //team load
 var teamLoad = gsap.timeline({ scrollTrigger: { trigger: ".section_team" } });
