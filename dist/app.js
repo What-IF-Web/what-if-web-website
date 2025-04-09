@@ -596,14 +596,18 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
+<<<<<<< HEAD
 /*uncomment the below when in localhost */ // window.parceled = true;
+=======
+/*uncomment the below when in localhost */ /*this is where you add imports for localhost */ var _about = require("./about");
+window.parceled = true;
+>>>>>>> e022663b8b0df32dc682b05d1c292ea2bae11da7
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 0.8,
     effects: true
 });
-/*this is where you add imports for localhost */ // import "./services"
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
@@ -678,13 +682,13 @@ const urlScriptsMap = new Map([
             id: "code-snippet-script"
         }
     ],
-    [
-        "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
-    ],
+    // [
+    //   "about",
+    //   {
+    //     src: "https://what-if-web.github.io/what-if-web-website/about.js",
+    //     id: "about-script",
+    //   },
+    // ],
     [
         "resources",
         {
@@ -799,6 +803,205 @@ $(".navbar_logo-link").click(function(e) {
 }); //resources animations
  // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
  // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
+
+},{"./about":"czQtR"}],"czQtR":[function(require,module,exports,__globalThis) {
+//about page scroll section
+let am = gsap.matchMedia();
+am.add("(min-width: 991px)", ()=>{
+    var aboutScroll = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section_about-header",
+            scrub: true,
+            start: "top top",
+            end: "bottom bottom",
+            pin: ".about-header_component"
+        }
+    });
+    aboutScroll.to(".about-header_frame", {
+        x: "-300dvw"
+    });
+});
+//about page animations
+//about hero load
+var aboutHero = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_about-header"
+    }
+});
+var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
+    type: "lines"
+});
+aboutHero.from(aboutSplit.lines, {
+    opacity: 0,
+    y: 100,
+    ease: "power4.out",
+    duration: 1.5,
+    stagger: 0.125
+}, "0");
+aboutHero.from(".home-about_card-wrapper.is-about-2", {
+    opacity: 0,
+    y: 700,
+    x: 400,
+    rotation: "50",
+    ease: "power3.out",
+    duration: 1
+}, "0.5");
+aboutHero.from(".home-about_card-wrapper.is-about-1", {
+    opacity: 0,
+    y: 600,
+    x: 300,
+    rotation: "40",
+    ease: "power3.out",
+    duration: 1
+}, "0.75");
+var aboutHeroLast = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".about-header_trigger"
+    }
+});
+aboutHeroLast.from(".about-header_minimal-card.is-first", {
+    opacity: 0,
+    y: -900,
+    x: -150,
+    rotation: "50",
+    ease: "power3.out",
+    duration: 1
+}, 0);
+aboutHeroLast.from(".about-header_minimal-card.is-second", {
+    opacity: 0,
+    y: -1000,
+    x: -300,
+    rotation: "64",
+    ease: "power3.out",
+    duration: 1
+}, 0.125);
+aboutHeroLast.from(".about-header_minimal-card.is-last", {
+    opacity: 0,
+    y: -1200,
+    x: -50,
+    rotation: "80",
+    ease: "power3.out",
+    duration: 1
+}, 0.25);
+aboutHeroLast.from(".about-header_subheading", {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+}, 0.25);
+aboutHeroLast.from(".about-header_text", {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+}, 0.5);
+aboutHeroLast.from(".about-header_paragraph-wrapper", {
+    y: 100,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+}, 0.75);
+aboutHeroLast.from(".about-header_card-ghost", {
+    y: 100,
+    scale: 0.8,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+}, 0.5);
+aboutHeroLast.from(".about-header_card-brazzo", {
+    y: 80,
+    scale: 0.8,
+    opacity: 0,
+    duration: 1,
+    ease: 'power3.out'
+}, 0.75);
+//team load
+var teamLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_team"
+    }
+});
+teamLoad.from(".team_content-top", {
+    y: 75,
+    opacity: 0,
+    duration: 1,
+    ease: "power4.out"
+}, "0");
+teamLoad.from(".team_item", {
+    y: 150,
+    opacity: 0,
+    stagger: 0.125,
+    duration: 1,
+    ease: "power4.out"
+}, "0.25");
+//testimonials section animation
+var testimonialsLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_testimonials",
+        start: "-=400 center"
+    }
+});
+var testimonialSplit = new SplitText("#testimonial-heading", {
+    type: "lines"
+});
+testimonialsLoad.from(".testimonials_star-wrapper > div", {
+    opacity: 0,
+    y: 75,
+    duration: 0.75,
+    ease: "power3.out"
+}).from(testimonialSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 1,
+    scale: 0.8,
+    stagger: 0.125,
+    ease: "power4.out"
+}, "<0.25");
+//footer animation
+var footerLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".footer_component",
+        start: "-=400 center"
+    }
+});
+var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+    type: "lines"
+});
+footerLoad.from(footerSplit.lines, {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    stagger: 0.125,
+    ease: "power3.out",
+    duration: 1
+}, 0);
+footerLoad.from(".footer_top-wrapper > p", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.25");
+footerLoad.from(".footer_form_component", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.125");
+footerLoad.from(".footer_links-wrapper > a", {
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 0.5
+}, "<0.5");
+footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
+    y: 50,
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 1
+}, "<0.5");
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 

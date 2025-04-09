@@ -6,7 +6,7 @@ var csTemplateHeader = gsap.timeline({
 
 csTemplateHeader.from(
   ".case-study-header_image-wrapper",
-  { y: 50, opacity: 0, rotateX: 35, ease: "power3.out", duration: 1.5 },
+  { y: 50, opacity: 0, ease: "power3.out", duration: 1.5 },
   0
 );
 csTemplateHeader.from(
