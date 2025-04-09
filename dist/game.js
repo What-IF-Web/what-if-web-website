@@ -669,12 +669,8 @@ window.startGame = function() {
     }); // End of "start" scene
     // --- Battle Scene Definition ---
     scene("battle", ()=>{
-        k.background = [
-            0,
-            0,
-            0
-        ]; // Black background for battle
         // --- Constants & Game State ---
+        // (Keep your existing constants here)
         const BULLET_SPEED = 1200;
         const TRASH_SPEED = 120;
         const BOSS_SPEED = 48;
@@ -689,6 +685,54 @@ window.startGame = function() {
         const TRASH_SPAWN_LIMIT = 100;
         let trashSpawnedCount = 0;
         let trashClearedCount = 0;
+        // ---- PAUSE STATE ----
+        let isPaused = false;
+        const pauseMenu = add([
+            // Initially empty, we'll add children when paused
+            fixed(),
+            z(50)
+        ]);
+        function togglePause() {
+            isPaused = !isPaused;
+            if (isPaused) {
+                pauseMenu.add([
+                    rect(width(), height()),
+                    color(0, 0, 0),
+                    opacity(0.7),
+                    "pauseElement"
+                ]);
+                pauseMenu.add([
+                    text("Paused", {
+                        size: 60
+                    }),
+                    pos(center()),
+                    anchor("center"),
+                    color(255, 255, 255),
+                    "pauseElement"
+                ]);
+                pauseMenu.add([
+                    text("Press 'P' or 'esc' to Resume", {
+                        size: 30
+                    }),
+                    pos(center().add(0, 60)),
+                    anchor("center"),
+                    color(200, 200, 200),
+                    "pauseElement"
+                ]);
+            } else {
+                const childrenToDestroy = [
+                    ...pauseMenu.children
+                ];
+                for (const child of childrenToDestroy)destroy(child);
+            }
+        }
+        onKeyPress("p", togglePause);
+        onKeyPress("escape", togglePause);
+        k.background = [
+            0,
+            0,
+            0
+        ]; // Black background for battle
         // --- Player Setup ---
         const player = add([
             sprite("ghost"),
@@ -701,30 +745,36 @@ window.startGame = function() {
             scale(PLAYER_START_SCALE),
             "player"
         ]);
-        // --- Player Controls ---
+        // --- Player Controls (Check isPaused) ---
         onKeyDown("left", ()=>{
-            if (player.exists()) {
+            if (!isPaused && player.exists()) {
                 player.move(-PLAYER_SPEED, 0);
                 if (player.pos.x < 0) player.pos.x = width();
             }
         });
         onKeyDown("right", ()=>{
-            if (player.exists()) {
+            if (!isPaused && player.exists()) {
                 player.move(PLAYER_SPEED, 0);
                 if (player.pos.x > width()) player.pos.x = 0;
             }
         });
+        // Player collision (Check isPaused before consequences)
         player.onCollide("enemy", (e)=>{
-            if (player.exists()) destroy(player);
-            if (e.exists()) destroy(e);
-            shake(120);
-            addExplode(center(), 12, 120, 30);
-            wait(1, ()=>{
-                go("battle");
-            });
+            if (!isPaused) {
+                if (player.exists()) destroy(player);
+                if (e.exists()) destroy(e);
+                shake(120);
+                addExplode(center(), 12, 120, 30);
+                wait(1, ()=>{
+                    go("battle");
+                }); // Note: global wait might still run, consider alternatives if problematic
+            }
         });
         // --- Effects ---
+        // (Keep your addExplode function as is)
         function addExplode(p, n, rad, size) {
+            // This effect is short-lived, pausing it might be complex.
+            // For simplicity, we let explosions finish even if paused right after.
             for(let i = 0; i < n; i++)wait(rand(n * 0.1), ()=>{
                 for(let j = 0; j < 2; j++)add([
                     pos(p.add(rand(vec2(-rad), vec2(rad)))),
@@ -736,8 +786,9 @@ window.startGame = function() {
                 ]);
             });
         }
-        // --- Bullets ---
+        // --- Bullets (Check isPaused) ---
         function spawnBullet(p) {
+            // Bullet logic itself (move, offscreen) continues, but spawning is paused.
             add([
                 rect(12, 48),
                 area(),
@@ -751,8 +802,9 @@ window.startGame = function() {
                 "bullet"
             ]);
         }
+        // Shooting (Check isPaused)
         onKeyPress("space", ()=>{
-            if (player.exists()) {
+            if (!isPaused && player.exists()) {
                 spawnBullet(player.pos.sub(16, 0));
                 spawnBullet(player.pos.add(16, 0));
             }
@@ -779,11 +831,14 @@ window.startGame = function() {
                 console.error(`Failed to add trash sprite 'star_trash'.`, e);
             }
         }
+        // Enemy Spawning Loop (Check isPaused inside callback)
         const trashSpawner = loop(0.4, ()=>{
-            spawnTrashMob();
-            if (trashSpawnedCount >= TRASH_SPAWN_LIMIT) {
-                trashSpawner.cancel();
-                console.log("Trash spawn limit reached.");
+            if (!isPaused) {
+                spawnTrashMob();
+                if (trashSpawnedCount >= TRASH_SPAWN_LIMIT) {
+                    trashSpawner.cancel();
+                    console.log("Trash spawn limit reached.");
+                }
             }
         });
         const boss = add([
@@ -802,18 +857,21 @@ window.startGame = function() {
                 dir: 1
             }
         ]);
-        // --- Enemy Events ---
+        // --- Enemy Events (Check isPaused for consequences) ---
         on("death", "enemy", (e)=>{
-            if (e.is("trash")) {
-                trashClearedCount++;
-                updateTrashCountUI();
+            if (!isPaused) {
+                if (e.is("trash")) {
+                    trashClearedCount++;
+                    updateTrashCountUI();
+                }
+                if (e.exists()) destroy(e);
+                shake(2);
+                addKaboom(e.pos);
             }
-            if (e.exists()) destroy(e);
-            shake(2);
-            addKaboom(e.pos);
         });
         on("hurt", "enemy", (e)=>{
-            shake(1);
+            if (!isPaused) shake(1);
+             // Only shake if not paused
         });
         // --- UI Elements ---
         const trashCountUI = add([
@@ -841,44 +899,59 @@ window.startGame = function() {
                 }
             }
         ]);
+        // Healthbar flash effect (Pause check isn't strictly needed but good practice)
         healthbar.onUpdate(()=>{
-            if (healthbar.flash) {
-                healthbar.color = rgb(255, 255, 255);
-                healthbar.flash = false;
-            } else healthbar.color = rgb(127, 255, 127);
+            if (!isPaused) {
+                if (healthbar.flash) {
+                    healthbar.color = rgb(255, 255, 255);
+                    healthbar.flash = false;
+                } else healthbar.color = rgb(127, 255, 127);
+            }
         });
         healthbar.set(boss.hp());
-        // --- Collision Logic ---
+        // --- Collision Logic (Check isPaused) ---
         onCollide("bullet", "enemy", (b, e)=>{
-            if (b.exists() && e.exists()) {
+            if (!isPaused && b.exists() && e.exists()) {
                 destroy(b);
                 e.hurt(1);
                 addExplode(b.pos, 1, 24, 1);
             }
         });
-        // --- Movement Logic ---
+        // --- Movement Logic (Check isPaused) ---
         onUpdate("trash", (t)=>{
-            t.move(0, t.speed * 1);
-            if (t.pos.y > height() + t.height) {
-                destroy(t);
-                trashClearedCount++;
-                updateTrashCountUI();
+            if (!isPaused) {
+                t.move(0, t.speed * 1);
+                if (t.pos.y > height() + t.height) {
+                    destroy(t);
+                    // Ensure counter updates even if enemy goes offscreen while paused logic is running (though it shouldn't move if paused)
+                    // This logic might need review depending on exact pause behavior desired for offscreen enemies.
+                    // For simplicity, assume destruction happens only when not paused.
+                    if (t.exists()) {
+                        destroy(t);
+                        trashClearedCount++;
+                        updateTrashCountUI();
+                    }
+                }
             }
         });
         boss.onUpdate(()=>{
-            boss.move(BOSS_SPEED * boss.dir, 0);
-            const bossEdgeOffset = BOSS_HITBOX_W / 2 * boss.scale.x;
-            if (boss.dir === 1 && boss.pos.x + bossEdgeOffset >= width()) boss.dir = -1;
-            if (boss.dir === -1 && boss.pos.x - bossEdgeOffset <= 0) boss.dir = 1;
+            if (!isPaused) {
+                boss.move(BOSS_SPEED * boss.dir, 0);
+                const bossEdgeOffset = BOSS_HITBOX_W / 2 * boss.scale.x;
+                if (boss.dir === 1 && boss.pos.x + bossEdgeOffset >= width()) boss.dir = -1;
+                if (boss.dir === -1 && boss.pos.x - bossEdgeOffset <= 0) boss.dir = 1;
+            }
         });
-        // --- Boss Events ---
+        // --- Boss Events (Check isPaused for consequences) ---
         boss.onHurt(()=>{
-            healthbar.set(boss.hp());
+            if (!isPaused) healthbar.set(boss.hp());
+             // Update healthbar only when not paused
         });
         boss.onDeath(()=>{
-            go("win", {
+            if (!isPaused) go("win", {
                 boss: "placeholder"
             });
+             // Transition only when not paused
         });
         // Initial UI updates
         updateTrashCountUI();
