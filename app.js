@@ -111,13 +111,11 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    requestIdleCallback(() => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.id = id;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
+    const script = document.createElement("script");
+    script.src = src;
+    script.id = id;
+    script.defer = true;
+    document.head.appendChild(script);
   }
 }
 

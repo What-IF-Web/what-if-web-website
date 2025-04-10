@@ -4,3 +4,7 @@
 # misc
 .parcel-cache/**
 .parcel-cache/data.mdb
+
+# build output
+/dist
+/build
