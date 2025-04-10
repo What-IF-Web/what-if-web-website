@@ -1,5 +1,5 @@
 /*uncomment the below when in localhost */
-// window.parceled = true;
+window.parceled = true;
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -12,11 +12,11 @@ gsap.registerPlugin(
 // ScrollSmoother.create({
 //   content: ".main-wrapper",
 //   smooth: 0.8,
-//   effects: true,
+//   effects: false,
 // });
 
 /*this is where you add imports for localhost */
-// import "./home"
+import "./home";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
@@ -138,21 +138,23 @@ urlScriptsMap.forEach(({ src, id }, key) => {
 });
 
 // Testimonial slider initialization
-new Swiper("#testimonials-slider", {
-  loop: true,
-  slidesPerView: 1,
-  centeredSlides: true,
-  spaceBetween: 8,
-  grabCursor: true,
-  pagination: { el: ".swiper-pagination", clickable: true },
-  autoplay: { delay: 2200, disableOnInteraction: false },
-  speed: 600,
-  breakpoints: {
-    478: { slidesPerView: 2 },
-    991: { slidesPerView: 3, spaceBetween: 16 },
-    1366: { slidesPerView: 4 },
-  },
-});
+if (document.querySelector("#testimonials-slider")) {
+  new Swiper("#testimonials-slider", {
+    loop: true,
+    slidesPerView: 1,
+    centeredSlides: true,
+    spaceBetween: 8,
+    grabCursor: true,
+    pagination: { el: ".swiper-pagination", clickable: true },
+    autoplay: { delay: 2200, disableOnInteraction: false },
+    speed: 600,
+    breakpoints: {
+      478: { slidesPerView: 2 },
+      991: { slidesPerView: 3, spaceBetween: 16 },
+      1366: { slidesPerView: 4 },
+    },
+  });
+}
 
 // Testimonial pagination color change based on variant
 const variantField = document.querySelector(".wf-variant-dropdown");
@@ -204,20 +206,42 @@ document.addEventListener("click", (event) => {
   }
 });
 
-$(document).on("click", ".button.is-small.is-navbar.is-open", function () {
-  $("body").toggleClass("no-scroll");
+// Resources animations (only if the section is in view)
+const resourcesObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        gsap
+          .timeline({ scrollTrigger: { trigger: entry.target } })
+          .from(".resources_top-content > h1, .resources_top-content > p", {
+            y: 100,
+            stagger: 0.125,
+            ease: "power4.out",
+            duration: 1,
+            opacity: 0,
+          });
+        resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+      }
+    });
+  },
+  { threshold: 0.5 }
+);
+
+const resourcesSection = document.querySelector(".section_resources");
+if (resourcesSection) {
+  resourcesObserver.observe(resourcesSection);
+}
+
+document.addEventListener("click", function (event) {
+  if (event.target.matches(".button.is-small.is-navbar.is-open")) {
+    document.body.classList.toggle("no-scroll");
+  }
 });
 
 $(".navbar_logo-link").click(function (e) {
   e.preventDefault();
-  var linkUrl = $(this).attr("href");
-  setTimeout(
-    function (url) {
-      window.location = url;
-    },
-    750,
-    linkUrl
-  );
+  const linkUrl = $(this).attr("href");
+  setTimeout(() => (window.location = linkUrl), 750);
 });
 
 //resources animations
