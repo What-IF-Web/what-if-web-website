@@ -9,11 +9,11 @@ gsap.registerPlugin(
   ScrollSmoother
 );
 
-ScrollSmoother.create({
-  content: ".main-wrapper",
-  smooth: 0.8,
-  effects: true,
-});
+// ScrollSmoother.create({
+//   content: ".main-wrapper",
+//   smooth: 0.8,
+//   effects: true,
+// });
 
 /*this is where you add imports for localhost */
 // import "./home"
@@ -111,11 +111,13 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    const script = document.createElement("script");
-    script.src = src;
-    script.id = id;
-    script.defer = true;
-    document.head.appendChild(script);
+    requestIdleCallback(() => {
+      const script = document.createElement("script");
+      script.src = src;
+      script.id = id;
+      script.defer = true;
+      document.head.appendChild(script);
+    });
   }
 }
 
