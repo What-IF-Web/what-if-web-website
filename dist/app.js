@@ -596,14 +596,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
+
 /*uncomment the below when in localhost */ /*this is where you add imports for localhost */ var _home = require("./home");
 window.parceled = true;
+
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 ScrollSmoother.create({
     content: ".main-wrapper",
     smooth: 0.8,
     effects: true
 });
+/*this is where you add imports for localhost */ // import "./about"
 const url = window.location.pathname;
 const scriptsMap = new Map([
     // [

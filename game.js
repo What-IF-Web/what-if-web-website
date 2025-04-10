@@ -1,174 +1,243 @@
-window.startGame = function() {
-    kaboom({
+window.startGame = function () {
+    const k = kaboom({
         canvas: document.getElementById('game-canvas'),
-        background: [ 0, 83, 255, ], 
+        background: [0, 83, 255],
     });
 
-    loadFont("calimate", "https://cdn.prod.website-files.com/67e5fcb6db0c048933236084/67e5fcb6db0c048933236096_Calimate-Black.woff2");
+    // --- Asset Loading ---
+    loadSprite("ghost", "https://cdn.prod.website-files.com/67e5fcb6db0c048933236084/67e5fcb6db0c0489332360df_Ghost.svg");
+    loadSprite("star_trash", "https://cdn.prod.website-files.com/67e5fcb6db0c048933236084/67e5fcb6db0c04893323617b_Star.webp");
 
-
-    scene("game", () => {
-        // Define game constants
-        const PADDLE_WIDTH = 100;
-        const PADDLE_HEIGHT = 20;
-        const BALL_SIZE = 10;
-        const BALL_SPEED = 200;
-        const BRICK_ROWS = 5;
-        const BRICK_COLS = 10;
-        const GAP = 5;
-        const MARGIN = 10;
-        const brickWidth = (width() - MARGIN * 2 - GAP * (BRICK_COLS - 1)) / BRICK_COLS;
-        const brickHeight = 20;
-
-        // Initialize score system
-        let score = 0;
-        const scoreLabel = add([
-            text("Score: 0", 16),
-            pos(10, 10),
-            fixed(), // stays in the same position
+    // --- Start Screen Scene Definition ---
+    scene("start", () => {
+        add([ rect(width(), height()), color(0, 0, 0), opacity(0.7), fixed(), z(10) ]);
+        add([ text("Start Game", { size: 60 }), pos(center().x, center().y - 80), anchor("center"), color(255, 255, 255), z(20) ]);
+        const btnW = 240;
+        const btnH = 70;
+        const startButton = add([
+             rect(btnW, btnH, { radius: 8 }),
+             pos(center().x, center().y + 40),
+             anchor("center"),
+             area(), // Still needed for onClick
+             outline(3, rgb(200, 200, 200)),
+             color(50, 150, 50),
+             z(20),
+             "startButton"
         ]);
+        add([ text("Start", { size: 40 }), pos(startButton.pos), anchor("center"), color(255, 255, 255), z(21) ]);
 
-        // Pause system variables
-        let isPaused = false;
-        let pauseText;
-
-      // Listen for both "p" and "escape" keys to toggle pause
-        ["p", "escape"].forEach(key => {
-            onKeyPress(key, () => {
-                if (!isPaused) {
-                    isPaused = true;
-                    pauseText = add([
-                        text("Pausedddd", 32, { font: "calimate" }),
-                        pos(width() / 2, height() / 2),
-                        anchor("center"),
-                        fixed(),
-                    ]);
-                } else {
-                    isPaused = false;
-                    destroy(pauseText);
-                }
-            });
+        // Button Click Action (Hover logic removed)
+        onClick("startButton", () => {
+            go("battle"); // Transition to the battle scene
         });
 
+        // Optional: Allow starting with Space key as well
+         onKeyPress("space", () => {
+             go("battle");
+         });
+         add([ text("(or press SPACE)", { size: 20 }), pos(center().x, center().y + 100), anchor("center"), color(200, 200, 200), z(20) ]);
 
-        // Add paddle
-        const paddle = add([
-            rect(PADDLE_WIDTH, PADDLE_HEIGHT),
-            pos(width() / 2, height() - 30),
-            anchor("center"),
-            area(),
-            color(0, 255, 0),
-            "paddle",
-        ]);
+    }); // End of "start" scene
 
-        // Add ball
-        const ball = add([
-            rect(BALL_SIZE, BALL_SIZE),
-            pos(width() / 2, height() - 50),
-            anchor("center"),
-            area(),
-            color(255, 255, 255),
-            { vel: vec2(BALL_SPEED, -BALL_SPEED) },
-        ]);
+// --- Battle Scene Definition ---
+scene("battle", () => {
+    // --- Constants & Game State ---
+    // (Keep your existing constants here)
+    const BULLET_SPEED = 1200;
+    const TRASH_SPEED = 120;
+    const BOSS_SPEED = 48;
+    const PLAYER_SPEED = 480;
+    const BOSS_HEALTH = 100;
+    const OBJ_HEALTH = 4;
+    const PLAYER_HITBOX_W = 32;
+    const PLAYER_HITBOX_H = 32;
+    const PLAYER_START_SCALE = 0.25;
+    const BOSS_HITBOX_W = 96;
+    const BOSS_HITBOX_H = 96;
+    const TRASH_SPAWN_LIMIT = 100;
+    let trashSpawnedCount = 0;
+    let trashClearedCount = 0;
 
-        // Create a grid of bricks
-        for (let row = 0; row < BRICK_ROWS; row++) {
-            for (let col = 0; col < BRICK_COLS; col++) {
-                add([
-                    rect(brickWidth, brickHeight),
-                    pos(MARGIN + col * (brickWidth + GAP), MARGIN + row * (brickHeight + GAP)),
-                    area(),
-                    color(255, 0, 0),
-                    "brick",
-                ]);
+    // ---- PAUSE STATE ----
+    let isPaused = false;
+    const pauseMenu = add([
+        // Initially empty, we'll add children when paused
+        fixed(), // Make sure pause menu doesn't move with camera
+        z(50), // Ensure it's on top
+    ]);
+
+    function togglePause() {
+        isPaused = !isPaused;
+        if (isPaused) {
+            pauseMenu.add([ rect(width(), height()), color(0, 0, 0), opacity(0.7), "pauseElement" ]);
+            pauseMenu.add([ text("Paused", { size: 60 }), pos(center()), anchor("center"), color(255, 255, 255), "pauseElement" ]);
+            pauseMenu.add([ text("Press 'P' or 'esc' to Resume", { size: 30 }), pos(center().add(0, 60)), anchor("center"), color(200, 200, 200), "pauseElement" ]);
+        } else {
+            const childrenToDestroy = [...pauseMenu.children];
+            for (const child of childrenToDestroy) {
+                destroy(child);
             }
         }
+    }
+    onKeyPress("p", togglePause);
+    onKeyPress("escape", togglePause);
 
-        // Paddle controls: move left and right (only when not paused)
-        onKeyDown("left", () => {
-            if (isPaused) return;
-            paddle.move(-400, 0);
-            if (paddle.pos.x - PADDLE_WIDTH / 2 < 0) {
-                paddle.pos.x = PADDLE_WIDTH / 2;
-            }
-        });
-        onKeyDown("right", () => {
-            if (isPaused) return;
-            paddle.move(400, 0);
-            if (paddle.pos.x + PADDLE_WIDTH / 2 > width()) {
-                paddle.pos.x = width() - PADDLE_WIDTH / 2;
-            }
-        });
+    k.background = [0, 0, 0]; // Black background for battle
 
-        // Update ball movement and handle wall collisions (skipped when paused)
-        ball.onUpdate(() => {
-            if (isPaused) return;
-            ball.move(ball.vel);
+    // --- Player Setup ---
+    const player = add([
+        sprite("ghost"), area({ width: PLAYER_HITBOX_W, height: PLAYER_HITBOX_H }),
+        pos(width() / 2, height() - 64), anchor("center"), scale(PLAYER_START_SCALE), "player"
+    ]);
 
-            // Bounce off left/right walls
-            if (ball.pos.x < BALL_SIZE / 2 || ball.pos.x > width() - BALL_SIZE / 2) {
-                ball.vel.x = -ball.vel.x;
-            }
-            // Bounce off top wall
-            if (ball.pos.y < BALL_SIZE / 2) {
-                ball.vel.y = -ball.vel.y;
-            }
-            // Lose condition: ball falls below the bottom
-            if (ball.pos.y > height()) {
-                go("lose", { score: score });
-            }
-        });
+    // --- Player Controls (Check isPaused) ---
+    onKeyDown("left", () => { if (!isPaused && player.exists()) { player.move(-PLAYER_SPEED, 0); if (player.pos.x < 0) { player.pos.x = width(); } } });
+    onKeyDown("right", () => { if (!isPaused && player.exists()) { player.move(PLAYER_SPEED, 0); if (player.pos.x > width()) { player.pos.x = 0; } } });
 
-        // Bounce the ball off the paddle and adjust horizontal speed based on impact position
-        ball.onCollide("paddle", () => {
-            if (isPaused) return;
-            ball.vel.y = -Math.abs(ball.vel.y);
-            const diff = ball.pos.x - paddle.pos.x;
-            ball.vel.x = diff * 5;
-        });
-
-        // Bounce the ball off a brick, destroy the brick, and update score
-        ball.onCollide("brick", (brick) => {
-            if (isPaused) return;
-            ball.vel.y = -ball.vel.y;
-            destroy(brick);
-            score += 100;
-            scoreLabel.text = "Score: " + score;
-        });
-
-        // Check if all bricks are destroyed (win condition) when not paused
-        onUpdate(() => {
-            if (isPaused) return;
-            if (get("brick").length === 0) {
-                go("win", { score: score });
-            }
-        });
+    // Player collision (Check isPaused before consequences)
+    player.onCollide("enemy", (e) => {
+        if (!isPaused) { // Only process collision if not paused
+            if (player.exists()) { destroy(player); }
+            if (e.exists()) { destroy(e); }
+            shake(120);
+            addExplode(center(), 12, 120, 30);
+            wait(1, () => { go("battle"); }); // Note: global wait might still run, consider alternatives if problematic
+        }
     });
 
-    // Lose Scene
-    scene("lose", ({ score }) => {
-        add([
-            text("Game Over\nScore: " + score, 32),
-            pos(width() / 2, height() / 2),
-            anchor("center"),
-        ]);
-        wait(2, () => {
-            go("game");
-        });
+    // --- Effects ---
+    // (Keep your addExplode function as is)
+    function addExplode(p, n, rad, size) {
+        // This effect is short-lived, pausing it might be complex.
+        // For simplicity, we let explosions finish even if paused right after.
+         for (let i = 0; i < n; i++) {
+            wait(rand(n * 0.1), () => {
+                for (let j = 0; j < 2; j++) {
+                    add([ pos(p.add(rand(vec2(-rad), vec2(rad)))), rect(4, 4), scale(1 * size, 1 * size), lifespan(0.1), anchor("center"), color(255, 255, 255) ]);
+                }
+            });
+        }
+    }
+
+
+    // --- Bullets (Check isPaused) ---
+    function spawnBullet(p) {
+        // Bullet logic itself (move, offscreen) continues, but spawning is paused.
+        add([ rect(12, 48), area(), pos(p), anchor("center"), color(127, 127, 255), move(UP, BULLET_SPEED), offscreen({ destroy: true }), "bullet" ]);
+    }
+    // Shooting (Check isPaused)
+    onKeyPress("space", () => { if (!isPaused && player.exists()) { spawnBullet(player.pos.sub(16, 0)); spawnBullet(player.pos.add(16, 0)); } });
+
+    // --- Enemies ---
+    function spawnTrashMob() {
+        if (trashSpawnedCount >= TRASH_SPAWN_LIMIT) { return; }
+        trashSpawnedCount++;
+        try {
+            add([ sprite("star_trash"), area(), pos(rand(0, width()), 0), health(OBJ_HEALTH), anchor("bot"), "trash", "enemy", { speed: rand(TRASH_SPEED * 0.5, TRASH_SPEED * 1.5) }, ]);
+            updateTrashCountUI();
+        } catch (e) { console.error(`Failed to add trash sprite 'star_trash'.`, e); }
+    }
+
+    // Enemy Spawning Loop (Check isPaused inside callback)
+    const trashSpawner = loop(0.4, () => {
+        if (!isPaused) { // Check pause state here
+            spawnTrashMob();
+            if (trashSpawnedCount >= TRASH_SPAWN_LIMIT) {
+                trashSpawner.cancel();
+                console.log("Trash spawn limit reached.");
+            }
+        }
     });
 
-    // Win Scene
-    scene("win", ({ score }) => {
-        add([
-            text("You Win!\nScore: " + score, 32),
-            pos(width() / 2, height() / 2),
-            anchor("center"),
-        ]);
-        wait(2, () => {
-            go("game");
-        });
+    const boss = add([ rect(BOSS_HITBOX_W, BOSS_HITBOX_H), color(255, 0, 0), area({ width: BOSS_HITBOX_W, height: BOSS_HITBOX_H }), pos(width() / 2, 40), health(BOSS_HEALTH), scale(3), anchor("top"), "enemy", { dir: 1 }, ]);
+
+    // --- Enemy Events (Check isPaused for consequences) ---
+    on("death", "enemy", (e) => {
+         if (!isPaused) { // Only process death if not paused
+            if (e.is("trash")) { trashClearedCount++; updateTrashCountUI(); }
+            if (e.exists()) { destroy(e); }
+            shake(2);
+            addKaboom(e.pos);
+        }
+    });
+    on("hurt", "enemy", (e) => {
+         if (!isPaused) { shake(1); } // Only shake if not paused
     });
 
-    // Start the game scene
-    go("game");
-}
+
+    // --- UI Elements ---
+    const trashCountUI = add([ text(`Trash Cleared: 0 / ${TRASH_SPAWN_LIMIT}`), pos(12, 32), fixed(), { value: 0 } ]);
+    function updateTrashCountUI() { trashCountUI.text = `Trash Cleared: ${trashClearedCount} / ${TRASH_SPAWN_LIMIT}`; }
+    const healthbar = add([ rect(width(), 24), pos(0, 0), color(107, 201, 108), fixed(), { max: BOSS_HEALTH, set(hp) { const currentHp = Math.max(0, hp); this.width = Math.max(0, width() * currentHp / this.max); this.flash = true; } }, ]);
+
+    // Healthbar flash effect (Pause check isn't strictly needed but good practice)
+    healthbar.onUpdate(() => {
+        if (!isPaused) {
+            if (healthbar.flash) { healthbar.color = rgb(255, 255, 255); healthbar.flash = false; } else { healthbar.color = rgb(127, 255, 127); }
+        }
+     });
+    healthbar.set(boss.hp());
+
+    // --- Collision Logic (Check isPaused) ---
+    onCollide("bullet", "enemy", (b, e) => {
+        if (!isPaused && b.exists() && e.exists()) { // Check pause state here
+            destroy(b);
+            e.hurt(1);
+            addExplode(b.pos, 1, 24, 1);
+        }
+    });
+
+    // --- Movement Logic (Check isPaused) ---
+    onUpdate("trash", (t) => {
+        if (!isPaused) { // Check pause state here
+            t.move(0, t.speed * 1);
+            if (t.pos.y > height() + t.height) {
+                destroy(t);
+                // Ensure counter updates even if enemy goes offscreen while paused logic is running (though it shouldn't move if paused)
+                // This logic might need review depending on exact pause behavior desired for offscreen enemies.
+                // For simplicity, assume destruction happens only when not paused.
+                 if (t.exists()) { // Check existence before destroy
+                    destroy(t);
+                    trashClearedCount++;
+                    updateTrashCountUI();
+                }
+            }
+        }
+    });
+
+    boss.onUpdate(() => {
+        if (!isPaused) { // Check pause state here
+            boss.move(BOSS_SPEED * boss.dir, 0);
+            const bossEdgeOffset = (BOSS_HITBOX_W / 2) * boss.scale.x;
+            if (boss.dir === 1 && boss.pos.x + bossEdgeOffset >= width()) { boss.dir = -1; }
+            if (boss.dir === -1 && boss.pos.x - bossEdgeOffset <= 0) { boss.dir = 1; }
+        }
+    });
+
+    // --- Boss Events (Check isPaused for consequences) ---
+    boss.onHurt(() => {
+         if (!isPaused) { healthbar.set(boss.hp()); } // Update healthbar only when not paused
+    });
+    boss.onDeath(() => {
+         if (!isPaused) { go("win", { boss: "placeholder" }); } // Transition only when not paused
+    });
+
+    // Initial UI updates
+    updateTrashCountUI();
+
+}); // End of "battle" scene
+
+    // --- Win Scene Definition ---
+    scene("win", ({ boss }) => {
+        add([ rect(width(), height()), color(0, 0, 0), opacity(0.7), fixed(), z(10) ]);
+        if (boss === "placeholder") { add([ text("BOSS DEFEATED!", {size: 60}), anchor("center"), pos(width() / 2, height() / 2 - 30), z(20), color(255,255,255) ]); }
+        else { /* Fallback logic */ const displayName = boss || "UNKNOWN"; try { if (k.getData(displayName)) { add([ sprite(displayName), color(255, 0, 0), anchor("center"), scale(8), pos(width() / 2, height() / 2), z(20) ]); } else { throw new Error(`Sprite data for '${displayName}' not found.`); } } catch(e) { console.error("Failed to display boss sprite in win scene:", e); add([ text("YOU WIN!", {size: 60}), anchor("center"), pos(width() / 2, height() / 2 - 30), z(20), color(255,255,255) ]); } }
+        add([ text("Press SPACE to play again", { size: 32 }), pos(width() / 2, height() - 60), anchor("center"), z(20), color(255,255,255) ]);
+        onKeyPress("space", () => { go("battle"); });
+    }); // End of "win" scene
+
+    // --- Start Game ---
+    try { go("start"); }
+    catch (e) { console.error("Failed to start initial game scene.", e); add([ text("Error loading game. Check console.", { size: 20, width: width() - 40 }), pos(width() / 2, height() / 2), anchor("center"), color(255, 0, 0) ]); }
+
+}; // End of window.startGame
