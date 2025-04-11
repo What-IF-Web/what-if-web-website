@@ -1,5 +1,5 @@
 /*uncomment the below when in localhost */
-window.parceled = true;
+// window.parceled = true;
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -16,7 +16,7 @@ gsap.registerPlugin(
 // });
 
 /*this is where you add imports for localhost */
-import "./home";
+// import "./home";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
