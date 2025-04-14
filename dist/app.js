@@ -709,7 +709,7 @@ function preloadAndExecuteScript(src, id) {
         script.id = id;
         script.defer = true;
         document.head.appendChild(script);
-    }, 600);
+    }, 400);
 }
 // Load scripts based on elements found in DOM
 document.addEventListener("DOMContentLoaded", ()=>{
