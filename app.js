@@ -119,7 +119,7 @@ function preloadAndExecuteScript(src, id) {
       script.id = id;
       script.defer = true;
       document.head.appendChild(script);
-    }, 100); // 100–300ms might give DOM enough time
+    }, 300); // 100–300ms might give DOM enough time
   }
 }
 
