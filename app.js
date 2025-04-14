@@ -20,27 +20,26 @@ gsap.registerPlugin(
 /*this is where you add imports for localhost */
 // import "./home";
 
+// const modules = {
+//   home: () => import("/what-if-web-website/home.js"),
+//   pricing: () => import("./pricing.js"),
+// };
+
+// if (document.querySelector(".section_home-header") || url === "/") {
+//   modules.home().then(() => console.log("Home module loaded"));
+// } else if (url.includes("pricing")) {
+//   modules.pricing().then(() => console.log("Pricing module loaded"));
+// }
+
 const url = window.location.pathname;
-
-const modules = {
-  home: () => import("./home.js"),
-  pricing: () => import("./pricing.js"),
-};
-
-if (document.querySelector(".section_home-header") || url === "/") {
-  modules.home().then(() => console.log("Home module loaded"));
-} else if (url.includes("pricing")) {
-  modules.pricing().then(() => console.log("Pricing module loaded"));
-}
-
 const scriptsMap = new Map([
-  // [
-  //   ".section_home-header",
-  //   {
-  //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
-  //     id: "home-script",
-  //   },
-  // ],
+  [
+    ".section_home-header",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/home.js",
+      id: "home-script",
+    },
+  ],
   [
     ".section_case-study-header",
     {
