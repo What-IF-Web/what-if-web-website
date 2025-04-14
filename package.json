@@ -6,11 +6,15 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel serve app.js game.js",
-    "build": "parcel build app.js"
+    "build": "parcel build app.js --dist-dir build",
+    "deploy": "gh-pages -d build"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "parcel": "^2.13.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
   }
 }
