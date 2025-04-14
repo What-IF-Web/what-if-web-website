@@ -1,47 +1,3 @@
-
-      var $parcel$global = globalThis;
-    
-var $parcel$modules = {};
-var $parcel$inits = {};
-
-var parcelRequire = $parcel$global["parcelRequire94c2"];
-
-if (parcelRequire == null) {
-  parcelRequire = function(id) {
-    if (id in $parcel$modules) {
-      return $parcel$modules[id].exports;
-    }
-    if (id in $parcel$inits) {
-      var init = $parcel$inits[id];
-      delete $parcel$inits[id];
-      var module = {id: id, exports: {}};
-      $parcel$modules[id] = module;
-      init.call(module.exports, module, module.exports);
-      return module.exports;
-    }
-    var err = new Error("Cannot find module '" + id + "'");
-    err.code = 'MODULE_NOT_FOUND';
-    throw err;
-  };
-
-  parcelRequire.register = function register(id, init) {
-    $parcel$inits[id] = init;
-  };
-
-  $parcel$global["parcelRequire94c2"] = parcelRequire;
-}
-
-var parcelRegister = parcelRequire.register;
-parcelRegister("9l4fu", function(module, exports) {
-module.exports = Promise.resolve(require("./home.532ebe7f.js")).then(()=>parcelRequire('kEdRm'));
-
-});
-
-parcelRegister("3dCPD", function(module, exports) {
-module.exports = Promise.resolve(require("./pricing.887d9442.js")).then(()=>parcelRequire('8C97O'));
-
-});
-
 /*uncomment the below when in localhost */ // window.parceled = true;
 console.log("localhost");
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
@@ -51,23 +7,24 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, S
 //   effects: false,
 // });
 /*this is where you add imports for localhost */ // import "./home";
+// const modules = {
+//   home: () => import("/what-if-web-website/home.js"),
+//   pricing: () => import("./pricing.js"),
+// };
+// if (document.querySelector(".section_home-header") || url === "/") {
+//   modules.home().then(() => console.log("Home module loaded"));
+// } else if (url.includes("pricing")) {
+//   modules.pricing().then(() => console.log("Pricing module loaded"));
+// }
 const $84a264530b3fb4fb$var$url = window.location.pathname;
-
-
-if (document.querySelector(".section_home-header") || $84a264530b3fb4fb$var$url === "/") (parcelRequire("9l4fu")).then((module)=>{
-    console.log("Home module loaded");
-});
-else if (path.includes("pricing")) (parcelRequire("3dCPD")).then((module)=>{
-    console.log("Pricing module loaded");
-});
 const $84a264530b3fb4fb$var$scriptsMap = new Map([
-    // [
-    //   ".section_home-header",
-    //   {
-    //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
-    //     id: "home-script",
-    //   },
-    // ],
+    [
+        ".section_home-header",
+        {
+            src: "https://what-if-web.github.io/what-if-web-website/home.js",
+            id: "home-script"
+        }
+    ],
     [
         ".section_case-study-header",
         {
