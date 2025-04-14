@@ -1,5 +1,7 @@
 /*uncomment the below when in localhost */
-// window.parceled = true;
+window.parceled = true;
+
+console.log("localhost");
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -16,17 +18,17 @@ gsap.registerPlugin(
 // });
 
 /*this is where you add imports for localhost */
-// import "./home";
+import "./home";
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
-  [
-    ".section_home-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/home.js",
-      id: "home-script",
-    },
-  ],
+  // [
+  //   ".section_home-header",
+  //   {
+  //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
+  //     id: "home-script",
+  //   },
+  // ],
   [
     ".section_case-study-header",
     {
@@ -231,12 +233,6 @@ const resourcesSection = document.querySelector(".section_resources");
 if (resourcesSection) {
   resourcesObserver.observe(resourcesSection);
 }
-
-document.addEventListener("click", function (event) {
-  if (event.target.matches(".button.is-small.is-navbar.is-open")) {
-    document.body.classList.toggle("no-scroll");
-  }
-});
 
 $(".navbar_logo-link").click(function (e) {
   e.preventDefault();
