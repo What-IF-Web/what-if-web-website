@@ -1,7 +1,7 @@
 /*uncomment the below when in localhost */
 // window.parceled = true;
 
-// console.log("localhost");
+console.log("localhost");
 
 gsap.registerPlugin(
   ScrollTrigger,
@@ -113,23 +113,27 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    requestIdleCallback(() => {
+    setTimeout(() => {
       const script = document.createElement("script");
       script.src = src;
       script.id = id;
       script.defer = true;
       document.head.appendChild(script);
-    });
+    }, 100); // 100–300ms might give DOM enough time
   }
 }
 
 // Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector) => {
-  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-    if (document.querySelector(selector)) {
-      preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
-  }
+document.addEventListener("DOMContentLoaded", () => {
+  setTimeout(() => {
+    scriptsMap.forEach((scriptInfo, selector) => {
+      if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+        if (document.querySelector(selector)) {
+          preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+        }
+      }
+    });
+  }, 300); // Allow time for Webflow to render content
 });
 
 // Load scripts based on URL matching
@@ -198,12 +202,8 @@ document.querySelectorAll("#email-form, #footer-form").forEach((form) => {
 });
 
 // Navbar toggle
-document.addEventListener("click", (event) => {
-  if (
-    event.target.matches(
-      ".navbar_menu-button, .button.is-small.is-navbar.is-open"
-    )
-  ) {
+document.addEventListener("click", function (event) {
+  if (event.target.matches(".button.is-small.is-navbar.is-open")) {
     document.body.classList.toggle("no-scroll");
   }
 });
@@ -233,6 +233,12 @@ const resourcesSection = document.querySelector(".section_resources");
 if (resourcesSection) {
   resourcesObserver.observe(resourcesSection);
 }
+
+document.addEventListener("click", function (event) {
+  if (event.target.matches(".button.is-small.is-navbar.is-open")) {
+    document.body.classList.toggle("no-scroll");
+  }
+});
 
 $(".navbar_logo-link").click(function (e) {
   e.preventDefault();
