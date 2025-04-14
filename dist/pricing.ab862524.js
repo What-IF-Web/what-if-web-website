@@ -886,7 +886,7 @@ footerLoad.from(".footer_links-wrapper > a", {
     opacity: 0,
     stagger: 0.125,
     ease: "power4.out",
-    duration: 0.25
+    duration: 0.5
 }, "<0.5");
 footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
     y: 50,

@@ -606,14 +606,20 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, S
 // });
 /*this is where you add imports for localhost */ // import "./home";
 const url = window.location.pathname;
+if (document.querySelector(".section_home-header") || url === "/") require("5b351e67ff6445c1").then((module)=>{
+    console.log("Home module loaded");
+});
+else if (path.includes("pricing")) require("24a71c02315502af").then((module)=>{
+    console.log("Pricing module loaded");
+});
 const scriptsMap = new Map([
-    [
-        ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
-    ],
+    // [
+    //   ".section_home-header",
+    //   {
+    //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
+    //     id: "home-script",
+    //   },
+    // ],
     [
         ".section_case-study-header",
         {
@@ -826,6 +832,115 @@ $(".navbar_logo-link").click(function(e) {
  // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
  // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
 
-},{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
+},{"5b351e67ff6445c1":"7nMDa","24a71c02315502af":"8OcJF"}],"7nMDa":[function(require,module,exports,__globalThis) {
+module.exports = require("e0c136d56b818ea4")(require("83aba53f3f67c0e5").getBundleURL('1G2bZ') + "home.c5ca3b32.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root('3PNHe'));
+
+},{"e0c136d56b818ea4":"61B45","83aba53f3f67c0e5":"lgJ39","3PNHe":"3PNHe"}],"61B45":[function(require,module,exports,__globalThis) {
+"use strict";
+var cacheLoader = require("ca2a84f7fa4a3bb0");
+module.exports = cacheLoader(function(bundle) {
+    return new Promise(function(resolve, reject) {
+        // Don't insert the same script twice (e.g. if it was already in the HTML)
+        var existingScripts = document.getElementsByTagName('script');
+        if ([].concat(existingScripts).some(function(script) {
+            return script.src === bundle;
+        })) {
+            resolve();
+            return;
+        }
+        var preloadLink = document.createElement('link');
+        preloadLink.href = bundle;
+        preloadLink.rel = 'preload';
+        preloadLink.as = 'script';
+        document.head.appendChild(preloadLink);
+        var script = document.createElement('script');
+        script.async = true;
+        script.type = 'text/javascript';
+        script.src = bundle;
+        script.onerror = function(e) {
+            var error = new TypeError("Failed to fetch dynamically imported module: ".concat(bundle, ". Error: ").concat(e.message));
+            script.onerror = script.onload = null;
+            script.remove();
+            reject(error);
+        };
+        script.onload = function() {
+            script.onerror = script.onload = null;
+            resolve();
+        };
+        document.getElementsByTagName('head')[0].appendChild(script);
+    });
+});
+
+},{"ca2a84f7fa4a3bb0":"j49pS"}],"j49pS":[function(require,module,exports,__globalThis) {
+"use strict";
+var cachedBundles = {};
+var cachedPreloads = {};
+var cachedPrefetches = {};
+function getCache(type) {
+    switch(type){
+        case 'preload':
+            return cachedPreloads;
+        case 'prefetch':
+            return cachedPrefetches;
+        default:
+            return cachedBundles;
+    }
+}
+module.exports = function(loader, type) {
+    return function(bundle) {
+        var cache = getCache(type);
+        if (cache[bundle]) return cache[bundle];
+        return cache[bundle] = loader.apply(null, arguments).catch(function(e) {
+            delete cache[bundle];
+            throw e;
+        });
+    };
+};
+
+},{}],"lgJ39":[function(require,module,exports,__globalThis) {
+"use strict";
+var bundleURL = {};
+function getBundleURLCached(id) {
+    var value = bundleURL[id];
+    if (!value) {
+        value = getBundleURL();
+        bundleURL[id] = value;
+    }
+    return value;
+}
+function getBundleURL() {
+    try {
+        throw new Error();
+    } catch (err) {
+        var matches = ('' + err.stack).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^)\n]+/g);
+        if (matches) // The first two stack frames will be this function and getBundleURLCached.
+        // Use the 3rd one, which will be a runtime in the original bundle.
+        return getBaseURL(matches[2]);
+    }
+    return '/';
+}
+function getBaseURL(url) {
+    return ('' + url).replace(/^((?:https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/.+)\/[^/]+$/, '$1') + '/';
+}
+// TODO: Replace uses with `new URL(url).origin` when ie11 is no longer supported.
+function getOrigin(url) {
+    var matches = ('' + url).match(/(https?|file|ftp|(chrome|moz|safari-web)-extension):\/\/[^/]+/);
+    if (!matches) throw new Error('Origin not found');
+    return matches[0];
+}
+exports.getBundleURL = getBundleURLCached;
+exports.getBaseURL = getBaseURL;
+exports.getOrigin = getOrigin;
+
+},{}],"8OcJF":[function(require,module,exports,__globalThis) {
+module.exports = require("31b2cbe044fbaf2f")(require("29d1cb27001b7afa").getBundleURL('1G2bZ') + "pricing.ab862524.js").catch((err)=>{
+    delete module.bundle.cache[module.id];
+    throw err;
+}).then(()=>module.bundle.root('cQTi2'));
+
+},{"31b2cbe044fbaf2f":"61B45","29d1cb27001b7afa":"lgJ39","cQTi2":"cQTi2"}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
 //# sourceMappingURL=app.js.map
