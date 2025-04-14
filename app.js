@@ -1,8 +1,6 @@
 /*uncomment the below when in localhost */
 // window.parceled = true;
 
-console.log("localhost");
-
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
@@ -130,7 +128,7 @@ function preloadAndExecuteScript(src, id) {
       script.id = id;
       script.defer = true;
       document.head.appendChild(script);
-    }, 300); // 100–300ms might give DOM enough time
+    }, 600);
   }
 }
 
