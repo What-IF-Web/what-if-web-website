@@ -22,14 +22,15 @@ gsap.registerPlugin(
 
 const url = window.location.pathname;
 
+const modules = {
+  home: () => import("./home.js"),
+  pricing: () => import("./pricing.js"),
+};
+
 if (document.querySelector(".section_home-header") || url === "/") {
-  import("./home").then((module) => {
-    console.log("Home module loaded");
-  });
-} else if (path.includes("pricing")) {
-  import("./pricing").then((module) => {
-    console.log("Pricing module loaded");
-  });
+  modules.home().then(() => console.log("Home module loaded"));
+} else if (url.includes("pricing")) {
+  modules.pricing().then(() => console.log("Pricing module loaded"));
 }
 
 const scriptsMap = new Map([
