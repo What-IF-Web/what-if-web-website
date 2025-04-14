@@ -597,7 +597,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
 /*uncomment the below when in localhost */ // window.parceled = true;
-// console.log("localhost");
+console.log("localhost");
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 // ScrollSmoother.create({
 //   content: ".main-wrapper",
@@ -695,19 +695,23 @@ const urlScriptsMap = new Map([
     ]
 ]);
 function preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) requestIdleCallback(()=>{
+    if (!document.getElementById(id)) setTimeout(()=>{
         const script = document.createElement("script");
         script.src = src;
         script.id = id;
         script.defer = true;
         document.head.appendChild(script);
-    });
+    }, 100); // 100–300ms might give DOM enough time
 }
 // Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-        if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
+document.addEventListener("DOMContentLoaded", ()=>{
+    setTimeout(()=>{
+        scriptsMap.forEach((scriptInfo, selector)=>{
+            if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+                if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+            }
+        });
+    }, 300); // Allow time for Webflow to render content
 });
 // Load scripts based on URL matching
 urlScriptsMap.forEach(({ src, id }, key)=>{
@@ -785,8 +789,8 @@ document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
     form.addEventListener("submit", confettiEffect);
 });
 // Navbar toggle
-document.addEventListener("click", (event)=>{
-    if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
+document.addEventListener("click", function(event) {
+    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
 });
 // Resources animations (only if the section is in view)
 const resourcesObserver = new IntersectionObserver((entries)=>{
@@ -811,6 +815,9 @@ const resourcesObserver = new IntersectionObserver((entries)=>{
 });
 const resourcesSection = document.querySelector(".section_resources");
 if (resourcesSection) resourcesObserver.observe(resourcesSection);
+document.addEventListener("click", function(event) {
+    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
+});
 $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
