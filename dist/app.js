@@ -603,16 +603,17 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 // });
 /*this is where you add imports for localhost */ var _home = require("./home");
 window.parceled = true;
+console.log("localhost");
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 const url = window.location.pathname;
 const scriptsMap = new Map([
-    [
-        ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
-    ],
+    // [
+    //   ".section_home-header",
+    //   {
+    //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
+    //     id: "home-script",
+    //   },
+    // ],
     [
         ".section_case-study-header",
         {
@@ -810,9 +811,6 @@ const resourcesObserver = new IntersectionObserver((entries)=>{
 });
 const resourcesSection = document.querySelector(".section_resources");
 if (resourcesSection) resourcesObserver.observe(resourcesSection);
-document.addEventListener("click", function(event) {
-    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
-});
 $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
@@ -823,6 +821,7 @@ $(".navbar_logo-link").click(function(e) {
 
 },{"./home":"3PNHe"}],"3PNHe":[function(require,module,exports,__globalThis) {
 //home page stuff
+var _projectsLoadJs = require("./animations/projectsLoad.js");
 gsap.defaults({
     ease: "power4.out",
     duration: 1
@@ -830,6 +829,23 @@ gsap.defaults({
 $(document).ready(function() {
     $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
     $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
+    $(".services_list .card.is-services").each(function() {
+        let card = $(this);
+        let linkTargetID = card.find(".card_link-target").attr("id");
+        gsap.fromTo(card, {
+            opacity: 0,
+            scale: 0.5
+        }, {
+            opacity: 1,
+            scale: 1,
+            scrollTrigger: {
+                trigger: `#${linkTargetID}`,
+                start: "top 80%",
+                end: "top 40%",
+                scrub: true
+            }
+        });
+    });
 });
 const paths = [
     ".path2",
@@ -851,26 +867,6 @@ const morphPath = gsap.timeline({
 paths.forEach((path)=>{
     morphPath.to(".path1", {
         morphSVG: path
-    });
-});
-//Services section cards scroll animation
-$(document).ready(function() {
-    $(".services_list .card.is-services").each(function() {
-        let card = $(this);
-        let linkTargetID = card.find(".card_link-target").attr("id");
-        gsap.fromTo(card, {
-            opacity: 0,
-            scale: 0.5
-        }, {
-            opacity: 1,
-            scale: 1,
-            scrollTrigger: {
-                trigger: `#${linkTargetID}`,
-                start: "top 80%",
-                end: "top 40%",
-                scrub: true
-            }
-        });
     });
 });
 //hero section animation
@@ -917,63 +913,55 @@ heroLoad.from(".home-header_lottie.is-slice", {
     duration: 0.75,
     scale: 0
 }, "<-0.125");
-//Projects/case studies section
-var projectsLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_projects",
-        start: "-=400 center"
-    }
-});
-var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
-    type: "lines"
-});
-projectsLoad.from(projectsSplit.lines, {
-    opacity: 0,
-    y: 150,
-    scale: 0.8,
-    stagger: 0.125
-});
-projectsLoad.fromTo(".projects_video-wrapper", {
-    duration: 0.875,
-    opacity: 0,
-    y: 100
-}, {
-    opacity: 1,
-    y: 0
-}, ">-0.5");
-projectsLoad.from(".projects_content > .projects_item > .projects_card", {
-    duration: 0.5,
-    opacity: 0,
-    y: 60,
-    stagger: 0.1
-}, ">-0.75");
-projectsLoad.from(".projects_component > a", {
-    y: 100,
-    opacity: 0
-}, "<0.25");
-projectsLoad.from("#projects-highlight", {
-    color: "EB5B30",
-    duration: 0
-}, "<").to("#projects-highlight", {
-    scale: 1.1,
-    duration: 0.3,
-    ease: "power2.in"
-}, "<").to("#projects-highlight", {
-    scale: 1,
-    duration: 0.2
-}, "<0.4");
-projectsLoad.from("#projects-line > svg > path", {
-    drawSVG: "0% 0%",
-    duration: 0.6
-}, "<");
-projectsLoad.to("#projects-line > svg > path", {
-    drawSVG: "100% 100%",
-    duration: 0.6
-}, ">-0.3");
-projectsLoad.to("#projects-line > svg > path", {
-    opacity: 0,
-    duration: 0
-}, ">-0.01");
+(0, _projectsLoadJs.animateProjectsSection)();
+// //Projects/case studies section
+// var projectsLoad = gsap.timeline({
+//   scrollTrigger: { trigger: ".section_projects", start: "-=400 center" },
+// });
+// var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
+//   type: "lines",
+// });
+// projectsLoad.from(projectsSplit.lines, {
+//   opacity: 0,
+//   y: 150,
+//   scale: 0.8,
+//   stagger: 0.125,
+// });
+// projectsLoad.fromTo(
+//   ".projects_video-wrapper",
+//   { duration: 0.875, opacity: 0, y: 100 },
+//   { opacity: 1, y: 0 },
+//   ">-0.5"
+// );
+// projectsLoad.from(
+//   ".projects_content > .projects_item > .projects_card",
+//   { duration: 0.5, opacity: 0, y: 60, stagger: 0.1 },
+//   ">-0.75"
+// );
+// projectsLoad.from(".projects_component > a", { y: 100, opacity: 0 }, "<0.25");
+// projectsLoad
+//   .from("#projects-highlight", { color: "EB5B30", duration: 0 }, "<")
+//   .to(
+//     "#projects-highlight",
+//     { scale: 1.1, duration: 0.3, ease: "power2.in" },
+//     "<"
+//   )
+//   .to("#projects-highlight", { scale: 1, duration: 0.2 }, "<0.4");
+// projectsLoad.from(
+//   "#projects-line > svg > path",
+//   { drawSVG: "0% 0%", duration: 0.6 },
+//   "<"
+// );
+// projectsLoad.to(
+//   "#projects-line > svg > path",
+//   { drawSVG: "100% 100%", duration: 0.6 },
+//   ">-0.3"
+// );
+// projectsLoad.to(
+//   "#projects-line > svg > path",
+//   { opacity: 0, duration: 0 },
+//   ">-0.01"
+// );
 //Services section animation
 var servicesLoad = gsap.timeline({
     scrollTrigger: {
@@ -1083,13 +1071,13 @@ ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
 }, ">-0.5");
 ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
     color: "#fff9f3",
-    duration: .125
+    duration: 0.125
 }, "<.125");
 ctaLoad.from("#ctaScribble", {
-    drawSVG: '0% 0%'
+    drawSVG: "0% 0%"
 }, "<");
 ctaLoad.to("#ctaScribble", {
-    drawSVG: '100% 100%'
+    drawSVG: "100% 100%"
 }, ">-0.3");
 ctaLoad.to("#ctaScribble", {
     opacity: 0,
@@ -1355,6 +1343,94 @@ mm.add("(max-width: 991px)", ()=>{
         duration: 0
     }, ">-0.02");
 });
+
+},{"./animations/projectsLoad.js":"3vGw7"}],"3vGw7":[function(require,module,exports,__globalThis) {
+var parcelHelpers = require("@parcel/transformer-js/src/esmodule-helpers.js");
+parcelHelpers.defineInteropFlag(exports);
+parcelHelpers.export(exports, "animateProjectsSection", ()=>animateProjectsSection);
+var _app = require("./../app");
+function animateProjectsSection() {
+    const tl = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section_projects",
+            start: "top 75%"
+        }
+    });
+    const projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
+        type: "lines"
+    });
+    tl.from(projectsSplit.lines, {
+        opacity: 0,
+        y: 150,
+        scale: 0.8,
+        stagger: 0.125
+    }).fromTo(".projects_video-wrapper", {
+        duration: 0.875,
+        opacity: 0,
+        y: 100
+    }, {
+        opacity: 1,
+        y: 0
+    }, ">-0.5").from(".projects_content > .projects_item > .projects_card", {
+        duration: 0.5,
+        opacity: 0,
+        y: 60,
+        stagger: 0.1
+    }, ">-0.75").from(".projects_component > a", {
+        y: 100,
+        opacity: 0
+    }, "<0.25").from("#projects-highlight", {
+        color: "#EB5B30",
+        duration: 0
+    }, "<").to("#projects-highlight", {
+        scale: 1.1,
+        duration: 0.3,
+        ease: "power2.in"
+    }, "<").to("#projects-highlight", {
+        scale: 1,
+        duration: 0.2
+    }, "<0.4").from("#projects-line > svg > path", {
+        drawSVG: "0% 0%",
+        duration: 0.6
+    }, "<").to("#projects-line > svg > path", {
+        drawSVG: "100% 100%",
+        duration: 0.6
+    }, ">-0.3").to("#projects-line > svg > path", {
+        opacity: 0,
+        duration: 0.3
+    }, ">-0.1");
+    return tl;
+}
+
+},{"@parcel/transformer-js/src/esmodule-helpers.js":"gkKU3","./../app":"igcvL"}],"gkKU3":[function(require,module,exports,__globalThis) {
+exports.interopDefault = function(a) {
+    return a && a.__esModule ? a : {
+        default: a
+    };
+};
+exports.defineInteropFlag = function(a) {
+    Object.defineProperty(a, '__esModule', {
+        value: true
+    });
+};
+exports.exportAll = function(source, dest) {
+    Object.keys(source).forEach(function(key) {
+        if (key === 'default' || key === '__esModule' || Object.prototype.hasOwnProperty.call(dest, key)) return;
+        Object.defineProperty(dest, key, {
+            enumerable: true,
+            get: function() {
+                return source[key];
+            }
+        });
+    });
+    return dest;
+};
+exports.export = function(dest, destName, get) {
+    Object.defineProperty(dest, destName, {
+        enumerable: true,
+        get: get
+    });
+};
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
