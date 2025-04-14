@@ -21,14 +21,25 @@ gsap.registerPlugin(
 // import "./home";
 
 const url = window.location.pathname;
+
+if (document.querySelector(".section_home-header") || url === "/") {
+  import("./home").then((module) => {
+    console.log("Home module loaded");
+  });
+} else if (path.includes("pricing")) {
+  import("./pricing").then((module) => {
+    console.log("Pricing module loaded");
+  });
+}
+
 const scriptsMap = new Map([
-  [
-    ".section_home-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/home.js",
-      id: "home-script",
-    },
-  ],
+  // [
+  //   ".section_home-header",
+  //   {
+  //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
+  //     id: "home-script",
+  //   },
+  // ],
   [
     ".section_case-study-header",
     {
