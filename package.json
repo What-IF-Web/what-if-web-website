@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel serve app.js game.js",
-    "build": "parcel build app.js --dist-dir",
+    "build": "parcel build app.js --dist-dir build",
     "deploy": "gh-pages -d build"
   },
   "author": "",
