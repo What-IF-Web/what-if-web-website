@@ -60,11 +60,6 @@ solutionsLoad.from(".solutions_bespoke-item > h2, .solutions_bespoke-item > p", 
 solutionsLoad.from(".solutions_service-item", {y: 100, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.35);
 solutionsLoad.from(".solutions_service-item > .solutions_service-icon-wrapper > .solutions_service-icon", {y: 50, opacity: 0, duration: 1, ease: "power4.out", stagger: "0.125"}, 0.25);
 
-//blog section
-var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
-
-blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
-
 //footer animation
 var footerLoad = gsap.timeline({scrollTrigger: {trigger: ".footer_component", start: "top-=400 center"}});
 

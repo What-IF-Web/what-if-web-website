@@ -596,14 +596,14 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"igcvL":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ // window.parceled = true;
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-// ScrollSmoother.create({
+/*uncomment the below when in localhost */ // ScrollSmoother.create({
 //   content: ".main-wrapper",
 //   smooth: 0.8,
 //   effects: false,
 // });
-/*this is where you add imports for localhost */ // import "./home";
+/*this is where you add imports for localhost */ var _about = require("./about");
+window.parceled = true;
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
@@ -678,13 +678,13 @@ const urlScriptsMap = new Map([
             id: "code-snippet-script"
         }
     ],
-    [
-        "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
-    ],
+    // [
+    //   "about",
+    //   {
+    //     src: "https://what-if-web.github.io/what-if-web-website/about.js",
+    //     id: "about-script",
+    //   },
+    // ],
     [
         "resources",
         {
@@ -826,9 +826,464 @@ $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
     setTimeout(()=>window.location = linkUrl, 750);
-}); //resources animations
- // var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
- // resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
+});
+//resources animations
+// var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
+// resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
+//test footer modular animation
+window.Animations = {
+    animateFooter () {
+        var footerLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".footer_component",
+                start: "-=400 center"
+            }
+        });
+        var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+            type: "lines"
+        });
+        footerLoad.from(footerSplit.lines, {
+            scale: 0.8,
+            opacity: 0,
+            y: 100,
+            stagger: 0.125,
+            ease: "power3.out",
+            duration: 1
+        }, 0);
+        footerLoad.from(".footer_top-wrapper > p", {
+            scale: 0.8,
+            opacity: 0,
+            y: 100,
+            ease: "power3.out",
+            duration: 1
+        }, "<0.25");
+        footerLoad.from(".footer_form_component", {
+            scale: 0.8,
+            opacity: 0,
+            y: 100,
+            ease: "power3.out",
+            duration: 1
+        }, "<0.125");
+        footerLoad.from(".footer_links-wrapper > a", {
+            opacity: 0,
+            stagger: 0.125,
+            ease: "power4.out",
+            duration: 0.5
+        }, "<0.5");
+        footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
+            y: 50,
+            opacity: 0,
+            stagger: 0.125,
+            ease: "power4.out",
+            duration: 1
+        }, "<0.5");
+    },
+    animateProjects () {
+        //featured projects animation -- make modular
+        var projectsLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_projects",
+                start: "-=400 center"
+            }
+        });
+        var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
+            type: "lines"
+        });
+        projectsLoad.from(projectsSplit.lines, {
+            duration: 1,
+            opacity: 0,
+            y: 150,
+            scale: 0.8,
+            ease: "power3.out",
+            stagger: 0.125
+        });
+        projectsLoad.from(".projects_content > .projects_item > .projects_card", {
+            duration: 1,
+            opacity: 0,
+            y: 100,
+            ease: "power3.out",
+            stagger: 0.125
+        }, ">-0.5");
+        projectsLoad.from(".projects_component > a", {
+            y: 100,
+            opacity: 0,
+            ease: "power3.out"
+        }, "<0.25");
+        projectsLoad.from("#projects-highlight", {
+            color: "EB5B30",
+            duration: 0
+        }, "<").to("#projects-highlight", {
+            scale: 1.1,
+            duration: 0.3,
+            ease: "power2.in"
+        }, "<").to("#projects-highlight", {
+            scale: 1,
+            duration: 0.2,
+            ease: "power2.out"
+        }, "<0.4");
+        projectsLoad.from("#projects-line > svg > path", {
+            drawSVG: '0% 0%',
+            duration: 0.6,
+            ease: "power3.out"
+        }, "<");
+        projectsLoad.to("#projects-line > svg > path", {
+            drawSVG: '100% 100%',
+            duration: 0.6,
+            ease: "power3.out"
+        }, ">-0.3");
+        projectsLoad.to("#projects-line > svg > path", {
+            opacity: 0,
+            duration: 0
+        }, ">-0.01");
+    },
+    animateServices () {
+        //Services section animation
+        var servicesLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_services",
+                start: "-=400 center"
+            }
+        });
+        servicesLoad.from(".services_heading-wrapper > h2", {
+            y: 80,
+            opacity: 0
+        });
+        //Services section cards scroll animation
+        $(document).ready(function() {
+            $(".services_list .card.is-services").each(function() {
+                let card = $(this);
+                let linkTargetID = card.find(".card_link-target").attr("id");
+                gsap.fromTo(card, {
+                    opacity: 0,
+                    scale: 0.5
+                }, {
+                    opacity: 1,
+                    scale: 1,
+                    scrollTrigger: {
+                        trigger: `#${linkTargetID}`,
+                        start: "top 80%",
+                        end: "top 40%",
+                        scrub: true
+                    }
+                });
+            });
+        });
+    },
+    animateTestimonial () {
+        //testimonials section animation
+        var testimonialsLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_testimonials",
+                start: "-=400 center"
+            }
+        });
+        var testimonialSplit = new SplitText("#testimonial-heading", {
+            type: "lines"
+        });
+        testimonialsLoad.from(".testimonials_star-wrapper > div", {
+            opacity: 0,
+            y: 75
+        }).from(testimonialSplit.lines, {
+            opacity: 0,
+            y: 100,
+            scale: 0.8,
+            stagger: 0.125
+        }, "<0.25");
+    },
+    animateCTA () {
+        //quote CTA animation
+        var ctaLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_quote-cta",
+                start: "-=400 center"
+            }
+        });
+        ctaLoad.from(".quote-cta_component", {
+            y: 100,
+            scale: 0.9
+        });
+        ctaLoad.fromTo(".quote-cta_heading-wrapper", {
+            opacity: 0,
+            scale: 0,
+            y: 400
+        }, {
+            opacity: 1,
+            scale: 1,
+            y: 0
+        }, "<+0.125");
+        ctaLoad.from(".quote-cta_subheading", {
+            y: 150,
+            duration: 0.875,
+            opacity: 0
+        }, "<.25");
+        ctaLoad.from("#ctaButton", {
+            y: 200,
+            duration: 0.875,
+            opacity: 0
+        }, "<0.125");
+        ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
+            scale: 1.1,
+            repeat: 1,
+            yoyo: true,
+            ease: "power2.inOut",
+            duration: 0.3
+        }, ">-0.5");
+        ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
+            color: "#fff9f3",
+            duration: .125
+        }, "<.125");
+        ctaLoad.from("#ctaScribble", {
+            drawSVG: '0% 0%'
+        }, "<");
+        ctaLoad.to("#ctaScribble", {
+            drawSVG: '100% 100%'
+        }, ">-0.3");
+        ctaLoad.to("#ctaScribble", {
+            opacity: 0,
+            duration: 0
+        }, ">-0.02");
+    },
+    animateBlogs () {
+        //blog section
+        var blogLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_related-blog",
+                start: "-=400 center"
+            }
+        });
+        blogLoad.from(".related-blog_heading-wrapper > div", {
+            y: 100,
+            scale: 0.8,
+            opacity: 0,
+            duration: 1,
+            ease: "power3.out"
+        }).from(".related-blog_list > .related-blog_item", {
+            y: 180,
+            opacity: 0,
+            duration: 1,
+            ease: "power4.out",
+            stagger: 0.125
+        }, "<0.5");
+    },
+    animateFAQ () {
+        //FAQ section
+        var faqLoad = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".section_faq",
+                start: "-=400 center"
+            }
+        });
+        faqLoad.from("#faq-heading", {
+            y: 80,
+            opacity: 0
+        }, 0);
+        faqLoad.from(".faq_list > .faq_item", {
+            y: 50,
+            opacity: 0,
+            stagger: 0.125
+        }, 0.25);
+        faqLoad.from(".faq_lottie", {
+            scale: 0,
+            opacity: 0,
+            stagger: 0.25
+        }, "<0.5");
+    },
+    animateMorph () {
+        //Path morph animation
+        const paths = [
+            ".path2",
+            ".path3",
+            ".path4",
+            ".path5",
+            ".path6",
+            ".path7",
+            ".path2"
+        ];
+        const morphPath = gsap.timeline({
+            repeat: -1,
+            yoyo: true,
+            defaults: {
+                duration: 1,
+                ease: "power1.inOut"
+            }
+        });
+        paths.forEach((path)=>{
+            morphPath.to(".path1", {
+                morphSVG: path
+            });
+        });
+    }
+};
+
+},{"./about":"czQtR"}],"czQtR":[function(require,module,exports,__globalThis) {
+//about page scroll section
+gsap.defaults({
+    ease: "power4.out",
+    duration: 1
+});
+let am = gsap.matchMedia();
+am.add("(min-width: 991px)", ()=>{
+    var aboutScroll = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section_about-header",
+            scrub: true,
+            start: "top top",
+            end: "bottom bottom",
+            pin: ".about-header_component"
+        }
+    });
+    aboutScroll.to(".about-header_frame", {
+        x: "-300dvw"
+    });
+});
+//about page animations
+//about hero load
+var aboutHero = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_about-header"
+    }
+});
+var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
+    type: "lines"
+});
+aboutHero.from(aboutSplit.lines, {
+    opacity: 0,
+    y: 100,
+    stagger: 0.125
+}, 0);
+aboutHero.from(".home-about_card-wrapper.is-about-2", {
+    opacity: 0,
+    y: 500,
+    x: 400,
+    rotation: "50"
+}, 0.5);
+aboutHero.from(".home-about_card-wrapper.is-about-1", {
+    opacity: 0,
+    y: 300,
+    x: 300,
+    rotation: "40"
+}, 0.75);
+var aboutHeroLast = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".about-header_trigger"
+    }
+});
+aboutHeroLast.from(".about-header_minimal-card.is-first", {
+    opacity: 0,
+    y: -700,
+    x: -150,
+    rotation: "50"
+}, 0);
+aboutHeroLast.from(".about-header_minimal-card.is-second", {
+    opacity: 0,
+    y: -800,
+    x: -300,
+    rotation: "64"
+}, 0.125);
+aboutHeroLast.from(".about-header_minimal-card.is-last", {
+    opacity: 0,
+    y: -900,
+    x: -50,
+    rotation: "80"
+}, 0.25);
+aboutHeroLast.from(".about-header_heading-wrapper > div", {
+    y: 100,
+    opacity: 0,
+    stagger: 0.25
+}, 0.25);
+aboutHeroLast.from(".about-header_card-ghost", {
+    y: 100,
+    scale: 0.8,
+    opacity: 0
+}, 0.5);
+aboutHeroLast.from(".about-header_card-brazzo", {
+    y: 80,
+    scale: 0.8,
+    opacity: 0
+}, 0.75);
+//team load
+var teamLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_team"
+    }
+});
+teamLoad.from(".team_content-top", {
+    y: 75,
+    opacity: 0
+}, 0);
+teamLoad.from(".team_item", {
+    y: 150,
+    opacity: 0,
+    stagger: 0.125
+}, 0.25);
+//testimonials section animation -- need to modularise
+var testimonialsLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_testimonials",
+        start: "-=400 center"
+    }
+});
+var testimonialSplit = new SplitText("#testimonial-heading", {
+    type: "lines"
+});
+testimonialsLoad.from(".testimonials_star-wrapper > div", {
+    opacity: 0,
+    y: 75,
+    duration: 0.75,
+    ease: "power3.out"
+}).from(testimonialSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 1,
+    scale: 0.8,
+    stagger: 0.125,
+    ease: "power4.out"
+}, "<0.25");
+//footer animation -- need to modularise
+var footerLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".footer_component",
+        start: "-=400 center"
+    }
+});
+var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+    type: "lines"
+});
+footerLoad.from(footerSplit.lines, {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    stagger: 0.125,
+    ease: "power3.out",
+    duration: 1
+}, 0);
+footerLoad.from(".footer_top-wrapper > p", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.25");
+footerLoad.from(".footer_form_component", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.125");
+footerLoad.from(".footer_links-wrapper > a", {
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 0.5
+}, "<0.5");
+footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
+    y: 50,
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 1
+}, "<0.5");
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 
