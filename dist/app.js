@@ -604,15 +604,6 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, S
 //   effects: false,
 // });
 /*this is where you add imports for localhost */ // import "./home";
-// const modules = {
-//   home: () => import("/what-if-web-website/home.js"),
-//   pricing: () => import("./pricing.js"),
-// };
-// if (document.querySelector(".section_home-header") || url === "/") {
-//   modules.home().then(() => console.log("Home module loaded"));
-// } else if (url.includes("pricing")) {
-//   modules.pricing().then(() => console.log("Pricing module loaded"));
-// }
 const url = window.location.pathname;
 const scriptsMap = new Map([
     [
@@ -711,15 +702,20 @@ function preloadAndExecuteScript(src, id) {
         document.head.appendChild(script);
     }, 400);
 }
+function preloadAndExecuteScript(src, id) {
+    if (!document.getElementById(id)) requestIdleCallback(()=>{
+        const script = document.createElement("script");
+        script.src = src;
+        script.id = id;
+        script.defer = true;
+        document.head.appendChild(script);
+    });
+}
 // Load scripts based on elements found in DOM
-document.addEventListener("DOMContentLoaded", ()=>{
-    setTimeout(()=>{
-        scriptsMap.forEach((scriptInfo, selector)=>{
-            if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-                if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-            }
-        });
-    }, 300); // Allow time for Webflow to render content
+scriptsMap.forEach((scriptInfo, selector)=>{
+    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+        if (document.querySelector(selector)) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+    }
 });
 // Load scripts based on URL matching
 urlScriptsMap.forEach(({ src, id }, key)=>{
@@ -797,8 +793,8 @@ document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
     form.addEventListener("submit", confettiEffect);
 });
 // Navbar toggle
-document.addEventListener("click", function(event) {
-    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
+document.addEventListener("click", (event)=>{
+    if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
 });
 // Resources animations (only if the section is in view)
 const resourcesObserver = new IntersectionObserver((entries)=>{
