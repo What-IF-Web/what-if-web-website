@@ -601,16 +601,18 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //   smooth: 0.8,
 //   effects: false,
 // });
-/*this is where you add imports for localhost */ // import "./home";
+/*this is where you add imports for localhost */ var _about = require("./about");
+window.parceled = true;
+gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
 const url = window.location.pathname;
 const scriptsMap = new Map([
-    // [
-    //   ".section_home-header",
-    //   {
-    //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
-    //     id: "home-script",
-    //   },
-    // ],
+    [
+        ".section_home-header",
+        {
+            src: "https://what-if-web.github.io/what-if-web-website/home.js",
+            id: "home-script"
+        }
+    ],
     [
         ".section_case-study-header",
         {
@@ -676,13 +678,13 @@ const urlScriptsMap = new Map([
             id: "code-snippet-script"
         }
     ],
-    [
-        "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
-    ],
+    // [
+    //   "about",
+    //   {
+    //     src: "https://what-if-web.github.io/what-if-web-website/about.js",
+    //     id: "about-script",
+    //   },
+    // ],
     [
         "resources",
         {
@@ -1113,338 +1115,175 @@ window.Animations = {
     }
 };
 
-},{"./home":"3PNHe"}],"3PNHe":[function(require,module,exports,__globalThis) {
-//home page stuff
-// import { animateProjectsSection } from "./animations/projectsLoad";
+},{"./about":"czQtR"}],"czQtR":[function(require,module,exports,__globalThis) {
+//about page scroll section
 gsap.defaults({
     ease: "power4.out",
     duration: 1
 });
-//CTA heading decoration append
-$(document).ready(function() {
-    $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
-    $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
+let am = gsap.matchMedia();
+am.add("(min-width: 991px)", ()=>{
+    var aboutScroll = gsap.timeline({
+        scrollTrigger: {
+            trigger: ".section_about-header",
+            scrub: true,
+            start: "top top",
+            end: "bottom bottom",
+            pin: ".about-header_component"
+        }
+    });
+    aboutScroll.to(".about-header_frame", {
+        x: "-300dvw"
+    });
 });
-//hero section animation
-var heroSplit = new SplitText(".home-header_heading", {
-    type: "lines"
-});
-var heroLoad = gsap.timeline({
+//about page animations
+//about hero load
+var aboutHero = gsap.timeline({
     scrollTrigger: {
-        trigger: ".section_home-header"
+        trigger: ".section_about-header"
     }
 });
-heroLoad.from(heroSplit.lines, {
+var aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
+    type: "lines"
+});
+aboutHero.from(aboutSplit.lines, {
     opacity: 0,
-    y: 400,
-    stagger: 0.125
-}).from(".home-header_heading", {
-    scale: 0.6,
-    duration: 0.625,
-    ease: "back.out(1.7)"
-}, ">-0.5");
-heroLoad.from(".home-header_subheading", {
-    y: 200,
-    opacity: 0
-}, ">-0.25");
-heroLoad.from(".home-header_component > a", {
-    y: 200,
-    opacity: 0
-}, ">-0.25");
-heroLoad.from(".home-header_lottie.is-dinkus", {
-    y: 70,
-    x: 180,
-    duration: 0.5,
-    scale: 0
-}, ">-0.5");
-heroLoad.from(".home-header_lottie.is-brazzo", {
-    y: -200,
-    x: 240,
-    duration: 0.625,
-    scale: 0
-}, "<-0.25");
-heroLoad.from(".home-header_lottie.is-slice", {
-    y: -100,
-    x: -200,
-    duration: 0.75,
-    scale: 0
-}, "<-0.125");
-//About Section Animation
-var aboutLoad = gsap.timeline({
-    scrollTrigger: {
-        trigger: ".section_home-about",
-        start: "top center"
-    }
-});
-var aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
-    type: "lines"
-});
-aboutLoad.from(aboutSplit.lines, {
     y: 100,
-    scale: 0.8,
-    opacity: 0,
     stagger: 0.125
 }, 0);
-aboutLoad.from(".home-about_content-left > p, .home-about_content-left > a", {
+aboutHero.from(".home-about_card-wrapper.is-about-2", {
     opacity: 0,
-    stagger: 0.125
-}, "<0.5");
-aboutLoad.from(".home-about_background-shape", {
-    scale: 0
-}, -0.25);
-aboutLoad.from(".home-about_card-wrapper.is-first", {
-    x: 2500,
-    rotation: 100
-}, "<0.5");
-aboutLoad.from(".home-about_card-wrapper.is-second", {
-    x: 2500,
-    rotation: 60
-}, 0.25);
-aboutLoad.from(".home-about_card-wrapper.is-third", {
-    x: 2000,
-    rotation: 130
-}, 0.125);
-aboutLoad.from(".home-about_lottie", {
-    scale: 0
-}, ">0.125").from(".home-about_lottie-2", {
-    scale: 0
-}, "<0.25");
-let mm = gsap.matchMedia();
-// desktop
-mm.add("(min-width: 991px)", ()=>{
-    //cta form + process animation starts here
-    var ctaFormTrigger = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".cta_form",
-            start: "-=400 center"
-        }
-    });
-    var ctaFormLoad = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".cta_component",
-            scrub: true,
-            start: "top top",
-            end: "bottom bottom",
-            pin: ".cta_form-block",
-            pinSpacing: false
-        }
-    });
-    //contents fade in
-    ctaFormLoad.from(".cta_heading-span", {
-        y: 200,
-        scale: 0.95,
-        opacity: 0,
-        stagger: 0.05
-    }, 0);
-    ctaFormLoad.from(".cta_form_input-wrapper", {
-        y: 300,
-        opacity: 0
-    }, "<");
-    ctaFormLoad.from("#cta-form-bottom", {
-        y: 400,
-        opacity: 0
-    }, "<");
-    //contents fade out
-    ctaFormLoad.to(".cta_heading-span", {
-        y: -400,
-        stagger: 0.05,
-        scale: 0.95,
-        opacity: 0
-    }, ">+0.25");
-    ctaFormLoad.to(".cta_form_input-wrapper", {
-        y: -300,
-        opacity: 0
-    }, "<+.05");
-    ctaFormLoad.to("#cta-form-bottom", {
-        y: -200,
-        opacity: 0
-    }, "<");
-    ctaFormTrigger.from("#cta-form-orange", {
-        color: "#0f2756",
-        duration: 0.125
-    }, "<.5");
-    ctaFormTrigger.to("#cta-form-orange", {
-        scale: 1.1,
-        repeat: 1,
-        yoyo: true,
-        ease: "power2.inOut",
-        duration: 0.3
-    }, "<");
-    ctaFormTrigger.from(".cta_burst-lines > svg > path", {
-        drawSVG: "0% 0%"
-    }, "<");
-    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
-        drawSVG: "100% 100%"
-    }, ">-0.3");
-    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
-        opacity: 0,
-        duration: 0
-    }, ">-0.05");
-    ctaFormTrigger.from(".cta_scribble > svg > path", {
-        drawSVG: "0% 0%"
-    }, "<+0.125");
-    ctaFormTrigger.to(".cta_scribble > svg > path", {
-        drawSVG: "100% 100%"
-    }, ">-0.3");
-    ctaFormTrigger.to(".cta_scribble > svg > path", {
-        opacity: 0,
-        duration: 0
-    }, ">-0.02");
-    //process section animation
-    var processLoad = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".process_component",
-            scrub: true,
-            start: "top top",
-            end: "bottom bottom",
-            pin: ".process_content-top"
-        }
-    });
-    //contents fade in
-    processLoad.from(".process_heading-span", {
-        y: 200,
-        scale: 0.95,
-        opacity: 0,
-        stagger: 0.05
-    }, 0);
-    processLoad.from(".process_critter-wrapper", {
-        y: 300,
-        scale: 0.9,
-        opacity: 0
-    }, "<");
-    //contents fade out
-    processLoad.to(".process_heading-span", {
-        y: -400,
-        scale: 0.95,
-        opacity: 0,
-        duration: 1,
-        stagger: 0.05
-    }, ">");
-    processLoad.to(".process_critter-wrapper", {
-        y: -200
-    }, "<+0.15");
-    //critter grows
-    processLoad.to(".process_critter", {
-        width: "100dvw",
-        height: "150dvh",
-        borderTopRightRadius: 0,
-        borderTopLeftRadius: 0,
-        border: "transparent"
-    }, "<");
-    processLoad.to(".process_critter-eyes", {
-        opacity: 0,
-        duration: 0.125
-    }, "<");
-    //cards path animation
-    gsap.set(".process_card-wrapper > .process_card", {
-        xPercent: -50,
-        yPercent: -50,
-        transformOrigin: "50%, 50%"
-    });
-    processLoad.to(".process_card-wrapper > .process_card", {
-        stagger: 0.2,
-        ease: "none",
-        motionPath: {
-            path: "#process-path",
-            align: "#process-path",
-            autoRotate: 180
-        }
-    }, ">");
-    //process + cta ends here
-    //pinned service element
-    var servicesPinTrigger = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".section_services",
-            start: "top top",
-            end: "bottom bottom",
-            scrub: true,
-            pin: ".services_content-top-wrapper",
-            pinSpacing: false
-        }
-    });
-});
-//mobile
-mm.add("(max-width: 991px)", ()=>{
-    var processMobile = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".process_component"
-        }
-    });
-    processMobile.from(".process_heading-span", {
-        y: 100,
-        stagger: 0.1,
-        opacity: 0
-    }, 0);
-    //mobile cta load
-    var ctaMobile = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".cta_component"
-        }
-    });
-    var ctaFormTrigger = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".cta_form",
-            start: "-=400 center"
-        }
-    });
-    ctaMobile.from(".cta_heading-span", {
-        y: 100,
-        opacity: 0,
-        stagger: 0.1
-    }, 0);
-    ctaMobile.from(".cta_form_input-wrapper", {
-        y: 150,
-        opacity: 0
-    }, ">-0.25");
-    ctaMobile.from("#cta-form-bottom", {
-        y: 150,
-        opacity: 0,
-        duration: 0.75
-    }, ">-0.5");
-    ctaFormTrigger.from("#cta-form-orange", {
-        color: "#0f2756",
-        duration: 0.125
-    }, "<.5");
-    ctaFormTrigger.to("#cta-form-orange", {
-        scale: 1.1,
-        repeat: 1,
-        yoyo: true,
-        ease: "power2.inOut",
-        duration: 0.3
-    }, "<");
-    ctaFormTrigger.from(".cta_burst-lines > svg > path", {
-        drawSVG: "0% 0%"
-    }, "<");
-    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
-        drawSVG: "100% 100%"
-    }, ">-0.3");
-    ctaFormTrigger.to(".cta_burst-lines > svg > path", {
-        opacity: 0,
-        duration: 0
-    }, ">-0.05");
-    ctaFormTrigger.from(".cta_scribble > svg > path", {
-        drawSVG: "0% 0%"
-    }, "<+0.125");
-    ctaFormTrigger.to(".cta_scribble > svg > path", {
-        drawSVG: "100% 100%"
-    }, ">-0.3");
-    ctaFormTrigger.to(".cta_scribble > svg > path", {
-        opacity: 0,
-        duration: 0
-    }, ">-0.02");
-});
-//call modular animations
-document.addEventListener('DOMContentLoaded', ()=>{
-    if (window.Animations) {
-        Animations.animateFooter();
-        Animations.animateServices();
-        Animations.animateTestimonial();
-        Animations.animateProjects();
-        Animations.animateMorph();
-        Animations.animateCTA();
-        Animations.animateBlogs();
+    y: 500,
+    x: 400,
+    rotation: "50"
+}, 0.5);
+aboutHero.from(".home-about_card-wrapper.is-about-1", {
+    opacity: 0,
+    y: 300,
+    x: 300,
+    rotation: "40"
+}, 0.75);
+var aboutHeroLast = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".about-header_trigger"
     }
 });
+aboutHeroLast.from(".about-header_minimal-card.is-first", {
+    opacity: 0,
+    y: -700,
+    x: -150,
+    rotation: "50"
+}, 0);
+aboutHeroLast.from(".about-header_minimal-card.is-second", {
+    opacity: 0,
+    y: -800,
+    x: -300,
+    rotation: "64"
+}, 0.125);
+aboutHeroLast.from(".about-header_minimal-card.is-last", {
+    opacity: 0,
+    y: -900,
+    x: -50,
+    rotation: "80"
+}, 0.25);
+aboutHeroLast.from(".about-header_heading-wrapper > div", {
+    y: 100,
+    opacity: 0,
+    stagger: 0.25
+}, 0.25);
+aboutHeroLast.from(".about-header_card-ghost", {
+    y: 100,
+    scale: 0.8,
+    opacity: 0
+}, 0.5);
+aboutHeroLast.from(".about-header_card-brazzo", {
+    y: 80,
+    scale: 0.8,
+    opacity: 0
+}, 0.75);
+//team load
+var teamLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_team"
+    }
+});
+teamLoad.from(".team_content-top", {
+    y: 75,
+    opacity: 0
+}, 0);
+teamLoad.from(".team_item", {
+    y: 150,
+    opacity: 0,
+    stagger: 0.125
+}, 0.25);
+//testimonials section animation -- need to modularise
+var testimonialsLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".section_testimonials",
+        start: "-=400 center"
+    }
+});
+var testimonialSplit = new SplitText("#testimonial-heading", {
+    type: "lines"
+});
+testimonialsLoad.from(".testimonials_star-wrapper > div", {
+    opacity: 0,
+    y: 75,
+    duration: 0.75,
+    ease: "power3.out"
+}).from(testimonialSplit.lines, {
+    opacity: 0,
+    y: 100,
+    duration: 1,
+    scale: 0.8,
+    stagger: 0.125,
+    ease: "power4.out"
+}, "<0.25");
+//footer animation -- need to modularise
+var footerLoad = gsap.timeline({
+    scrollTrigger: {
+        trigger: ".footer_component",
+        start: "-=400 center"
+    }
+});
+var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+    type: "lines"
+});
+footerLoad.from(footerSplit.lines, {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    stagger: 0.125,
+    ease: "power3.out",
+    duration: 1
+}, 0);
+footerLoad.from(".footer_top-wrapper > p", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.25");
+footerLoad.from(".footer_form_component", {
+    scale: 0.8,
+    opacity: 0,
+    y: 100,
+    ease: "power3.out",
+    duration: 1
+}, "<0.125");
+footerLoad.from(".footer_links-wrapper > a", {
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 0.5
+}, "<0.5");
+footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
+    y: 50,
+    opacity: 0,
+    stagger: 0.125,
+    ease: "power4.out",
+    duration: 1
+}, "<0.5");
 
 },{}]},["eCF1U","igcvL"], "igcvL", "parcelRequire94c2")
 

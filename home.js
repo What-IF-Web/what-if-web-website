@@ -7,8 +7,18 @@ gsap.defaults({
   duration: 1,
 });
 
-//CTA heading decoration append
-$(document).ready(function () {
+
+//call modular animations
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.Animations) {
+    Animations.animateFooter();
+    Animations.animateServices();
+    Animations.animateTestimonial();
+    Animations.animateProjects();
+    Animations.animateMorph();
+    Animations.animateCTA();
+    Animations.animateBlogs();
+  }
   $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
   $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
 });
@@ -340,16 +350,3 @@ mm.add("(max-width: 991px)", () => {
   );
 });
 
-
-//call modular animations
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.Animations) {
-    Animations.animateFooter();
-    Animations.animateServices();
-    Animations.animateTestimonial();
-    Animations.animateProjects();
-    Animations.animateMorph();
-    Animations.animateCTA();
-    Animations.animateBlogs();
-  }
-});

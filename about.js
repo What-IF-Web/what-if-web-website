@@ -1,5 +1,3 @@
-import "./app"
-
 //about page scroll section
 
 gsap.defaults({
