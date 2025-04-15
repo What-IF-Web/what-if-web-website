@@ -18,6 +18,16 @@ gsap.registerPlugin(
 /*this is where you add imports for localhost */
 // import "./about";
 
+if (window.location.pathname === "/") {
+  import("./home")
+    .then(() => {
+      // Code for when the about script is loaded
+    })
+    .catch((err) => {
+      console.error("Error loading the about script", err);
+    });
+}
+
 const url = window.location.pathname;
 const scriptsMap = new Map([
   [
@@ -269,9 +279,11 @@ window.Animations = {
     var footerLoad = gsap.timeline({
       scrollTrigger: { trigger: ".footer_component", start: "-=400 center" },
     });
-    
-    var footerSplit = new SplitText(".footer_top-wrapper > h2", { type: "lines" });
-    
+
+    var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+      type: "lines",
+    });
+
     footerLoad.from(
       footerSplit.lines,
       {
@@ -305,22 +317,64 @@ window.Animations = {
       "<0.5"
     );
   },
-  animateProjects () {
-  //featured projects animation -- make modular
-    var projectsLoad = gsap.timeline({scrollTrigger: {trigger: ".section_projects", start: "-=400 center"}});
+  animateProjects() {
+    //featured projects animation -- make modular
+    var projectsLoad = gsap.timeline({
+      scrollTrigger: { trigger: ".section_projects", start: "-=400 center" },
+    });
 
-    var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {type: "lines"});
+    var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
+      type: "lines",
+    });
 
-    projectsLoad.from(projectsSplit.lines, {duration: 1, opacity: 0, y: 150, scale: 0.8, ease: "power3.out", stagger: 0.125}); 
-    projectsLoad.from(".projects_content > .projects_item > .projects_card", {duration: 1, opacity: 0, y:100, ease: "power3.out", stagger: 0.125}, ">-0.5");
-    projectsLoad.from(".projects_component > a", {y:100, opacity: 0, ease: "power3.out"}, "<0.25");
+    projectsLoad.from(projectsSplit.lines, {
+      duration: 1,
+      opacity: 0,
+      y: 150,
+      scale: 0.8,
+      ease: "power3.out",
+      stagger: 0.125,
+    });
+    projectsLoad.from(
+      ".projects_content > .projects_item > .projects_card",
+      { duration: 1, opacity: 0, y: 100, ease: "power3.out", stagger: 0.125 },
+      ">-0.5"
+    );
+    projectsLoad.from(
+      ".projects_component > a",
+      { y: 100, opacity: 0, ease: "power3.out" },
+      "<0.25"
+    );
 
-    projectsLoad.from("#projects-highlight", {color: "EB5B30", duration: 0}, "<").to("#projects-highlight", {scale: 1.1, duration: 0.3, ease: "power2.in"}, "<").to("#projects-highlight", {scale: 1, duration: 0.2, ease: "power2.out"}, "<0.4");
-    projectsLoad.from("#projects-line > svg > path", {drawSVG: '0% 0%', duration: 0.6, ease: "power3.out"}, "<");
-    projectsLoad.to("#projects-line > svg > path", {drawSVG: '100% 100%', duration: 0.6, ease: "power3.out"}, ">-0.3");
-    projectsLoad.to("#projects-line > svg > path", {opacity: 0, duration: 0}, ">-0.01");
+    projectsLoad
+      .from("#projects-highlight", { color: "EB5B30", duration: 0 }, "<")
+      .to(
+        "#projects-highlight",
+        { scale: 1.1, duration: 0.3, ease: "power2.in" },
+        "<"
+      )
+      .to(
+        "#projects-highlight",
+        { scale: 1, duration: 0.2, ease: "power2.out" },
+        "<0.4"
+      );
+    projectsLoad.from(
+      "#projects-line > svg > path",
+      { drawSVG: "0% 0%", duration: 0.6, ease: "power3.out" },
+      "<"
+    );
+    projectsLoad.to(
+      "#projects-line > svg > path",
+      { drawSVG: "100% 100%", duration: 0.6, ease: "power3.out" },
+      ">-0.3"
+    );
+    projectsLoad.to(
+      "#projects-line > svg > path",
+      { opacity: 0, duration: 0 },
+      ">-0.01"
+    );
   },
-  animateServices () {
+  animateServices() {
     //Services section animation
     var servicesLoad = gsap.timeline({
       scrollTrigger: { trigger: ".section_services", start: "-=400 center" },
@@ -338,7 +392,7 @@ window.Animations = {
 
         gsap.fromTo(
           card,
-          { opacity: 0, scale: 0.5},
+          { opacity: 0, scale: 0.5 },
           {
             opacity: 1,
             scale: 1,
@@ -353,12 +407,17 @@ window.Animations = {
       });
     });
   },
-  animateTestimonial () {
+  animateTestimonial() {
     //testimonials section animation
     var testimonialsLoad = gsap.timeline({
-      scrollTrigger: { trigger: ".section_testimonials", start: "-=400 center" },
+      scrollTrigger: {
+        trigger: ".section_testimonials",
+        start: "-=400 center",
+      },
     });
-    var testimonialSplit = new SplitText("#testimonial-heading", { type: "lines" });
+    var testimonialSplit = new SplitText("#testimonial-heading", {
+      type: "lines",
+    });
     testimonialsLoad
       .from(".testimonials_star-wrapper > div", {
         opacity: 0,
@@ -373,43 +432,107 @@ window.Animations = {
           stagger: 0.125,
         },
         "<0.25"
+      );
+  },
+  animateCTA() {
+    //quote CTA animation
+    var ctaLoad = gsap.timeline({
+      scrollTrigger: { trigger: ".section_quote-cta", start: "-=400 center" },
+    });
+    ctaLoad.from(".quote-cta_component", { y: 100, scale: 0.9 });
+    ctaLoad.fromTo(
+      ".quote-cta_heading-wrapper",
+      { opacity: 0, scale: 0, y: 400 },
+      { opacity: 1, scale: 1, y: 0 },
+      "<+0.125"
+    );
+    ctaLoad.from(
+      ".quote-cta_subheading",
+      { y: 150, duration: 0.875, opacity: 0 },
+      "<.25"
+    );
+    ctaLoad.from(
+      "#ctaButton",
+      { y: 200, duration: 0.875, opacity: 0 },
+      "<0.125"
+    );
+    ctaLoad.to(
+      ".quote-cta_heading > .text-color-alternate",
+      {
+        scale: 1.1,
+        repeat: 1,
+        yoyo: true,
+        ease: "power2.inOut",
+        duration: 0.3,
+      },
+      ">-0.5"
+    );
+    ctaLoad.from(
+      ".quote-cta_heading > .text-color-alternate",
+      { color: "#fff9f3", duration: 0.125 },
+      "<.125"
+    );
+    ctaLoad.from("#ctaScribble", { drawSVG: "0% 0%" }, "<");
+    ctaLoad.to("#ctaScribble", { drawSVG: "100% 100%" }, ">-0.3");
+    ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
+  },
+  animateBlogs() {
+    //blog section
+    var blogLoad = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section_related-blog",
+        start: "-=400 center",
+      },
+    });
+    blogLoad
+      .from(".related-blog_heading-wrapper > div", {
+        y: 100,
+        scale: 0.8,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+      })
+      .from(
+        ".related-blog_list > .related-blog_item",
+        { y: 180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125 },
+        "<0.5"
+      );
+  },
+  animateFAQ() {
+    //FAQ section
+    var faqLoad = gsap.timeline({
+      scrollTrigger: { trigger: ".section_faq", start: "-=400 center" },
+    });
+    faqLoad.from("#faq-heading", { y: 80, opacity: 0 }, 0);
+    faqLoad.from(
+      ".faq_list > .faq_item",
+      { y: 50, opacity: 0, stagger: 0.125 },
+      0.25
+    );
+    faqLoad.from(
+      ".faq_lottie",
+      { scale: 0, opacity: 0, stagger: 0.25 },
+      "<0.5"
     );
   },
-  animateCTA () {
-    //quote CTA animation
-    var ctaLoad = gsap.timeline({scrollTrigger: {trigger: ".section_quote-cta", start: "-=400 center"}});
-    ctaLoad.from(".quote-cta_component", {y: 100, scale: 0.9})
-    ctaLoad.fromTo(".quote-cta_heading-wrapper", {opacity: 0, scale: 0, y: 400}, {opacity: 1, scale: 1, y: 0}, "<+0.125");
-    ctaLoad.from(".quote-cta_subheading", {y:150, duration: 0.875, opacity: 0}, "<.25");
-    ctaLoad.from("#ctaButton", {y: 200, duration: 0.875, opacity: 0,}, "<0.125");
-    ctaLoad.to(".quote-cta_heading > .text-color-alternate", {scale: 1.1, repeat: 1, yoyo: true, ease: "power2.inOut", duration: 0.3}, ">-0.5");
-    ctaLoad.from(".quote-cta_heading > .text-color-alternate", {color: "#fff9f3", duration: .125}, "<.125");
-    ctaLoad.from("#ctaScribble", {drawSVG: '0% 0%'}, "<");
-    ctaLoad.to("#ctaScribble", {drawSVG: '100% 100%'}, ">-0.3");
-    ctaLoad.to("#ctaScribble", {opacity: 0, duration: 0}, ">-0.02");
-  },
-  animateBlogs () {
-    //blog section
-    var blogLoad = gsap.timeline({scrollTrigger: {trigger: ".section_related-blog", start: "-=400 center"}});
-    blogLoad.from(".related-blog_heading-wrapper > div", {y: 100, scale: 0.8, opacity: 0, duration: 1, ease: "power3.out"}).from(".related-blog_list > .related-blog_item", {y:180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125}, "<0.5");
-  },
-  animateFAQ () {
-    //FAQ section
-    var faqLoad = gsap.timeline({scrollTrigger: {trigger: ".section_faq", start: "-=400 center"}});
-    faqLoad.from("#faq-heading", {y: 80, opacity: 0}, 0);
-    faqLoad.from(".faq_list > .faq_item", {y: 50, opacity: 0, stagger: 0.125}, 0.25);
-    faqLoad.from(".faq_lottie", {scale: 0, opacity: 0, stagger: 0.25}, "<0.5");
-  },
-  animateMorph () {
+  animateMorph() {
     //Path morph animation
-    const paths = [".path2", ".path3", ".path4", ".path5", ".path6", ".path7", ".path2"];
+    const paths = [
+      ".path2",
+      ".path3",
+      ".path4",
+      ".path5",
+      ".path6",
+      ".path7",
+      ".path2",
+    ];
     const morphPath = gsap.timeline({
       repeat: -1,
       yoyo: true,
-      defaults: { duration: 1, ease: "power1.inOut" }
+      defaults: { duration: 1, ease: "power1.inOut" },
     });
-    paths.forEach(path => {
+    paths.forEach((path) => {
       morphPath.to(".path1", { morphSVG: path });
     });
-  }
-}
+  },
+};
