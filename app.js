@@ -30,13 +30,13 @@ if (window.location.pathname === "/") {
 
 const url = window.location.pathname;
 const scriptsMap = new Map([
-  [
-    ".section_home-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/home.js",
-      id: "home-script",
-    },
-  ],
+  // [
+  //   ".section_home-header",
+  //   {
+  //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
+  //     id: "home-script",
+  //   },
+  // ],
   [
     ".section_case-study-header",
     {
