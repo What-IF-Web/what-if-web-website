@@ -1,0 +1,9 @@
+# dependencies
+/node_modules
+
+# misc
+.parcel-cache/**
+.parcel-cache/data.mdb
+# build output
+/dist
+/build
