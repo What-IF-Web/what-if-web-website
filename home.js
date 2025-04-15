@@ -1,27 +1,31 @@
 //home page stuff
 
-// import { animateProjectsSection } from "./animations/projectsLoad";
+import { animateProjectsSection } from "./animations/projectsLoad";
 
 gsap.defaults({
   ease: "power4.out",
   duration: 1,
 });
 
+// //call modular animations
+// document.addEventListener("DOMContentLoaded", () => {
+//   window.Webflow ||= [];
+//   window.Webflow.push(() => {
+//     if (window.Animations) {
+//       Animations.animateFooter();
+//       Animations.animateServices();
+//       Animations.animateTestimonial();
+//       Animations.animateProjects();
+//       Animations.animateMorph();
+//       Animations.animateCTA();
+//       Animations.animateBlogs();
+//     }
+//     $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
+//     $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
+//   });
+// });
 
-//call modular animations
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.Animations) {
-    Animations.animateFooter();
-    Animations.animateServices();
-    Animations.animateTestimonial();
-    Animations.animateProjects();
-    Animations.animateMorph();
-    Animations.animateCTA();
-    Animations.animateBlogs();
-  }
-  $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
-  $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
-});
+animateProjectsSection();
 
 //hero section animation
 var heroSplit = new SplitText(".home-header_heading", { type: "lines" });
@@ -94,16 +98,9 @@ aboutLoad.from(
   { x: 2000, rotation: 130 },
   0.125
 );
-aboutLoad.from(
-  ".home-about_lottie",
-  { scale: 0},
-  ">0.125"
-)
-.from(
-  ".home-about_lottie-2",
-  { scale: 0},
-  "<0.25"
-);
+aboutLoad
+  .from(".home-about_lottie", { scale: 0 }, ">0.125")
+  .from(".home-about_lottie-2", { scale: 0 }, "<0.25");
 
 let mm = gsap.matchMedia();
 
@@ -349,4 +346,3 @@ mm.add("(max-width: 991px)", () => {
     ">-0.02"
   );
 });
-
