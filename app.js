@@ -19,12 +19,14 @@ gsap.registerPlugin(
 // import "./about";
 
 if (window.location.pathname === "/") {
-  import("./home")
+  import("./home.js")
     .then(() => {
-      // Code for when the about script is loaded
+      // Code to execute once home.js is loaded successfully
+      console.log("Home script loaded successfully!");
+      // Any initialization or function calls from home.js can go here
     })
     .catch((err) => {
-      console.error("Error loading the about script", err);
+      console.error("Error loading the home script:", err);
     });
 }
 
