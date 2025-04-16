@@ -1,6 +1,6 @@
 //home page stuff
 
-import { animateProjectsSection } from "https://what-if-web.github.io/what-if-web-website/animations/projectsLoad.js";
+// import { animateProjectsSection } from "https://what-if-web.github.io/what-if-web-website/animations/projectsLoad.js";
 
 gsap.defaults({
   ease: "power4.out",
