@@ -18,27 +18,15 @@ gsap.registerPlugin(
 /*this is where you add imports for localhost */
 // import "./about";
 
-if (window.location.pathname === "/") {
-  import("./home.js")
-    .then(() => {
-      // Code to execute once home.js is loaded successfully
-      console.log("Home script loaded successfully!");
-      // Any initialization or function calls from home.js can go here
-    })
-    .catch((err) => {
-      console.error("Error loading the home script:", err);
-    });
-}
-
 const url = window.location.pathname;
 const scriptsMap = new Map([
-  // [
-  //   ".section_home-header",
-  //   {
-  //     src: "https://what-if-web.github.io/what-if-web-website/home.js",
-  //     id: "home-script",
-  //   },
-  // ],
+  [
+    ".section_home-header",
+    {
+      src: "https://what-if-web.github.io/what-if-web-website/home.js",
+      id: "home-script",
+    },
+  ],
   [
     ".section_case-study-header",
     {
