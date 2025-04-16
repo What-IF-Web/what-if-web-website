@@ -1,103 +1,6 @@
-
-      var $parcel$global = globalThis;
-    
-var $parcel$modules = {};
-var $parcel$inits = {};
-
-var parcelRequire = $parcel$global["parcelRequire41e5"];
-
-if (parcelRequire == null) {
-  parcelRequire = function(id) {
-    if (id in $parcel$modules) {
-      return $parcel$modules[id].exports;
-    }
-    if (id in $parcel$inits) {
-      var init = $parcel$inits[id];
-      delete $parcel$inits[id];
-      var module = {id: id, exports: {}};
-      $parcel$modules[id] = module;
-      init.call(module.exports, module, module.exports);
-      return module.exports;
-    }
-    var err = new Error("Cannot find module '" + id + "'");
-    err.code = 'MODULE_NOT_FOUND';
-    throw err;
-  };
-
-  parcelRequire.register = function register(id, init) {
-    $parcel$inits[id] = init;
-  };
-
-  $parcel$global["parcelRequire41e5"] = parcelRequire;
-}
-
-var parcelRegister = parcelRequire.register;
-parcelRegister("dLfAQ", function(module, exports) {
-module.exports = import("./home.ca146b45.js").then(()=>parcelRequire('civsJ'));
-
-});
-
-parcelRegister("gM0oY", function(module, exports) {
-module.exports = import("./case-studies-template.063e088e.js").then(()=>parcelRequire('d6o0T'));
-
-});
-
-parcelRegister("6K7ev", function(module, exports) {
-module.exports = import("./case-studies.6871ad75.js").then(()=>parcelRequire('akn5f'));
-
-});
-
-parcelRegister("byLuN", function(module, exports) {
-module.exports = import("./not-found.370b4c3f.js").then(()=>parcelRequire('8mohK'));
-
-});
-
-parcelRegister("cRhI0", function(module, exports) {
-module.exports = import("./pricing.b2f6fcd3.js").then(()=>parcelRequire('2OeG7'));
-
-});
-
-parcelRegister("ajT2m", function(module, exports) {
-module.exports = import("./contact.745455c8.js").then(()=>parcelRequire('52fBC'));
-
-});
-
-parcelRegister("ddgcr", function(module, exports) {
-module.exports = import("./blog-template.5ca35d96.js").then(()=>parcelRequire('9YKLP'));
-
-});
-
-parcelRegister("dC5Nh", function(module, exports) {
-module.exports = import("./services.5b559fd3.js").then(()=>parcelRequire('1Ir9z'));
-
-});
-
-parcelRegister("2rnOg", function(module, exports) {
-module.exports = import("./cloneables.6e59127f.js").then(()=>parcelRequire('81d6L'));
-
-});
-
-parcelRegister("5Hx1n", function(module, exports) {
-module.exports = import("./code-snippet.c00b3e08.js").then(()=>parcelRequire('iUjMs'));
-
-});
-
-parcelRegister("fRpXc", function(module, exports) {
-module.exports = import("./about.fc14305c.js").then(()=>parcelRequire('l0jEi'));
-
-});
-
-parcelRegister("6ehcg", function(module, exports) {
-module.exports = import("./resources.9142b457.js").then(()=>parcelRequire('1wgra'));
-
-});
-
+var $3e2aed16982f049f$exports = {};
 /*uncomment the below when in localhost */ // window.parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
-
-
-
-
 // ScrollSmoother.create({
 //   content: ".main-wrapper",
 //   smooth: 0.8,
@@ -106,65 +9,60 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, S
 /*this is where you add imports for localhost */ // import "./home";
 // const url = window.location.pathname;
 // Define mappings for scripts based on DOM selectors
+// Base URL for dynamic imports
+const $3e2aed16982f049f$var$BASE_URL = "https://what-if-web.github.io/what-if-web-website/dist/";
+// Define mappings for scripts based on DOM selectors
 const $3e2aed16982f049f$var$scriptsMap = new Map([
     [
         ".section_home-header",
-        ()=>(parcelRequire("dLfAQ"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}home.js`)
     ],
     [
         ".section_case-study-header",
-        ()=>(parcelRequire("gM0oY"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}case-studies-template.js`)
     ],
     [
         ".section_case-studies",
-        ()=>(parcelRequire("6K7ev"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}case-studies.js`)
     ],
     [
         ".section_not-found-header",
-        ()=>(parcelRequire("byLuN"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}not-found.js`)
     ]
 ]);
-
-
-
-
-
-
-
-
 // Define mappings for scripts based on URL
 const $3e2aed16982f049f$var$urlScriptsMap = new Map([
     [
         "pricing",
-        ()=>(parcelRequire("cRhI0"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}pricing.js`)
     ],
     [
         "contact",
-        ()=>(parcelRequire("ajT2m"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}contact.js`)
     ],
     [
         "blog",
-        ()=>(parcelRequire("ddgcr"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}blog-template.js`)
     ],
     [
         "services",
-        ()=>(parcelRequire("dC5Nh"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}services.js`)
     ],
     [
         "cloneables",
-        ()=>(parcelRequire("2rnOg"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}cloneables.js`)
     ],
     [
         "code-snippet",
-        ()=>(parcelRequire("5Hx1n"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}code-snippet.js`)
     ],
     [
         "about",
-        ()=>(parcelRequire("fRpXc"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}about.js`)
     ],
     [
         "resources",
-        ()=>(parcelRequire("6ehcg"))
+        ()=>import(`${$3e2aed16982f049f$var$BASE_URL}resources.js`)
     ]
 ]);
 // Load scripts based on DOM selectors
@@ -606,3 +504,4 @@ window.Animations = {
 };
 
 
+export {$3e2aed16982f049f$exports as default};
