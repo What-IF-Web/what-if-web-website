@@ -1,129 +1,52 @@
-/*uncomment the below when in localhost */
-// window.parceled = true;
+// src/app.js
+import "./home.js";
+import "./case-studies-template.js";
+import "./case-studies.js";
+import "./not-found.js";
+import "./pricing.js";
+import "./contact.js";
+import "./blog-template.js";
+import "./services.js";
+import "./cloneables.js";
+import "./code-snippet.js";
+import "./about.js";
+import "./resources.js";
 
+// Register GSAP plugins
 gsap.registerPlugin(
   ScrollTrigger,
   SplitText,
   DrawSVGPlugin,
   MotionPathPlugin,
-  ScrollSmoother
+  ScrollSmoother,
+  MorphSVGPlugin
 );
-
-// ScrollSmoother.create({
-//   content: ".main-wrapper",
-//   smooth: 0.8,
-//   effects: false,
-// });
-
-/*this is where you add imports for localhost */
-// import "./home";
-
-// const url = window.location.pathname;
-
-// Define mappings for scripts based on DOM selectors
-
-// Base URL for dynamic imports
-const BASE_URL = "https://what-if-web.github.io/what-if-web-website/dist/";
-
-// Define mappings for scripts based on DOM selectors
-const scriptsMap = new Map([
-  [".section_home-header", () => import(`${BASE_URL}home.js`)],
-  [
-    ".section_case-study-header",
-    () => import(`${BASE_URL}case-studies-template.js`),
-  ],
-  [".section_case-studies", () => import(`${BASE_URL}case-studies.js`)],
-  [".section_not-found-header", () => import(`${BASE_URL}not-found.js`)],
-]);
-
-// Define mappings for scripts based on URL
-const urlScriptsMap = new Map([
-  ["pricing", () => import(`${BASE_URL}pricing.js`)],
-  ["contact", () => import(`${BASE_URL}contact.js`)],
-  ["blog", () => import(`${BASE_URL}blog-template.js`)],
-  ["services", () => import(`${BASE_URL}services.js`)],
-  ["cloneables", () => import(`${BASE_URL}cloneables.js`)],
-  ["code-snippet", () => import(`${BASE_URL}code-snippet.js`)],
-  ["about", () => import(`${BASE_URL}about.js`)],
-  ["resources", () => import(`${BASE_URL}resources.js`)],
-]);
-
-// Load scripts based on DOM selectors
-scriptsMap.forEach(async (importFn, selector) => {
-  if (document.querySelector(selector)) {
-    console.log(`Found selector: ${selector}`);
-    try {
-      await importFn();
-      console.log(`Loaded script for selector: ${selector}`);
-    } catch (error) {
-      console.error(`Failed to load script for selector: ${selector}`, error);
-    }
-  } else {
-    console.log(`Selector not found: ${selector}`);
-  }
-});
-
-// Load scripts based on URL
-const url = window.location.pathname;
-urlScriptsMap.forEach(async (importFn, key) => {
-  if (url.includes(key)) {
-    try {
-      await importFn();
-      console.log(`Loaded script for URL: ${key}`);
-    } catch (error) {
-      console.error(`Failed to load script for URL: ${key}`, error);
-    }
-  }
-});
-
-// function preloadAndExecuteScript(src, id) {
-//   if (!document.getElementById(id)) {
-//     requestIdleCallback(() => {
-//       const script = document.createElement("script");
-//       script.src = src;
-//       script.id = id;
-//       script.defer = true;
-//       document.head.appendChild(script);
-//     });
-//   }
-// }
-
-// // Load scripts based on elements found in DOM
-// scriptsMap.forEach((scriptInfo, selector) => {
-//   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-//     if (document.querySelector(selector)) {
-//       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-//     }
-//   }
-// });
-
-// // Load scripts based on URL matching
-// urlScriptsMap.forEach(({ src, id }, key) => {
-//   if (url.includes(key)) {
-//     preloadAndExecuteScript(src, id);
-//   }
-// });
 
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) {
-  new Swiper("#testimonials-slider", {
-    loop: true,
-    slidesPerView: 1,
-    centeredSlides: true,
-    spaceBetween: 8,
-    grabCursor: true,
-    pagination: { el: ".swiper-pagination", clickable: true },
-    autoplay: { delay: 2200, disableOnInteraction: false },
-    speed: 600,
-    breakpoints: {
-      478: { slidesPerView: 2 },
-      991: { slidesPerView: 3, spaceBetween: 16 },
-      1366: { slidesPerView: 4 },
-    },
-  });
+  try {
+    new Swiper("#testimonials-slider", {
+      loop: true,
+      slidesPerView: 1,
+      centeredSlides: true,
+      spaceBetween: 8,
+      grabCursor: true,
+      pagination: { el: ".swiper-pagination", clickable: true },
+      autoplay: { delay: 2200, disableOnInteraction: false },
+      speed: 600,
+      breakpoints: {
+        478: { slidesPerView: 2 },
+        991: { slidesPerView: 3, spaceBetween: 16 },
+        1366: { slidesPerView: 4 },
+      },
+    });
+    console.log("Swiper initialized");
+  } catch (error) {
+    console.error("Failed to initialize Swiper", error);
+  }
 }
 
-// Testimonial pagination color change based on variant
+// Testimonial pagination color change
 const variantField = document.querySelector(".wf-variant-dropdown");
 if (variantField?.value === "White") {
   const style = document.createElement("style");
@@ -134,27 +57,32 @@ if (variantField?.value === "White") {
 // Confetti on form submit
 const confettiEffect = () => {
   setTimeout(() => {
-    confetti({
-      particleCount: 150,
-      startVelocity: 30,
-      spread: 360,
-      scalar: 3,
-      flat: true,
-      origin: { x: 0.5, y: 0 },
-      shapes: ["square", "diamonds"],
-      colors: [
-        "#A41212",
-        "#FE0D04",
-        "#C36A66",
-        "#008B47",
-        "#FFFF00",
-        "#0074E3",
-        "#FF9CD2",
-        "#3FDCE3",
-        "#FFC25D",
-        "#CDEAF2",
-      ],
-    });
+    try {
+      confetti({
+        particleCount: 150,
+        startVelocity: 30,
+        spread: 360,
+        scalar: 3,
+        flat: true,
+        origin: { x: 0.5, y: 0 },
+        shapes: ["square"],
+        colors: [
+          "#A41212",
+          "#FE0D04",
+          "#C36A66",
+          "#008B47",
+          "#FFFF00",
+          "#0074E3",
+          "#FF9CD2",
+          "#3FDCE3",
+          "#FFC25D",
+          "#CDEAF2",
+        ],
+      });
+      console.log("Confetti triggered");
+    } catch (error) {
+      console.error("Failed to trigger confetti", error);
+    }
   }, 1600);
 };
 
@@ -173,7 +101,7 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Resources animations (only if the section is in view)
+// Resources animations
 const resourcesObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -187,7 +115,7 @@ const resourcesObserver = new IntersectionObserver(
             duration: 1,
             opacity: 0,
           });
-        resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+        resourcesObserver.unobserve(entry.target);
       }
     });
   },
@@ -199,27 +127,13 @@ if (resourcesSection) {
   resourcesObserver.observe(resourcesSection);
 }
 
-$(".navbar_logo-link").click(function (e) {
-  e.preventDefault();
-  const linkUrl = $(this).attr("href");
-  setTimeout(() => (window.location = linkUrl), 750);
-});
-
-//resources animations
-
-// var resourcesLoad = gsap.timeline({scrollTrigger: {trigger: ".section_resources"}});
-
-// resourcesLoad.from(".resources_top-content > h1, .resources_top-content > p", {y: 100, stagger: 0.125, ease: "power4.out", duration: 1, opacity: 0});
-
-//test footer modular animation
-
+// Animations object
 window.Animations = {
   animateFooter() {
-    var footerLoad = gsap.timeline({
+    const footerLoad = gsap.timeline({
       scrollTrigger: { trigger: ".footer_component", start: "-=400 center" },
     });
-
-    var footerSplit = new SplitText(".footer_top-wrapper > h2", {
+    const footerSplit = new SplitText(".footer_top-wrapper > h2", {
       type: "lines",
     });
 
@@ -257,12 +171,10 @@ window.Animations = {
     );
   },
   animateProjects() {
-    //featured projects animation -- make modular
-    var projectsLoad = gsap.timeline({
+    const projectsLoad = gsap.timeline({
       scrollTrigger: { trigger: ".section_projects", start: "-=400 center" },
     });
-
-    var projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
+    const projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
       type: "lines",
     });
 
@@ -286,7 +198,7 @@ window.Animations = {
     );
 
     projectsLoad
-      .from("#projects-highlight", { color: "EB5B30", duration: 0 }, "<")
+      .from("#projects-highlight", { color: "#EB5B30", duration: 0 }, "<")
       .to(
         "#projects-highlight",
         { scale: 1.1, duration: 0.3, ease: "power2.in" },
@@ -314,8 +226,7 @@ window.Animations = {
     );
   },
   animateServices() {
-    //Services section animation
-    var servicesLoad = gsap.timeline({
+    const servicesLoad = gsap.timeline({
       scrollTrigger: { trigger: ".section_services", start: "-=400 center" },
     });
     servicesLoad.from(".services_heading-wrapper > h2", {
@@ -323,38 +234,36 @@ window.Animations = {
       opacity: 0,
     });
 
-    //Services section cards scroll animation
-    $(document).ready(function () {
-      $(".services_list .card.is-services").each(function () {
-        let card = $(this);
-        let linkTargetID = card.find(".card_link-target").attr("id");
-
-        gsap.fromTo(
-          card,
-          { opacity: 0, scale: 0.5 },
-          {
-            opacity: 1,
-            scale: 1,
-            scrollTrigger: {
-              trigger: `#${linkTargetID}`,
-              start: "top 80%",
-              end: "top 40%",
-              scrub: true,
-            },
-          }
-        );
+    document
+      .querySelectorAll(".services_list .card.is-services")
+      .forEach((card) => {
+        const linkTargetID = card.querySelector(".card_link-target")?.id;
+        if (linkTargetID) {
+          gsap.fromTo(
+            card,
+            { opacity: 0, scale: 0.5 },
+            {
+              opacity: 1,
+              scale: 1,
+              scrollTrigger: {
+                trigger: `#${linkTargetID}`,
+                start: "top 80%",
+                end: "top 40%",
+                scrub: true,
+              },
+            }
+          );
+        }
       });
-    });
   },
   animateTestimonial() {
-    //testimonials section animation
-    var testimonialsLoad = gsap.timeline({
+    const testimonialsLoad = gsap.timeline({
       scrollTrigger: {
         trigger: ".section_testimonials",
         start: "-=400 center",
       },
     });
-    var testimonialSplit = new SplitText("#testimonial-heading", {
+    const testimonialSplit = new SplitText("#testimonial-heading", {
       type: "lines",
     });
     testimonialsLoad
@@ -374,8 +283,7 @@ window.Animations = {
       );
   },
   animateCTA() {
-    //quote CTA animation
-    var ctaLoad = gsap.timeline({
+    const ctaLoad = gsap.timeline({
       scrollTrigger: { trigger: ".section_quote-cta", start: "-=400 center" },
     });
     ctaLoad.from(".quote-cta_component", { y: 100, scale: 0.9 });
@@ -416,8 +324,7 @@ window.Animations = {
     ctaLoad.to("#ctaScribble", { opacity: 0, duration: 0 }, ">-0.02");
   },
   animateBlogs() {
-    //blog section
-    var blogLoad = gsap.timeline({
+    const blogLoad = gsap.timeline({
       scrollTrigger: {
         trigger: ".section_related-blog",
         start: "-=400 center",
@@ -438,8 +345,7 @@ window.Animations = {
       );
   },
   animateFAQ() {
-    //FAQ section
-    var faqLoad = gsap.timeline({
+    const faqLoad = gsap.timeline({
       scrollTrigger: { trigger: ".section_faq", start: "-=400 center" },
     });
     faqLoad.from("#faq-heading", { y: 80, opacity: 0 }, 0);
@@ -455,7 +361,6 @@ window.Animations = {
     );
   },
   animateMorph() {
-    //Path morph animation
     const paths = [
       ".path2",
       ".path3",
