@@ -1,8 +1,8 @@
 
       var $parcel$global = globalThis;
-    var parcelRequire = $parcel$global["parcelRequire94c2"];
+    var parcelRequire = $parcel$global["parcelRequire41e5"];
 var parcelRegister = parcelRequire.register;
-parcelRegister("7xmPu", function(module, exports) {
+parcelRegister("civsJ", function(module, exports) {
 //home page stuff
 // import { animateProjectsSection } from "https://what-if-web.github.io/what-if-web-website/animations/projectsLoad.js";
 gsap.defaults({
@@ -28,15 +28,15 @@ gsap.defaults({
 // });
 // animateProjectsSection();
 //hero section animation
-var $57cd52f44a54f1f8$var$heroSplit = new SplitText(".home-header_heading", {
+var $8f3f92462d146827$var$heroSplit = new SplitText(".home-header_heading", {
     type: "lines"
 });
-var $57cd52f44a54f1f8$var$heroLoad = gsap.timeline({
+var $8f3f92462d146827$var$heroLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_home-header"
     }
 });
-$57cd52f44a54f1f8$var$heroLoad.from($57cd52f44a54f1f8$var$heroSplit.lines, {
+$8f3f92462d146827$var$heroLoad.from($8f3f92462d146827$var$heroSplit.lines, {
     opacity: 0,
     y: 400,
     stagger: 0.125
@@ -45,75 +45,75 @@ $57cd52f44a54f1f8$var$heroLoad.from($57cd52f44a54f1f8$var$heroSplit.lines, {
     duration: 0.625,
     ease: "back.out(1.7)"
 }, ">-0.5");
-$57cd52f44a54f1f8$var$heroLoad.from(".home-header_subheading", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_subheading", {
     y: 200,
     opacity: 0
 }, ">-0.25");
-$57cd52f44a54f1f8$var$heroLoad.from(".home-header_component > a", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_component > a", {
     y: 200,
     opacity: 0
 }, ">-0.25");
-$57cd52f44a54f1f8$var$heroLoad.from(".home-header_lottie.is-dinkus", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-dinkus", {
     y: 70,
     x: 180,
     duration: 0.5,
     scale: 0
 }, ">-0.5");
-$57cd52f44a54f1f8$var$heroLoad.from(".home-header_lottie.is-brazzo", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-brazzo", {
     y: -200,
     x: 240,
     duration: 0.625,
     scale: 0
 }, "<-0.25");
-$57cd52f44a54f1f8$var$heroLoad.from(".home-header_lottie.is-slice", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-slice", {
     y: -100,
     x: -200,
     duration: 0.75,
     scale: 0
 }, "<-0.125");
 //About Section Animation
-var $57cd52f44a54f1f8$var$aboutLoad = gsap.timeline({
+var $8f3f92462d146827$var$aboutLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_home-about",
         start: "top center"
     }
 });
-var $57cd52f44a54f1f8$var$aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
+var $8f3f92462d146827$var$aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
     type: "lines"
 });
-$57cd52f44a54f1f8$var$aboutLoad.from($57cd52f44a54f1f8$var$aboutSplit.lines, {
+$8f3f92462d146827$var$aboutLoad.from($8f3f92462d146827$var$aboutSplit.lines, {
     y: 100,
     scale: 0.8,
     opacity: 0,
     stagger: 0.125
 }, 0);
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_content-left > p, .home-about_content-left > a", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_content-left > p, .home-about_content-left > a", {
     opacity: 0,
     stagger: 0.125
 }, "<0.5");
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_background-shape", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_background-shape", {
     scale: 0
 }, -0.25);
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_card-wrapper.is-first", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-first", {
     x: 2500,
     rotation: 100
 }, "<0.5");
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_card-wrapper.is-second", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-second", {
     x: 2500,
     rotation: 60
 }, 0.25);
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_card-wrapper.is-third", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-third", {
     x: 2000,
     rotation: 130
 }, 0.125);
-$57cd52f44a54f1f8$var$aboutLoad.from(".home-about_lottie", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_lottie", {
     scale: 0
 }, ">0.125").from(".home-about_lottie-2", {
     scale: 0
 }, "<0.25");
-let $57cd52f44a54f1f8$var$mm = gsap.matchMedia();
+let $8f3f92462d146827$var$mm = gsap.matchMedia();
 // desktop
-$57cd52f44a54f1f8$var$mm.add("(min-width: 991px)", ()=>{
+$8f3f92462d146827$var$mm.add("(min-width: 991px)", ()=>{
     //cta form + process animation starts here
     var ctaFormTrigger = gsap.timeline({
         scrollTrigger: {
@@ -266,7 +266,7 @@ $57cd52f44a54f1f8$var$mm.add("(min-width: 991px)", ()=>{
     });
 });
 //mobile
-$57cd52f44a54f1f8$var$mm.add("(max-width: 991px)", ()=>{
+$8f3f92462d146827$var$mm.add("(max-width: 991px)", ()=>{
     var processMobile = gsap.timeline({
         scrollTrigger: {
             trigger: ".process_component"
@@ -339,4 +339,3 @@ $57cd52f44a54f1f8$var$mm.add("(max-width: 991px)", ()=>{
 });
 
 
-//# sourceMappingURL=home.736168f9.js.map

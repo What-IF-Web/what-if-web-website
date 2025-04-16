@@ -43,7 +43,15 @@ const urlScriptsMap = new Map([
 // Load scripts based on DOM selectors
 scriptsMap.forEach(async (importFn, selector) => {
   if (document.querySelector(selector)) {
-    await importFn(); // Dynamically import the module
+    console.log(`Found selector: ${selector}`);
+    try {
+      await importFn();
+      console.log(`Loaded script for selector: ${selector}`);
+    } catch (error) {
+      console.error(`Failed to load script for selector: ${selector}`, error);
+    }
+  } else {
+    console.log(`Selector not found: ${selector}`);
   }
 });
 
@@ -51,7 +59,12 @@ scriptsMap.forEach(async (importFn, selector) => {
 const url = window.location.pathname;
 urlScriptsMap.forEach(async (importFn, key) => {
   if (url.includes(key)) {
-    await importFn(); // Dynamically import the module
+    try {
+      await importFn();
+      console.log(`Loaded script for URL: ${key}`);
+    } catch (error) {
+      console.error(`Failed to load script for URL: ${key}`, error);
+    }
   }
 });
 

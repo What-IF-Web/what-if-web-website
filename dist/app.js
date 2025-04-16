@@ -4,7 +4,7 @@
 var $parcel$modules = {};
 var $parcel$inits = {};
 
-var parcelRequire = $parcel$global["parcelRequire94c2"];
+var parcelRequire = $parcel$global["parcelRequire41e5"];
 
 if (parcelRequire == null) {
   parcelRequire = function(id) {
@@ -28,67 +28,67 @@ if (parcelRequire == null) {
     $parcel$inits[id] = init;
   };
 
-  $parcel$global["parcelRequire94c2"] = parcelRequire;
+  $parcel$global["parcelRequire41e5"] = parcelRequire;
 }
 
 var parcelRegister = parcelRequire.register;
-parcelRegister("hfs5I", function(module, exports) {
-module.exports = Promise.resolve(require("./home.736168f9.js")).then(()=>parcelRequire('7xmPu'));
+parcelRegister("dLfAQ", function(module, exports) {
+module.exports = import("./home.ca146b45.js").then(()=>parcelRequire('civsJ'));
 
 });
 
-parcelRegister("gj0Fo", function(module, exports) {
-module.exports = Promise.resolve(require("./case-studies-template.0454cd0b.js")).then(()=>parcelRequire('boeEA'));
+parcelRegister("gM0oY", function(module, exports) {
+module.exports = import("./case-studies-template.063e088e.js").then(()=>parcelRequire('d6o0T'));
 
 });
 
-parcelRegister("7mtwT", function(module, exports) {
-module.exports = Promise.resolve(require("./case-studies.be63ced0.js")).then(()=>parcelRequire('hVwnl'));
+parcelRegister("6K7ev", function(module, exports) {
+module.exports = import("./case-studies.6871ad75.js").then(()=>parcelRequire('akn5f'));
 
 });
 
-parcelRegister("4cSwT", function(module, exports) {
-module.exports = Promise.resolve(require("./not-found.35c6a275.js")).then(()=>parcelRequire('6sHFh'));
+parcelRegister("byLuN", function(module, exports) {
+module.exports = import("./not-found.370b4c3f.js").then(()=>parcelRequire('8mohK'));
 
 });
 
-parcelRegister("4f4Az", function(module, exports) {
-module.exports = Promise.resolve(require("./pricing.84fb23f8.js")).then(()=>parcelRequire('5ZPN9'));
+parcelRegister("cRhI0", function(module, exports) {
+module.exports = import("./pricing.b2f6fcd3.js").then(()=>parcelRequire('2OeG7'));
 
 });
 
-parcelRegister("azB5E", function(module, exports) {
-module.exports = Promise.resolve(require("./contact.2029058f.js")).then(()=>parcelRequire('cZ3jM'));
+parcelRegister("ajT2m", function(module, exports) {
+module.exports = import("./contact.745455c8.js").then(()=>parcelRequire('52fBC'));
 
 });
 
-parcelRegister("hQuQ4", function(module, exports) {
-module.exports = Promise.resolve(require("./blog-template.9fbdf17c.js")).then(()=>parcelRequire('j7ur2'));
+parcelRegister("ddgcr", function(module, exports) {
+module.exports = import("./blog-template.5ca35d96.js").then(()=>parcelRequire('9YKLP'));
 
 });
 
-parcelRegister("igLNc", function(module, exports) {
-module.exports = Promise.resolve(require("./services.1880734b.js")).then(()=>parcelRequire('dpNQ0'));
+parcelRegister("dC5Nh", function(module, exports) {
+module.exports = import("./services.5b559fd3.js").then(()=>parcelRequire('1Ir9z'));
 
 });
 
-parcelRegister("lyak8", function(module, exports) {
-module.exports = Promise.resolve(require("./cloneables.867f1659.js")).then(()=>parcelRequire('htvp7'));
+parcelRegister("2rnOg", function(module, exports) {
+module.exports = import("./cloneables.6e59127f.js").then(()=>parcelRequire('81d6L'));
 
 });
 
-parcelRegister("k1Dsv", function(module, exports) {
-module.exports = Promise.resolve(require("./code-snippet.c0786cb0.js")).then(()=>parcelRequire('hAQX4'));
+parcelRegister("5Hx1n", function(module, exports) {
+module.exports = import("./code-snippet.c00b3e08.js").then(()=>parcelRequire('iUjMs'));
 
 });
 
-parcelRegister("9r4fD", function(module, exports) {
-module.exports = Promise.resolve(require("./about.beef2477.js")).then(()=>parcelRequire('kaejA'));
+parcelRegister("fRpXc", function(module, exports) {
+module.exports = import("./about.fc14305c.js").then(()=>parcelRequire('l0jEi'));
 
 });
 
-parcelRegister("fYAYS", function(module, exports) {
-module.exports = Promise.resolve(require("./resources.2e6d7ae4.js")).then(()=>parcelRequire('6du2I'));
+parcelRegister("6ehcg", function(module, exports) {
+module.exports = import("./resources.9142b457.js").then(()=>parcelRequire('1wgra'));
 
 });
 
@@ -106,22 +106,22 @@ gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, S
 /*this is where you add imports for localhost */ // import "./home";
 // const url = window.location.pathname;
 // Define mappings for scripts based on DOM selectors
-const $a826c173f4456cde$var$scriptsMap = new Map([
+const $3e2aed16982f049f$var$scriptsMap = new Map([
     [
         ".section_home-header",
-        ()=>(parcelRequire("hfs5I"))
+        ()=>(parcelRequire("dLfAQ"))
     ],
     [
         ".section_case-study-header",
-        ()=>(parcelRequire("gj0Fo"))
+        ()=>(parcelRequire("gM0oY"))
     ],
     [
         ".section_case-studies",
-        ()=>(parcelRequire("7mtwT"))
+        ()=>(parcelRequire("6K7ev"))
     ],
     [
         ".section_not-found-header",
-        ()=>(parcelRequire("4cSwT"))
+        ()=>(parcelRequire("byLuN"))
     ]
 ]);
 
@@ -133,48 +133,61 @@ const $a826c173f4456cde$var$scriptsMap = new Map([
 
 
 // Define mappings for scripts based on URL
-const $a826c173f4456cde$var$urlScriptsMap = new Map([
+const $3e2aed16982f049f$var$urlScriptsMap = new Map([
     [
         "pricing",
-        ()=>(parcelRequire("4f4Az"))
+        ()=>(parcelRequire("cRhI0"))
     ],
     [
         "contact",
-        ()=>(parcelRequire("azB5E"))
+        ()=>(parcelRequire("ajT2m"))
     ],
     [
         "blog",
-        ()=>(parcelRequire("hQuQ4"))
+        ()=>(parcelRequire("ddgcr"))
     ],
     [
         "services",
-        ()=>(parcelRequire("igLNc"))
+        ()=>(parcelRequire("dC5Nh"))
     ],
     [
         "cloneables",
-        ()=>(parcelRequire("lyak8"))
+        ()=>(parcelRequire("2rnOg"))
     ],
     [
         "code-snippet",
-        ()=>(parcelRequire("k1Dsv"))
+        ()=>(parcelRequire("5Hx1n"))
     ],
     [
         "about",
-        ()=>(parcelRequire("9r4fD"))
+        ()=>(parcelRequire("fRpXc"))
     ],
     [
         "resources",
-        ()=>(parcelRequire("fYAYS"))
+        ()=>(parcelRequire("6ehcg"))
     ]
 ]);
 // Load scripts based on DOM selectors
-$a826c173f4456cde$var$scriptsMap.forEach(async (importFn, selector)=>{
-    if (document.querySelector(selector)) await importFn(); // Dynamically import the module
+$3e2aed16982f049f$var$scriptsMap.forEach(async (importFn, selector)=>{
+    if (document.querySelector(selector)) {
+        console.log(`Found selector: ${selector}`);
+        try {
+            await importFn();
+            console.log(`Loaded script for selector: ${selector}`);
+        } catch (error) {
+            console.error(`Failed to load script for selector: ${selector}`, error);
+        }
+    } else console.log(`Selector not found: ${selector}`);
 });
 // Load scripts based on URL
-const $a826c173f4456cde$var$url = window.location.pathname;
-$a826c173f4456cde$var$urlScriptsMap.forEach(async (importFn, key)=>{
-    if ($a826c173f4456cde$var$url.includes(key)) await importFn(); // Dynamically import the module
+const $3e2aed16982f049f$var$url = window.location.pathname;
+$3e2aed16982f049f$var$urlScriptsMap.forEach(async (importFn, key)=>{
+    if ($3e2aed16982f049f$var$url.includes(key)) try {
+        await importFn();
+        console.log(`Loaded script for URL: ${key}`);
+    } catch (error) {
+        console.error(`Failed to load script for URL: ${key}`, error);
+    }
 });
 // function preloadAndExecuteScript(src, id) {
 //   if (!document.getElementById(id)) {
@@ -231,14 +244,14 @@ if (document.querySelector("#testimonials-slider")) new Swiper("#testimonials-sl
     }
 });
 // Testimonial pagination color change based on variant
-const $a826c173f4456cde$var$variantField = document.querySelector(".wf-variant-dropdown");
-if ($a826c173f4456cde$var$variantField?.value === "White") {
+const $3e2aed16982f049f$var$variantField = document.querySelector(".wf-variant-dropdown");
+if ($3e2aed16982f049f$var$variantField?.value === "White") {
     const style = document.createElement("style");
     style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
     document.head.appendChild(style);
 }
 // Confetti on form submit
-const $a826c173f4456cde$var$confettiEffect = ()=>{
+const $3e2aed16982f049f$var$confettiEffect = ()=>{
     setTimeout(()=>{
         confetti({
             particleCount: 150,
@@ -270,14 +283,14 @@ const $a826c173f4456cde$var$confettiEffect = ()=>{
     }, 1600);
 };
 document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
-    form.addEventListener("submit", $a826c173f4456cde$var$confettiEffect);
+    form.addEventListener("submit", $3e2aed16982f049f$var$confettiEffect);
 });
 // Navbar toggle
 document.addEventListener("click", (event)=>{
     if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
 });
 // Resources animations (only if the section is in view)
-const $a826c173f4456cde$var$resourcesObserver = new IntersectionObserver((entries)=>{
+const $3e2aed16982f049f$var$resourcesObserver = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
         if (entry.isIntersecting) {
             gsap.timeline({
@@ -291,14 +304,14 @@ const $a826c173f4456cde$var$resourcesObserver = new IntersectionObserver((entrie
                 duration: 1,
                 opacity: 0
             });
-            $a826c173f4456cde$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+            $3e2aed16982f049f$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
         }
     });
 }, {
     threshold: 0.5
 });
-const $a826c173f4456cde$var$resourcesSection = document.querySelector(".section_resources");
-if ($a826c173f4456cde$var$resourcesSection) $a826c173f4456cde$var$resourcesObserver.observe($a826c173f4456cde$var$resourcesSection);
+const $3e2aed16982f049f$var$resourcesSection = document.querySelector(".section_resources");
+if ($3e2aed16982f049f$var$resourcesSection) $3e2aed16982f049f$var$resourcesObserver.observe($3e2aed16982f049f$var$resourcesSection);
 $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
@@ -593,4 +606,3 @@ window.Animations = {
 };
 
 
-//# sourceMappingURL=app.js.map
