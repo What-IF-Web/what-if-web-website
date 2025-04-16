@@ -5,8 +5,8 @@
   "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel serve app.js",
-    "build": "parcel build app.js --dist-dir build",
+    "start": "parcel serve src/app.js",
+    "build": "parcel build src/app.js --dist-dir dist --public-url ./",
     "deploy": "npx gh-pages -d dist"
   },
   "author": "",
