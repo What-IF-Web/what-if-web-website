@@ -2,7 +2,6 @@
   "name": "what-if-web-website",
   "version": "1.0.0",
   "description": "Custom code for the What IF Web Webflow website.",
-  "main": "dist/app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel serve src/app.js --open",

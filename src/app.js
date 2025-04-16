@@ -18,28 +18,28 @@ const scriptsMap = new Map([
   [
     ".section_home-header",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/home.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/home.js",
       id: "home-script",
     },
   ],
   [
     ".section_case-study-header",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/case-studies-template.js",
       id: "case-study-script",
     },
   ],
   [
     ".section_case-studies",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/case-studies.js",
       id: "case-studies-script",
     },
   ],
   [
     ".section_not-found-header",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/not-found.js",
       id: "not-found-script",
     },
   ],
@@ -50,56 +50,56 @@ const urlScriptsMap = new Map([
   [
     "pricing",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/pricing.js",
       id: "pricing-script",
     },
   ],
   [
     "contact",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/contact.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/contact.js",
       id: "contact-script",
     },
   ],
   [
     "blog",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/blog-template.js",
       id: "blog-template-script",
     },
   ],
   [
     "services",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/services.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/services.js",
       id: "services-script",
     },
   ],
   [
     "cloneables",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/cloneables.js",
       id: "cloneables-script",
     },
   ],
   [
     "code-snippet",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/code-snippet.js",
       id: "code-snippet-script",
     },
   ],
   [
     "about",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/about.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/about.js",
       id: "about-script",
     },
   ],
   [
     "resources",
     {
-      src: "https://what-if-web.github.io/what-if-web-website/resources.js",
+      src: "https://what-if-web.github.io/what-if-web-website/src/resources.js",
       id: "resources-script",
     },
   ],
@@ -119,10 +119,21 @@ function preloadAndExecuteScript(src, id) {
 
 // Load scripts based on elements found in DOM
 scriptsMap.forEach((scriptInfo, selector) => {
+  console.log(`Checking selector: ${selector}`);
   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-    if (document.querySelector(selector)) {
+    const element = document.querySelector(selector);
+    if (element) {
+      console.log(
+        `Found element for selector: ${selector}, loading script: ${scriptInfo.src}`
+      );
       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+    } else {
+      console.log(
+        `No element found for selector: ${selector}, skipping script: ${scriptInfo.src}`
+      );
     }
+  } else {
+    console.log(`Invalid scriptInfo for selector: ${selector}`, scriptInfo);
   }
 });
 
