@@ -111,13 +111,7 @@ function preloadAndExecuteScript(src, id) {
     script.src = src;
     script.id = id;
     script.defer = true;
-    script.onload = () => console.log(`Script loaded successfully: ${src}`);
-    script.onerror = (error) =>
-      console.error(`Failed to load script: ${src}`, error);
     document.head.appendChild(script);
-    console.log(`Appending script: ${src}`);
-  } else {
-    console.log(`Script with ID ${id} already exists, skipping: ${src}`);
   }
 }
 
@@ -127,17 +121,8 @@ scriptsMap.forEach((scriptInfo, selector) => {
   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
     const element = document.querySelector(selector);
     if (element) {
-      console.log(
-        `Found element for selector: ${selector}, loading script: ${scriptInfo.src}`
-      );
       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    } else {
-      console.log(
-        `No element found for selector: ${selector}, skipping script: ${scriptInfo.src}`
-      );
     }
-  } else {
-    console.log(`Invalid scriptInfo for selector: ${selector}`, scriptInfo);
   }
 });
 
@@ -152,10 +137,7 @@ urlScriptsMap.forEach(({ src, id }, key) => {
 if (url === "/" || url === "/home") {
   const scriptInfo = scriptsMap.get(".section_home-header");
   if (scriptInfo) {
-    console.log(`Homepage detected, loading home.js: ${scriptInfo.src}`);
     preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-  } else {
-    console.error("No scriptInfo found for .section_home-header");
   }
 }
 
