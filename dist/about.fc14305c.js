@@ -1,15 +1,15 @@
 
       var $parcel$global = globalThis;
-    var parcelRequire = $parcel$global["parcelRequire94c2"];
+    var parcelRequire = $parcel$global["parcelRequire41e5"];
 var parcelRegister = parcelRequire.register;
-parcelRegister("kaejA", function(module, exports) {
+parcelRegister("l0jEi", function(module, exports) {
 //about page scroll section
 gsap.defaults({
     ease: "power4.out",
     duration: 1
 });
-let $eadfd87536f3071c$var$am = gsap.matchMedia();
-$eadfd87536f3071c$var$am.add("(min-width: 991px)", ()=>{
+let $f4a8d6f07c3954eb$var$am = gsap.matchMedia();
+$f4a8d6f07c3954eb$var$am.add("(min-width: 991px)", ()=>{
     var aboutScroll = gsap.timeline({
         scrollTrigger: {
             trigger: ".section_about-header",
@@ -25,80 +25,80 @@ $eadfd87536f3071c$var$am.add("(min-width: 991px)", ()=>{
 });
 //about page animations
 //about hero load
-var $eadfd87536f3071c$var$aboutHero = gsap.timeline({
+var $f4a8d6f07c3954eb$var$aboutHero = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_about-header"
     }
 });
-var $eadfd87536f3071c$var$aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
+var $f4a8d6f07c3954eb$var$aboutSplit = new SplitText(".about-header_heading-wrapper > h1", {
     type: "lines"
 });
-$eadfd87536f3071c$var$aboutHero.from($eadfd87536f3071c$var$aboutSplit.lines, {
+$f4a8d6f07c3954eb$var$aboutHero.from($f4a8d6f07c3954eb$var$aboutSplit.lines, {
     opacity: 0,
     y: 100,
     stagger: 0.125
 }, 0);
-$eadfd87536f3071c$var$aboutHero.from(".home-about_card-wrapper.is-about-2", {
+$f4a8d6f07c3954eb$var$aboutHero.from(".home-about_card-wrapper.is-about-2", {
     opacity: 0,
     y: 500,
     x: 400,
     rotation: "50"
 }, 0.5);
-$eadfd87536f3071c$var$aboutHero.from(".home-about_card-wrapper.is-about-1", {
+$f4a8d6f07c3954eb$var$aboutHero.from(".home-about_card-wrapper.is-about-1", {
     opacity: 0,
     y: 300,
     x: 300,
     rotation: "40"
 }, 0.75);
-var $eadfd87536f3071c$var$aboutHeroLast = gsap.timeline({
+var $f4a8d6f07c3954eb$var$aboutHeroLast = gsap.timeline({
     scrollTrigger: {
         trigger: ".about-header_trigger"
     }
 });
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_minimal-card.is-first", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_minimal-card.is-first", {
     opacity: 0,
     y: -700,
     x: -150,
     rotation: "50"
 }, 0);
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_minimal-card.is-second", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_minimal-card.is-second", {
     opacity: 0,
     y: -800,
     x: -300,
     rotation: "64"
 }, 0.125);
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_minimal-card.is-last", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_minimal-card.is-last", {
     opacity: 0,
     y: -900,
     x: -50,
     rotation: "80"
 }, 0.25);
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_heading-wrapper > div", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_heading-wrapper > div", {
     y: 100,
     opacity: 0,
     stagger: 0.25
 }, 0.25);
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_card-ghost", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_card-ghost", {
     y: 100,
     scale: 0.8,
     opacity: 0
 }, 0.5);
-$eadfd87536f3071c$var$aboutHeroLast.from(".about-header_card-brazzo", {
+$f4a8d6f07c3954eb$var$aboutHeroLast.from(".about-header_card-brazzo", {
     y: 80,
     scale: 0.8,
     opacity: 0
 }, 0.75);
 //team load
-var $eadfd87536f3071c$var$teamLoad = gsap.timeline({
+var $f4a8d6f07c3954eb$var$teamLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_team"
     }
 });
-$eadfd87536f3071c$var$teamLoad.from(".team_content-top", {
+$f4a8d6f07c3954eb$var$teamLoad.from(".team_content-top", {
     y: 75,
     opacity: 0
 }, 0);
-$eadfd87536f3071c$var$teamLoad.from(".team_item", {
+$f4a8d6f07c3954eb$var$teamLoad.from(".team_item", {
     y: 150,
     opacity: 0,
     stagger: 0.125
@@ -167,4 +167,3 @@ $eadfd87536f3071c$var$teamLoad.from(".team_item", {
 });
 
 
-//# sourceMappingURL=about.beef2477.js.map

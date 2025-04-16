@@ -3,18 +3,20 @@
   "version": "1.0.0",
   "description": "Custom code for the What IF Web Webflow website.",
   "main": "dist/app.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel serve src/app.js",
-    "build": "parcel build src/app.js --dist-dir dist --public-url ./",
+    "start": "parcel serve src/app.js --open",
+    "build": "parcel build src/app.js --dist-dir dist --public-url ./ --no-source-maps",
     "deploy": "npx gh-pages -d dist"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "parcel": "^2.13.2"
+    "parcel": "^2.14.4"
   },
   "devDependencies": {
+    "@parcel/optimizer-terser": "^2.14.4",
     "gh-pages": "^6.3.0"
   }
 }
