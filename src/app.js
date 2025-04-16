@@ -117,7 +117,6 @@ function preloadAndExecuteScript(src, id) {
 
 // Load scripts based on elements found in DOM
 scriptsMap.forEach((scriptInfo, selector) => {
-  console.log(`Checking selector: ${selector}`);
   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
     const element = document.querySelector(selector);
     if (element) {
