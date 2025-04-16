@@ -16,126 +16,72 @@ gsap.registerPlugin(
 // });
 
 /*this is where you add imports for localhost */
-// import "./about";
+// import "./home";
 
-const url = window.location.pathname;
+// const url = window.location.pathname;
+
+// Define mappings for scripts based on DOM selectors
 const scriptsMap = new Map([
-  [
-    ".section_home-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/home.js",
-      id: "home-script",
-    },
-  ],
-  [
-    ".section_case-study-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-      id: "case-study-script",
-    },
-  ],
-  [
-    ".section_case-studies",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-      id: "case-studies-script",
-    },
-  ],
-  [
-    ".section_not-found-header",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-      id: "not-found-script",
-    },
-  ],
+  [".section_home-header", () => import("./home.js")],
+  [".section_case-study-header", () => import("./case-studies-template.js")],
+  [".section_case-studies", () => import("./case-studies.js")],
+  [".section_not-found-header", () => import("./not-found.js")],
 ]);
 
+// Define mappings for scripts based on URL
 const urlScriptsMap = new Map([
-  [
-    "pricing",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-      id: "pricing-script",
-    },
-  ],
-  [
-    "contact",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-      id: "contact-script",
-    },
-  ],
-  [
-    "blog",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-      id: "blog-template-script",
-    },
-  ],
-  [
-    "services",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/services.js",
-      id: "services-script",
-    },
-  ],
-  [
-    "cloneables",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
-      id: "cloneables-script",
-    },
-  ],
-  [
-    "code-snippet",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
-      id: "code-snippet-script",
-    },
-  ],
-  [
-    "about",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/about.js",
-      id: "about-script",
-    },
-  ],
-  [
-    "resources",
-    {
-      src: "https://what-if-web.github.io/what-if-web-website/resources.js",
-      id: "resources-script",
-    },
-  ],
+  ["pricing", () => import("./pricing.js")],
+  ["contact", () => import("./contact.js")],
+  ["blog", () => import("./blog-template.js")],
+  ["services", () => import("./services.js")],
+  ["cloneables", () => import("./cloneables.js")],
+  ["code-snippet", () => import("./code-snippet.js")],
+  ["about", () => import("./about.js")],
+  ["resources", () => import("./resources.js")],
 ]);
 
-function preloadAndExecuteScript(src, id) {
-  if (!document.getElementById(id)) {
-    requestIdleCallback(() => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.id = id;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
-  }
-}
-
-// Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector) => {
-  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-    if (document.querySelector(selector)) {
-      preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
+// Load scripts based on DOM selectors
+scriptsMap.forEach(async (importFn, selector) => {
+  if (document.querySelector(selector)) {
+    await importFn(); // Dynamically import the module
   }
 });
 
-// Load scripts based on URL matching
-urlScriptsMap.forEach(({ src, id }, key) => {
+// Load scripts based on URL
+const url = window.location.pathname;
+urlScriptsMap.forEach(async (importFn, key) => {
   if (url.includes(key)) {
-    preloadAndExecuteScript(src, id);
+    await importFn(); // Dynamically import the module
   }
 });
+
+// function preloadAndExecuteScript(src, id) {
+//   if (!document.getElementById(id)) {
+//     requestIdleCallback(() => {
+//       const script = document.createElement("script");
+//       script.src = src;
+//       script.id = id;
+//       script.defer = true;
+//       document.head.appendChild(script);
+//     });
+//   }
+// }
+
+// // Load scripts based on elements found in DOM
+// scriptsMap.forEach((scriptInfo, selector) => {
+//   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+//     if (document.querySelector(selector)) {
+//       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+//     }
+//   }
+// });
+
+// // Load scripts based on URL matching
+// urlScriptsMap.forEach(({ src, id }, key) => {
+//   if (url.includes(key)) {
+//     preloadAndExecuteScript(src, id);
+//   }
+// });
 
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) {

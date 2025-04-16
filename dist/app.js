@@ -32,138 +32,175 @@ if (parcelRequire == null) {
 }
 
 var parcelRegister = parcelRequire.register;
-parcelRegister("bo0Av", function(module, exports) {
+parcelRegister("hfs5I", function(module, exports) {
+module.exports = Promise.resolve(require("./home.736168f9.js")).then(()=>parcelRequire('7xmPu'));
+
+});
+
+parcelRegister("gj0Fo", function(module, exports) {
+module.exports = Promise.resolve(require("./case-studies-template.0454cd0b.js")).then(()=>parcelRequire('boeEA'));
+
+});
+
+parcelRegister("7mtwT", function(module, exports) {
+module.exports = Promise.resolve(require("./case-studies.be63ced0.js")).then(()=>parcelRequire('hVwnl'));
+
+});
+
+parcelRegister("4cSwT", function(module, exports) {
+module.exports = Promise.resolve(require("./not-found.35c6a275.js")).then(()=>parcelRequire('6sHFh'));
+
+});
+
+parcelRegister("4f4Az", function(module, exports) {
+module.exports = Promise.resolve(require("./pricing.84fb23f8.js")).then(()=>parcelRequire('5ZPN9'));
+
+});
+
+parcelRegister("azB5E", function(module, exports) {
+module.exports = Promise.resolve(require("./contact.2029058f.js")).then(()=>parcelRequire('cZ3jM'));
+
+});
+
+parcelRegister("hQuQ4", function(module, exports) {
+module.exports = Promise.resolve(require("./blog-template.9fbdf17c.js")).then(()=>parcelRequire('j7ur2'));
+
+});
+
+parcelRegister("igLNc", function(module, exports) {
+module.exports = Promise.resolve(require("./services.1880734b.js")).then(()=>parcelRequire('dpNQ0'));
+
+});
+
+parcelRegister("lyak8", function(module, exports) {
+module.exports = Promise.resolve(require("./cloneables.867f1659.js")).then(()=>parcelRequire('htvp7'));
+
+});
+
+parcelRegister("k1Dsv", function(module, exports) {
+module.exports = Promise.resolve(require("./code-snippet.c0786cb0.js")).then(()=>parcelRequire('hAQX4'));
+
+});
+
+parcelRegister("9r4fD", function(module, exports) {
+module.exports = Promise.resolve(require("./about.beef2477.js")).then(()=>parcelRequire('kaejA'));
+
+});
+
+parcelRegister("fYAYS", function(module, exports) {
+module.exports = Promise.resolve(require("./resources.2e6d7ae4.js")).then(()=>parcelRequire('6du2I'));
+
+});
+
 /*uncomment the below when in localhost */ // window.parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
+
+
+
 
 // ScrollSmoother.create({
 //   content: ".main-wrapper",
 //   smooth: 0.8,
 //   effects: false,
 // });
-/*this is where you add imports for localhost */ // import "./about";
-if (window.location.pathname === "/") (parcelRequire("9l4fu")).then(()=>{
-// Code for when the about script is loaded
-}).catch((err)=>{
-    console.error("Error loading the about script", err);
-});
-const $84a264530b3fb4fb$var$url = window.location.pathname;
-const $84a264530b3fb4fb$var$scriptsMap = new Map([
+/*this is where you add imports for localhost */ // import "./home";
+// const url = window.location.pathname;
+// Define mappings for scripts based on DOM selectors
+const $a826c173f4456cde$var$scriptsMap = new Map([
     [
         ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
+        ()=>(parcelRequire("hfs5I"))
     ],
     [
         ".section_case-study-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-            id: "case-study-script"
-        }
+        ()=>(parcelRequire("gj0Fo"))
     ],
     [
         ".section_case-studies",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-            id: "case-studies-script"
-        }
+        ()=>(parcelRequire("7mtwT"))
     ],
     [
         ".section_not-found-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-            id: "not-found-script"
-        }
+        ()=>(parcelRequire("4cSwT"))
     ]
 ]);
-const $84a264530b3fb4fb$var$urlScriptsMap = new Map([
+
+
+
+
+
+
+
+
+// Define mappings for scripts based on URL
+const $a826c173f4456cde$var$urlScriptsMap = new Map([
     [
         "pricing",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-            id: "pricing-script"
-        }
+        ()=>(parcelRequire("4f4Az"))
     ],
     [
         "contact",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-            id: "contact-script"
-        }
+        ()=>(parcelRequire("azB5E"))
     ],
     [
         "blog",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-            id: "blog-template-script"
-        }
+        ()=>(parcelRequire("hQuQ4"))
     ],
     [
         "services",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/services.js",
-            id: "services-script"
-        }
+        ()=>(parcelRequire("igLNc"))
     ],
     [
         "cloneables",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
-            id: "cloneables-script"
-        }
+        ()=>(parcelRequire("lyak8"))
     ],
     [
         "code-snippet",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
-            id: "code-snippet-script"
-        }
+        ()=>(parcelRequire("k1Dsv"))
     ],
     [
         "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
+        ()=>(parcelRequire("9r4fD"))
     ],
     [
         "resources",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/resources.js",
-            id: "resources-script"
-        }
+        ()=>(parcelRequire("fYAYS"))
     ]
 ]);
-function $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) setTimeout(()=>{
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
-    }, 400);
-}
-function $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) requestIdleCallback(()=>{
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
-    });
-}
-// Load scripts based on elements found in DOM
-$84a264530b3fb4fb$var$scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-        if (document.querySelector(selector)) $84a264530b3fb4fb$var$preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
+// Load scripts based on DOM selectors
+$a826c173f4456cde$var$scriptsMap.forEach(async (importFn, selector)=>{
+    if (document.querySelector(selector)) await importFn(); // Dynamically import the module
 });
-// Load scripts based on URL matching
-$84a264530b3fb4fb$var$urlScriptsMap.forEach(({ src: src, id: id }, key)=>{
-    if ($84a264530b3fb4fb$var$url.includes(key)) $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id);
+// Load scripts based on URL
+const $a826c173f4456cde$var$url = window.location.pathname;
+$a826c173f4456cde$var$urlScriptsMap.forEach(async (importFn, key)=>{
+    if ($a826c173f4456cde$var$url.includes(key)) await importFn(); // Dynamically import the module
 });
+// function preloadAndExecuteScript(src, id) {
+//   if (!document.getElementById(id)) {
+//     requestIdleCallback(() => {
+//       const script = document.createElement("script");
+//       script.src = src;
+//       script.id = id;
+//       script.defer = true;
+//       document.head.appendChild(script);
+//     });
+//   }
+// }
+// // Load scripts based on elements found in DOM
+// scriptsMap.forEach((scriptInfo, selector) => {
+//   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+//     if (document.querySelector(selector)) {
+//       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+//     }
+//   }
+// });
+// // Load scripts based on URL matching
+// urlScriptsMap.forEach(({ src, id }, key) => {
+//   if (url.includes(key)) {
+//     preloadAndExecuteScript(src, id);
+//   }
+// });
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) new Swiper("#testimonials-slider", {
     loop: true,
@@ -194,14 +231,14 @@ if (document.querySelector("#testimonials-slider")) new Swiper("#testimonials-sl
     }
 });
 // Testimonial pagination color change based on variant
-const $84a264530b3fb4fb$var$variantField = document.querySelector(".wf-variant-dropdown");
-if ($84a264530b3fb4fb$var$variantField?.value === "White") {
+const $a826c173f4456cde$var$variantField = document.querySelector(".wf-variant-dropdown");
+if ($a826c173f4456cde$var$variantField?.value === "White") {
     const style = document.createElement("style");
     style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
     document.head.appendChild(style);
 }
 // Confetti on form submit
-const $84a264530b3fb4fb$var$confettiEffect = ()=>{
+const $a826c173f4456cde$var$confettiEffect = ()=>{
     setTimeout(()=>{
         confetti({
             particleCount: 150,
@@ -233,14 +270,14 @@ const $84a264530b3fb4fb$var$confettiEffect = ()=>{
     }, 1600);
 };
 document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
-    form.addEventListener("submit", $84a264530b3fb4fb$var$confettiEffect);
+    form.addEventListener("submit", $a826c173f4456cde$var$confettiEffect);
 });
 // Navbar toggle
 document.addEventListener("click", (event)=>{
     if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
 });
 // Resources animations (only if the section is in view)
-const $84a264530b3fb4fb$var$resourcesObserver = new IntersectionObserver((entries)=>{
+const $a826c173f4456cde$var$resourcesObserver = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
         if (entry.isIntersecting) {
             gsap.timeline({
@@ -254,17 +291,14 @@ const $84a264530b3fb4fb$var$resourcesObserver = new IntersectionObserver((entrie
                 duration: 1,
                 opacity: 0
             });
-            $84a264530b3fb4fb$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+            $a826c173f4456cde$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
         }
     });
 }, {
     threshold: 0.5
 });
-const $84a264530b3fb4fb$var$resourcesSection = document.querySelector(".section_resources");
-if ($84a264530b3fb4fb$var$resourcesSection) $84a264530b3fb4fb$var$resourcesObserver.observe($84a264530b3fb4fb$var$resourcesSection);
-document.addEventListener("click", function(event) {
-    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
-});
+const $a826c173f4456cde$var$resourcesSection = document.querySelector(".section_resources");
+if ($a826c173f4456cde$var$resourcesSection) $a826c173f4456cde$var$resourcesObserver.observe($a826c173f4456cde$var$resourcesSection);
 $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
@@ -558,14 +592,5 @@ window.Animations = {
     }
 };
 
-});
-parcelRegister("9l4fu", function(module, exports) {
-module.exports = Promise.resolve(require("./home.41b3f1d6.js")).then(()=>parcelRequire('kEdRm'));
-
-});
-
-
-
-parcelRequire("bo0Av");
 
 //# sourceMappingURL=app.js.map
