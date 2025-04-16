@@ -21,23 +21,31 @@ gsap.registerPlugin(
 // const url = window.location.pathname;
 
 // Define mappings for scripts based on DOM selectors
+
+// Base URL for dynamic imports
+const BASE_URL = "https://what-if-web.github.io/what-if-web-website/dist/";
+
+// Define mappings for scripts based on DOM selectors
 const scriptsMap = new Map([
-  [".section_home-header", () => import("./home.js")],
-  [".section_case-study-header", () => import("./case-studies-template.js")],
-  [".section_case-studies", () => import("./case-studies.js")],
-  [".section_not-found-header", () => import("./not-found.js")],
+  [".section_home-header", () => import(`${BASE_URL}home.js`)],
+  [
+    ".section_case-study-header",
+    () => import(`${BASE_URL}case-studies-template.js`),
+  ],
+  [".section_case-studies", () => import(`${BASE_URL}case-studies.js`)],
+  [".section_not-found-header", () => import(`${BASE_URL}not-found.js`)],
 ]);
 
 // Define mappings for scripts based on URL
 const urlScriptsMap = new Map([
-  ["pricing", () => import("./pricing.js")],
-  ["contact", () => import("./contact.js")],
-  ["blog", () => import("./blog-template.js")],
-  ["services", () => import("./services.js")],
-  ["cloneables", () => import("./cloneables.js")],
-  ["code-snippet", () => import("./code-snippet.js")],
-  ["about", () => import("./about.js")],
-  ["resources", () => import("./resources.js")],
+  ["pricing", () => import(`${BASE_URL}pricing.js`)],
+  ["contact", () => import(`${BASE_URL}contact.js`)],
+  ["blog", () => import(`${BASE_URL}blog-template.js`)],
+  ["services", () => import(`${BASE_URL}services.js`)],
+  ["cloneables", () => import(`${BASE_URL}cloneables.js`)],
+  ["code-snippet", () => import(`${BASE_URL}code-snippet.js`)],
+  ["about", () => import(`${BASE_URL}about.js`)],
+  ["resources", () => import(`${BASE_URL}resources.js`)],
 ]);
 
 // Load scripts based on DOM selectors
