@@ -107,13 +107,17 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    requestIdleCallback(() => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.id = id;
-      script.defer = true;
-      document.head.appendChild(script);
-    });
+    const script = document.createElement("script");
+    script.src = src;
+    script.id = id;
+    script.defer = true;
+    script.onload = () => console.log(`Script loaded successfully: ${src}`);
+    script.onerror = (error) =>
+      console.error(`Failed to load script: ${src}`, error);
+    document.head.appendChild(script);
+    console.log(`Appending script: ${src}`);
+  } else {
+    console.log(`Script with ID ${id} already exists, skipping: ${src}`);
   }
 }
 
