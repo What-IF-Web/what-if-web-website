@@ -19,7 +19,7 @@ const scriptsMap = new Map([
     ".section_home-header",
     {
       src: "https://what-if-web.github.io/what-if-web-website/src/home.js",
-      id: "home-script",
+      id: `home-script-${Date.now()}`,
     },
   ],
   [
@@ -147,6 +147,17 @@ urlScriptsMap.forEach(({ src, id }, key) => {
     preloadAndExecuteScript(src, id);
   }
 });
+
+// Fallback for homepage to ensure home.js loads
+if (url === "/" || url === "/home") {
+  const scriptInfo = scriptsMap.get(".section_home-header");
+  if (scriptInfo) {
+    console.log(`Homepage detected, loading home.js: ${scriptInfo.src}`);
+    preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+  } else {
+    console.error("No scriptInfo found for .section_home-header");
+  }
+}
 
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) {
