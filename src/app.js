@@ -115,14 +115,42 @@ function preloadAndExecuteScript(src, id) {
   }
 }
 
+// Load scripts with retry logic for DOM selectors
+function loadScriptWithRetry(
+  selector,
+  scriptInfo,
+  retries = 20,
+  interval = 150
+) {
+  console.log(`Checking selector: ${selector}`);
+  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+    function tryLoad(attemptsLeft) {
+      const element = document.querySelector(selector);
+      if (element) {
+        console.log(
+          `Found element for selector: ${selector}, loading script: ${scriptInfo.src}`
+        );
+        preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+      } else if (attemptsLeft > 0) {
+        console.log(
+          `No element found for selector: ${selector}, retrying (${attemptsLeft} attempts left)`
+        );
+        setTimeout(() => tryLoad(attemptsLeft - 1), interval);
+      } else {
+        console.warn(
+          `No element found for selector: ${selector} after retries, skipping script: ${scriptInfo.src}`
+        );
+      }
+    }
+    tryLoad(retries);
+  } else {
+    console.error(`Invalid scriptInfo for selector: ${selector}`, scriptInfo);
+  }
+}
+
 // Load scripts based on elements found in DOM
 scriptsMap.forEach((scriptInfo, selector) => {
-  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-    const element = document.querySelector(selector);
-    if (element) {
-      preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
-  }
+  loadScriptWithRetry(selector, scriptInfo);
 });
 
 // Load scripts based on URL matching
