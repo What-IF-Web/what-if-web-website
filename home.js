@@ -25,7 +25,7 @@ gsap.defaults({
 //   });
 // });
 
-animateProjectsSection();
+// animateProjectsSection();
 
 //hero section animation
 var heroSplit = new SplitText(".home-header_heading", { type: "lines" });
