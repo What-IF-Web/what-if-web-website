@@ -1,15 +1,10 @@
 
-function $parcel$export(e, n, v, s) {
-  Object.defineProperty(e, n, {get: v, set: s, enumerable: true, configurable: true});
-}
-
       var $parcel$global = globalThis;
-    var parcelRequire = $parcel$global["parcelRequire94c2"];
+    var parcelRequire = $parcel$global["parcelRequire41e5"];
 var parcelRegister = parcelRequire.register;
-parcelRegister("kEdRm", function(module, exports) {
+parcelRegister("civsJ", function(module, exports) {
 //home page stuff
-
-var $3QSvI = parcelRequire("3QSvI");
+// import { animateProjectsSection } from "https://what-if-web.github.io/what-if-web-website/animations/projectsLoad.js";
 gsap.defaults({
     ease: "power4.out",
     duration: 1
@@ -31,17 +26,17 @@ gsap.defaults({
 //     $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
 //   });
 // });
-(0, $3QSvI.animateProjectsSection)();
+// animateProjectsSection();
 //hero section animation
-var $f0824b4a9a3a0206$var$heroSplit = new SplitText(".home-header_heading", {
+var $8f3f92462d146827$var$heroSplit = new SplitText(".home-header_heading", {
     type: "lines"
 });
-var $f0824b4a9a3a0206$var$heroLoad = gsap.timeline({
+var $8f3f92462d146827$var$heroLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_home-header"
     }
 });
-$f0824b4a9a3a0206$var$heroLoad.from($f0824b4a9a3a0206$var$heroSplit.lines, {
+$8f3f92462d146827$var$heroLoad.from($8f3f92462d146827$var$heroSplit.lines, {
     opacity: 0,
     y: 400,
     stagger: 0.125
@@ -50,75 +45,75 @@ $f0824b4a9a3a0206$var$heroLoad.from($f0824b4a9a3a0206$var$heroSplit.lines, {
     duration: 0.625,
     ease: "back.out(1.7)"
 }, ">-0.5");
-$f0824b4a9a3a0206$var$heroLoad.from(".home-header_subheading", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_subheading", {
     y: 200,
     opacity: 0
 }, ">-0.25");
-$f0824b4a9a3a0206$var$heroLoad.from(".home-header_component > a", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_component > a", {
     y: 200,
     opacity: 0
 }, ">-0.25");
-$f0824b4a9a3a0206$var$heroLoad.from(".home-header_lottie.is-dinkus", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-dinkus", {
     y: 70,
     x: 180,
     duration: 0.5,
     scale: 0
 }, ">-0.5");
-$f0824b4a9a3a0206$var$heroLoad.from(".home-header_lottie.is-brazzo", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-brazzo", {
     y: -200,
     x: 240,
     duration: 0.625,
     scale: 0
 }, "<-0.25");
-$f0824b4a9a3a0206$var$heroLoad.from(".home-header_lottie.is-slice", {
+$8f3f92462d146827$var$heroLoad.from(".home-header_lottie.is-slice", {
     y: -100,
     x: -200,
     duration: 0.75,
     scale: 0
 }, "<-0.125");
 //About Section Animation
-var $f0824b4a9a3a0206$var$aboutLoad = gsap.timeline({
+var $8f3f92462d146827$var$aboutLoad = gsap.timeline({
     scrollTrigger: {
         trigger: ".section_home-about",
         start: "top center"
     }
 });
-var $f0824b4a9a3a0206$var$aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
+var $8f3f92462d146827$var$aboutSplit = new SplitText(".home-about_heading-wrapper > h2", {
     type: "lines"
 });
-$f0824b4a9a3a0206$var$aboutLoad.from($f0824b4a9a3a0206$var$aboutSplit.lines, {
+$8f3f92462d146827$var$aboutLoad.from($8f3f92462d146827$var$aboutSplit.lines, {
     y: 100,
     scale: 0.8,
     opacity: 0,
     stagger: 0.125
 }, 0);
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_content-left > p, .home-about_content-left > a", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_content-left > p, .home-about_content-left > a", {
     opacity: 0,
     stagger: 0.125
 }, "<0.5");
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_background-shape", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_background-shape", {
     scale: 0
 }, -0.25);
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_card-wrapper.is-first", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-first", {
     x: 2500,
     rotation: 100
 }, "<0.5");
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_card-wrapper.is-second", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-second", {
     x: 2500,
     rotation: 60
 }, 0.25);
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_card-wrapper.is-third", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_card-wrapper.is-third", {
     x: 2000,
     rotation: 130
 }, 0.125);
-$f0824b4a9a3a0206$var$aboutLoad.from(".home-about_lottie", {
+$8f3f92462d146827$var$aboutLoad.from(".home-about_lottie", {
     scale: 0
 }, ">0.125").from(".home-about_lottie-2", {
     scale: 0
 }, "<0.25");
-let $f0824b4a9a3a0206$var$mm = gsap.matchMedia();
+let $8f3f92462d146827$var$mm = gsap.matchMedia();
 // desktop
-$f0824b4a9a3a0206$var$mm.add("(min-width: 991px)", ()=>{
+$8f3f92462d146827$var$mm.add("(min-width: 991px)", ()=>{
     //cta form + process animation starts here
     var ctaFormTrigger = gsap.timeline({
         scrollTrigger: {
@@ -271,7 +266,7 @@ $f0824b4a9a3a0206$var$mm.add("(min-width: 991px)", ()=>{
     });
 });
 //mobile
-$f0824b4a9a3a0206$var$mm.add("(max-width: 991px)", ()=>{
+$8f3f92462d146827$var$mm.add("(max-width: 991px)", ()=>{
     var processMobile = gsap.timeline({
         scrollTrigger: {
             trigger: ".process_component"
@@ -342,65 +337,5 @@ $f0824b4a9a3a0206$var$mm.add("(max-width: 991px)", ()=>{
 });
 
 });
-parcelRegister("3QSvI", function(module, exports) {
-
-$parcel$export(module.exports, "animateProjectsSection", () => $2ce08314e321d815$export$fae175a0043a3fa7);
-parcelRequire("bo0Av");
-function $2ce08314e321d815$export$fae175a0043a3fa7() {
-    const tl = gsap.timeline({
-        scrollTrigger: {
-            trigger: ".section_projects",
-            start: "top 75%"
-        }
-    });
-    const projectsSplit = new SplitText(".projects_heading-wrapper > h2", {
-        type: "lines"
-    });
-    tl.from(projectsSplit.lines, {
-        opacity: 0,
-        y: 150,
-        scale: 0.8,
-        stagger: 0.125
-    }).fromTo(".projects_video-wrapper", {
-        duration: 0.875,
-        opacity: 0,
-        y: 100
-    }, {
-        opacity: 1,
-        y: 0
-    }, ">-0.5").from(".projects_content > .projects_item > .projects_card", {
-        duration: 0.5,
-        opacity: 0,
-        y: 60,
-        stagger: 0.1
-    }, ">-0.75").from(".projects_component > a", {
-        y: 100,
-        opacity: 0
-    }, "<0.25").from("#projects-highlight", {
-        color: "#EB5B30",
-        duration: 0
-    }, "<").to("#projects-highlight", {
-        scale: 1.1,
-        duration: 0.3,
-        ease: "power2.in"
-    }, "<").to("#projects-highlight", {
-        scale: 1,
-        duration: 0.2
-    }, "<0.4").from("#projects-line > svg > path", {
-        drawSVG: "0% 0%",
-        duration: 0.6
-    }, "<").to("#projects-line > svg > path", {
-        drawSVG: "100% 100%",
-        duration: 0.6
-    }, ">-0.3").to("#projects-line > svg > path", {
-        opacity: 0,
-        duration: 0.3
-    }, ">-0.1");
-    return tl;
-}
-
-});
 
 
-
-//# sourceMappingURL=home.41b3f1d6.js.map

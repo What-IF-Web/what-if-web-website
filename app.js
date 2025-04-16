@@ -4,7 +4,7 @@
 var $parcel$modules = {};
 var $parcel$inits = {};
 
-var parcelRequire = $parcel$global["parcelRequire94c2"];
+var parcelRequire = $parcel$global["parcelRequire41e5"];
 
 if (parcelRequire == null) {
   parcelRequire = function(id) {
@@ -28,142 +28,192 @@ if (parcelRequire == null) {
     $parcel$inits[id] = init;
   };
 
-  $parcel$global["parcelRequire94c2"] = parcelRequire;
+  $parcel$global["parcelRequire41e5"] = parcelRequire;
 }
 
 var parcelRegister = parcelRequire.register;
-parcelRegister("bo0Av", function(module, exports) {
+parcelRegister("dLfAQ", function(module, exports) {
+module.exports = import("./home.ca146b45.js").then(()=>parcelRequire('civsJ'));
+
+});
+
+parcelRegister("gM0oY", function(module, exports) {
+module.exports = import("./case-studies-template.063e088e.js").then(()=>parcelRequire('d6o0T'));
+
+});
+
+parcelRegister("6K7ev", function(module, exports) {
+module.exports = import("./case-studies.6871ad75.js").then(()=>parcelRequire('akn5f'));
+
+});
+
+parcelRegister("byLuN", function(module, exports) {
+module.exports = import("./not-found.370b4c3f.js").then(()=>parcelRequire('8mohK'));
+
+});
+
+parcelRegister("cRhI0", function(module, exports) {
+module.exports = import("./pricing.b2f6fcd3.js").then(()=>parcelRequire('2OeG7'));
+
+});
+
+parcelRegister("ajT2m", function(module, exports) {
+module.exports = import("./contact.745455c8.js").then(()=>parcelRequire('52fBC'));
+
+});
+
+parcelRegister("ddgcr", function(module, exports) {
+module.exports = import("./blog-template.5ca35d96.js").then(()=>parcelRequire('9YKLP'));
+
+});
+
+parcelRegister("dC5Nh", function(module, exports) {
+module.exports = import("./services.5b559fd3.js").then(()=>parcelRequire('1Ir9z'));
+
+});
+
+parcelRegister("2rnOg", function(module, exports) {
+module.exports = import("./cloneables.6e59127f.js").then(()=>parcelRequire('81d6L'));
+
+});
+
+parcelRegister("5Hx1n", function(module, exports) {
+module.exports = import("./code-snippet.c00b3e08.js").then(()=>parcelRequire('iUjMs'));
+
+});
+
+parcelRegister("fRpXc", function(module, exports) {
+module.exports = import("./about.fc14305c.js").then(()=>parcelRequire('l0jEi'));
+
+});
+
+parcelRegister("6ehcg", function(module, exports) {
+module.exports = import("./resources.9142b457.js").then(()=>parcelRequire('1wgra'));
+
+});
+
 /*uncomment the below when in localhost */ // window.parceled = true;
 gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, ScrollSmoother);
+
+
+
 
 // ScrollSmoother.create({
 //   content: ".main-wrapper",
 //   smooth: 0.8,
 //   effects: false,
 // });
-/*this is where you add imports for localhost */ // import "./about";
-if (window.location.pathname === "/") (parcelRequire("9l4fu")).then(()=>{
-// Code for when the about script is loaded
-}).catch((err)=>{
-    console.error("Error loading the about script", err);
-});
-const $84a264530b3fb4fb$var$url = window.location.pathname;
-const $84a264530b3fb4fb$var$scriptsMap = new Map([
+/*this is where you add imports for localhost */ // import "./home";
+// const url = window.location.pathname;
+// Define mappings for scripts based on DOM selectors
+const $3e2aed16982f049f$var$scriptsMap = new Map([
     [
         ".section_home-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/home.js",
-            id: "home-script"
-        }
+        ()=>(parcelRequire("dLfAQ"))
     ],
     [
         ".section_case-study-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies-template.js",
-            id: "case-study-script"
-        }
+        ()=>(parcelRequire("gM0oY"))
     ],
     [
         ".section_case-studies",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/case-studies.js",
-            id: "case-studies-script"
-        }
+        ()=>(parcelRequire("6K7ev"))
     ],
     [
         ".section_not-found-header",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/not-found.js",
-            id: "not-found-script"
-        }
+        ()=>(parcelRequire("byLuN"))
     ]
 ]);
-const $84a264530b3fb4fb$var$urlScriptsMap = new Map([
+
+
+
+
+
+
+
+
+// Define mappings for scripts based on URL
+const $3e2aed16982f049f$var$urlScriptsMap = new Map([
     [
         "pricing",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/pricing.js",
-            id: "pricing-script"
-        }
+        ()=>(parcelRequire("cRhI0"))
     ],
     [
         "contact",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/contact.js",
-            id: "contact-script"
-        }
+        ()=>(parcelRequire("ajT2m"))
     ],
     [
         "blog",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/blog-template.js",
-            id: "blog-template-script"
-        }
+        ()=>(parcelRequire("ddgcr"))
     ],
     [
         "services",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/services.js",
-            id: "services-script"
-        }
+        ()=>(parcelRequire("dC5Nh"))
     ],
     [
         "cloneables",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/cloneables.js",
-            id: "cloneables-script"
-        }
+        ()=>(parcelRequire("2rnOg"))
     ],
     [
         "code-snippet",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/code-snippet.js",
-            id: "code-snippet-script"
-        }
+        ()=>(parcelRequire("5Hx1n"))
     ],
     [
         "about",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/about.js",
-            id: "about-script"
-        }
+        ()=>(parcelRequire("fRpXc"))
     ],
     [
         "resources",
-        {
-            src: "https://what-if-web.github.io/what-if-web-website/resources.js",
-            id: "resources-script"
-        }
+        ()=>(parcelRequire("6ehcg"))
     ]
 ]);
-function $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) setTimeout(()=>{
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
-    }, 400);
-}
-function $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id) {
-    if (!document.getElementById(id)) requestIdleCallback(()=>{
-        const script = document.createElement("script");
-        script.src = src;
-        script.id = id;
-        script.defer = true;
-        document.head.appendChild(script);
-    });
-}
-// Load scripts based on elements found in DOM
-$84a264530b3fb4fb$var$scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-        if (document.querySelector(selector)) $84a264530b3fb4fb$var$preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+// Load scripts based on DOM selectors
+$3e2aed16982f049f$var$scriptsMap.forEach(async (importFn, selector)=>{
+    if (document.querySelector(selector)) {
+        console.log(`Found selector: ${selector}`);
+        try {
+            await importFn();
+            console.log(`Loaded script for selector: ${selector}`);
+        } catch (error) {
+            console.error(`Failed to load script for selector: ${selector}`, error);
+        }
+    } else console.log(`Selector not found: ${selector}`);
+});
+// Load scripts based on URL
+const $3e2aed16982f049f$var$url = window.location.pathname;
+$3e2aed16982f049f$var$urlScriptsMap.forEach(async (importFn, key)=>{
+    if ($3e2aed16982f049f$var$url.includes(key)) try {
+        await importFn();
+        console.log(`Loaded script for URL: ${key}`);
+    } catch (error) {
+        console.error(`Failed to load script for URL: ${key}`, error);
     }
 });
-// Load scripts based on URL matching
-$84a264530b3fb4fb$var$urlScriptsMap.forEach(({ src: src, id: id }, key)=>{
-    if ($84a264530b3fb4fb$var$url.includes(key)) $84a264530b3fb4fb$var$preloadAndExecuteScript(src, id);
-});
+// function preloadAndExecuteScript(src, id) {
+//   if (!document.getElementById(id)) {
+//     requestIdleCallback(() => {
+//       const script = document.createElement("script");
+//       script.src = src;
+//       script.id = id;
+//       script.defer = true;
+//       document.head.appendChild(script);
+//     });
+//   }
+// }
+// // Load scripts based on elements found in DOM
+// scriptsMap.forEach((scriptInfo, selector) => {
+//   if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+//     if (document.querySelector(selector)) {
+//       preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+//     }
+//   }
+// });
+// // Load scripts based on URL matching
+// urlScriptsMap.forEach(({ src, id }, key) => {
+//   if (url.includes(key)) {
+//     preloadAndExecuteScript(src, id);
+//   }
+// });
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) new Swiper("#testimonials-slider", {
     loop: true,
@@ -194,14 +244,14 @@ if (document.querySelector("#testimonials-slider")) new Swiper("#testimonials-sl
     }
 });
 // Testimonial pagination color change based on variant
-const $84a264530b3fb4fb$var$variantField = document.querySelector(".wf-variant-dropdown");
-if ($84a264530b3fb4fb$var$variantField?.value === "White") {
+const $3e2aed16982f049f$var$variantField = document.querySelector(".wf-variant-dropdown");
+if ($3e2aed16982f049f$var$variantField?.value === "White") {
     const style = document.createElement("style");
     style.textContent = `.swiper-pagination-bullet { background-color: var(--background-color--background-black) !important; }`;
     document.head.appendChild(style);
 }
 // Confetti on form submit
-const $84a264530b3fb4fb$var$confettiEffect = ()=>{
+const $3e2aed16982f049f$var$confettiEffect = ()=>{
     setTimeout(()=>{
         confetti({
             particleCount: 150,
@@ -233,14 +283,14 @@ const $84a264530b3fb4fb$var$confettiEffect = ()=>{
     }, 1600);
 };
 document.querySelectorAll("#email-form, #footer-form").forEach((form)=>{
-    form.addEventListener("submit", $84a264530b3fb4fb$var$confettiEffect);
+    form.addEventListener("submit", $3e2aed16982f049f$var$confettiEffect);
 });
 // Navbar toggle
 document.addEventListener("click", (event)=>{
     if (event.target.matches(".navbar_menu-button, .button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
 });
 // Resources animations (only if the section is in view)
-const $84a264530b3fb4fb$var$resourcesObserver = new IntersectionObserver((entries)=>{
+const $3e2aed16982f049f$var$resourcesObserver = new IntersectionObserver((entries)=>{
     entries.forEach((entry)=>{
         if (entry.isIntersecting) {
             gsap.timeline({
@@ -254,17 +304,14 @@ const $84a264530b3fb4fb$var$resourcesObserver = new IntersectionObserver((entrie
                 duration: 1,
                 opacity: 0
             });
-            $84a264530b3fb4fb$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+            $3e2aed16982f049f$var$resourcesObserver.unobserve(entry.target); // Stop observing once the animation is triggered
         }
     });
 }, {
     threshold: 0.5
 });
-const $84a264530b3fb4fb$var$resourcesSection = document.querySelector(".section_resources");
-if ($84a264530b3fb4fb$var$resourcesSection) $84a264530b3fb4fb$var$resourcesObserver.observe($84a264530b3fb4fb$var$resourcesSection);
-document.addEventListener("click", function(event) {
-    if (event.target.matches(".button.is-small.is-navbar.is-open")) document.body.classList.toggle("no-scroll");
-});
+const $3e2aed16982f049f$var$resourcesSection = document.querySelector(".section_resources");
+if ($3e2aed16982f049f$var$resourcesSection) $3e2aed16982f049f$var$resourcesObserver.observe($3e2aed16982f049f$var$resourcesSection);
 $(".navbar_logo-link").click(function(e) {
     e.preventDefault();
     const linkUrl = $(this).attr("href");
@@ -558,14 +605,4 @@ window.Animations = {
     }
 };
 
-});
-parcelRegister("9l4fu", function(module, exports) {
-module.exports = Promise.resolve(require("./home.41b3f1d6.js")).then(()=>parcelRequire('kEdRm'));
 
-});
-
-
-
-parcelRequire("bo0Av");
-
-//# sourceMappingURL=app.js.map
