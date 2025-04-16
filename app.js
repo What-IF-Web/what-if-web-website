@@ -111,18 +111,6 @@ const urlScriptsMap = new Map([
 
 function preloadAndExecuteScript(src, id) {
   if (!document.getElementById(id)) {
-    setTimeout(() => {
-      const script = document.createElement("script");
-      script.src = src;
-      script.id = id;
-      script.defer = true;
-      document.head.appendChild(script);
-    }, 400);
-  }
-}
-
-function preloadAndExecuteScript(src, id) {
-  if (!document.getElementById(id)) {
     requestIdleCallback(() => {
       const script = document.createElement("script");
       script.src = src;
@@ -243,12 +231,6 @@ const resourcesSection = document.querySelector(".section_resources");
 if (resourcesSection) {
   resourcesObserver.observe(resourcesSection);
 }
-
-document.addEventListener("click", function (event) {
-  if (event.target.matches(".button.is-small.is-navbar.is-open")) {
-    document.body.classList.toggle("no-scroll");
-  }
-});
 
 $(".navbar_logo-link").click(function (e) {
   e.preventDefault();
