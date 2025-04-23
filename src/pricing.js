@@ -1,17 +1,5 @@
 //Pricing stuff
 
-//call modular animations
-document.addEventListener('DOMContentLoaded', () => {
-  if (window.Animations) {
-    Animations.animateCTA();
-    Animations.animateFooter();
-    Animations.animateServices();
-    Animations.animateProjects();
-    Animations.animateMorph();
-    Animations.animateFAQ();
-  }
-});
-
 gsap.defaults({
   ease: "power4.out",
   duration: 1,
@@ -28,6 +16,5 @@ let mm = gsap.matchMedia();
 
 // desktop
 mm.add("(min-width: 991px)", () => {
-   //pinned service element
    var servicesPinTrigger = gsap.timeline({scrollTrigger: {trigger: ".section_services", start: "top top", end: "bottom bottom", scrub: true, pin: ".services_content-top-wrapper", pinSpacing: false}});
 });

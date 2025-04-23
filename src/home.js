@@ -1,31 +1,9 @@
 //home page stuff
 
-// import { animateProjectsSection } from "https://what-if-web.github.io/what-if-web-website/animations/projectsLoad.js";
-
 gsap.defaults({
   ease: "power4.out",
   duration: 1,
 });
-
-// //call modular animations
-// document.addEventListener("DOMContentLoaded", () => {
-//   window.Webflow ||= [];
-//   window.Webflow.push(() => {
-//     if (window.Animations) {
-//       Animations.animateFooter();
-//       Animations.animateServices();
-//       Animations.animateTestimonial();
-//       Animations.animateProjects();
-//       Animations.animateMorph();
-//       Animations.animateCTA();
-//       Animations.animateBlogs();
-//     }
-//     $(".cta_heading-span.is-2 strong").append($(".cta_scribble"));
-//     $(".cta_heading-span.is-1 strong").append($(".cta_burst-lines"));
-//   });
-// });
-
-// animateProjectsSection();
 
 //hero section animation
 var heroSplit = new SplitText(".home-header_heading", { type: "lines" });
@@ -106,7 +84,6 @@ let mm = gsap.matchMedia();
 
 // desktop
 mm.add("(min-width: 991px)", () => {
-  //cta form + process animation starts here
   var ctaFormTrigger = gsap.timeline({
     scrollTrigger: {
       trigger: ".cta_form",
@@ -123,7 +100,6 @@ mm.add("(min-width: 991px)", () => {
       pinSpacing: false,
     },
   });
-  //contents fade in
   ctaFormLoad.from(
     ".cta_heading-span",
     {
@@ -136,7 +112,6 @@ mm.add("(min-width: 991px)", () => {
   );
   ctaFormLoad.from(".cta_form_input-wrapper", { y: 300, opacity: 0 }, "<");
   ctaFormLoad.from("#cta-form-bottom", { y: 400, opacity: 0 }, "<");
-  //contents fade out
   ctaFormLoad.to(
     ".cta_heading-span",
     {
@@ -190,7 +165,6 @@ mm.add("(min-width: 991px)", () => {
     { opacity: 0, duration: 0 },
     ">-0.02"
   );
-
   //process section animation
 
   var processLoad = gsap.timeline({
@@ -203,7 +177,6 @@ mm.add("(min-width: 991px)", () => {
     },
   });
 
-  //contents fade in
   processLoad.from(
     ".process_heading-span",
     {
@@ -219,14 +192,12 @@ mm.add("(min-width: 991px)", () => {
     { y: 300, scale: 0.9, opacity: 0 },
     "<"
   );
-  //contents fade out
   processLoad.to(
     ".process_heading-span",
     { y: -400, scale: 0.95, opacity: 0, duration: 1, stagger: 0.05 },
     ">"
   );
   processLoad.to(".process_critter-wrapper", { y: -200 }, "<+0.15");
-  //critter grows
   processLoad.to(
     ".process_critter",
     {
@@ -259,8 +230,6 @@ mm.add("(min-width: 991px)", () => {
     ">"
   );
 
-  //process + cta ends here
-
   //pinned service element
   var servicesPinTrigger = gsap.timeline({
     scrollTrigger: {
@@ -284,6 +253,11 @@ mm.add("(max-width: 991px)", () => {
     { y: 100, stagger: 0.1, opacity: 0 },
     0
   );
+  processMobile.from(
+    ".process_card", 
+    {y: 50, stagger: 0.1, opacity: 0}, 
+    "<0.25"
+  )
   //mobile cta load
   var ctaFormTrigger = gsap.timeline({
     scrollTrigger: {

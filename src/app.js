@@ -219,32 +219,6 @@ document.addEventListener("click", (event) => {
   }
 });
 
-// Resources animations
-const resourcesObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        gsap
-          .timeline({ scrollTrigger: { trigger: entry.target } })
-          .from(".resources_top-content > h1, .resources_top-content > p", {
-            y: 100,
-            stagger: 0.125,
-            ease: "power4.out",
-            duration: 1,
-            opacity: 0,
-          });
-        resourcesObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.5 }
-);
-
-const resourcesSection = document.querySelector(".section_resources");
-if (resourcesSection) {
-  resourcesObserver.observe(resourcesSection);
-}
-
 // Animations object
 window.Animations = {
   animateFooter() {
@@ -453,12 +427,10 @@ window.Animations = {
         y: 100,
         scale: 0.8,
         opacity: 0,
-        duration: 1,
-        ease: "power3.out",
       })
       .from(
         ".related-blog_list > .related-blog_item",
-        { y: 180, opacity: 0, duration: 1, ease: "power4.out", stagger: 0.125 },
+        { y: 180, opacity: 0, stagger: 0.125 },
         "<0.5"
       );
   },
@@ -497,4 +469,77 @@ window.Animations = {
       morphPath.to(".path1", { morphSVG: path });
     });
   },
+  animateCTAMobile () {
+    let mm = gsap.matchMedia();
+
+    mm.add("(max-width: 991px)", () => {
+      var ctaMobile = gsap.timeline({
+        scrollTrigger: { trigger: ".cta_component" },
+      });
+      ctaMobile.from(".cta_heading-span", { y: 100, opacity: 0, stagger: 0.1 }, 0);
+      ctaMobile.from(".cta_form_input-wrapper", { y: 150, opacity: 0 }, ">-0.25");
+      ctaMobile.from(
+        "#cta-form-bottom",
+        { y: 150, opacity: 0, duration: 0.75 },
+        ">-0.5"
+      );
+    });
+  },
+  animateSolutions () {
+    var solutionsLoad = gsap.timeline({
+      scrollTrigger: { trigger: ".section_solutions", start: "-=400 center" },
+    });
+    
+    solutionsLoad.from(
+      ".solutions_bespoke-item",
+      { y: 100, opacity: 0},
+      0
+    );
+    solutionsLoad.from(
+      ".solutions_bespoke-item > h2, .solutions_bespoke-item > p",
+      { y: 80, opacity: 0, stagger: "0.05" },
+      "<0.25"
+    );
+    solutionsLoad.from(
+      ".solutions_service-item",
+      { y: 100, opacity: 0, stagger: "0.125" },
+      0.35
+    );
+    solutionsLoad.from(
+      ".solutions_service-card > .solutions_service-icon-wrapper > .solutions_service-icon",
+      { y: 50, opacity: 0, stagger: "0.125" },
+      0.25
+    );
+  },
+  animateTechStack () {
+    var csTechStack = gsap.timeline({
+      scrollTrigger: { trigger: ".section_tech-stack", start: "top-=400 center" },
+    });
+    
+    csTechStack.from(
+      "#tech-stack-wrapper > h2",
+      { y: 80, opacity: 0},
+      0
+    );
+    csTechStack.from(
+      ".tech-stack_subheading-wrapper > p",
+      { y: 50, opacity: 0},
+      0.25
+    );
+    csTechStack.from(
+      ".tech-stack_item",
+      { y: 100, opacity: 0, stagger: 0.125},
+      0.5
+    );
+    csTechStack.from(
+      ".tech-stack_image",
+      { y: 30, opacity: 0, stagger: 0.125},
+      "<"
+    );
+    csTechStack.from(
+      ".tech-stack_item-front > h3",
+      { y: 50, opacity: 0, stagger: 0.125},
+      "<0.125"
+    );    
+  }
 };
