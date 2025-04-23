@@ -279,32 +279,18 @@ mm.add("(max-width: 991px)", () => {
   var processMobile = gsap.timeline({
     scrollTrigger: { trigger: ".process_component" },
   });
-
   processMobile.from(
     ".process_heading-span",
     { y: 100, stagger: 0.1, opacity: 0 },
     0
   );
-
   //mobile cta load
-  var ctaMobile = gsap.timeline({
-    scrollTrigger: { trigger: ".cta_component" },
-  });
   var ctaFormTrigger = gsap.timeline({
     scrollTrigger: {
       trigger: ".cta_form",
       start: "-=400 center",
     },
   });
-
-  ctaMobile.from(".cta_heading-span", { y: 100, opacity: 0, stagger: 0.1 }, 0);
-  ctaMobile.from(".cta_form_input-wrapper", { y: 150, opacity: 0 }, ">-0.25");
-  ctaMobile.from(
-    "#cta-form-bottom",
-    { y: 150, opacity: 0, duration: 0.75 },
-    ">-0.5"
-  );
-
   ctaFormTrigger.from(
     "#cta-form-orange",
     { color: "#0f2756", duration: 0.125 },
@@ -346,3 +332,4 @@ mm.add("(max-width: 991px)", () => {
     ">-0.02"
   );
 });
+

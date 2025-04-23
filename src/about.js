@@ -1,5 +1,13 @@
 //about page scroll section
 
+//call modular animations
+document.addEventListener('DOMContentLoaded', () => {
+  if (window.Animations) {
+    Animations.animateFooter();
+    Animations.animateTestimonial();
+  }
+});
+
 gsap.defaults({
   ease: "power4.out",
   duration: 1,
