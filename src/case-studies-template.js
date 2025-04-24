@@ -54,19 +54,3 @@ csTemplateBody.from(
   { y: 25, opacity: 0, stagger: 0.125 },
   "<0.125"
 );
-
-let gm = gsap.matchMedia();
-
-// desktop
-gm.add("(min-width: 991px)", () => {
-  var contentsPin = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".case-study_component",
-      start: "top top",
-      end: "bottom+=520 bottom",
-      scrub: true,
-      pin: ".table-of-contents_wrapper",
-      pinSpacing: false,
-    },
-  });
-});
