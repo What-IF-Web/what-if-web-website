@@ -676,6 +676,11 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //   MotionPathPlugin,
 //   MorphSVGPlugin
 // );
+// Example usage for the home section
+loadScriptWhenInView(".section_home-header", {
+    src: "home.js",
+    id: "home-script"
+});
 const url = window.location.pathname;
 // Define mappings for scripts based on DOM selectors
 const scriptsMap = new Map([
@@ -776,16 +781,26 @@ function preloadAndExecuteScript(src, id) {
         document.head.appendChild(script);
     }
 }
-// Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector)=>{
-    if (scriptInfo && scriptInfo.src && scriptInfo.id) {
+// Function to load the script based on current URL path
+const loadScriptForCurrentPage = ()=>{
+    const currentPath = window.location.pathname.split("/").pop(); // Get the last part of the URL path
+    // Check if there's a matching script for the current path
+    if (urlScriptsMap.has(currentPath)) {
+        const scriptInfo = urlScriptsMap.get(currentPath);
+        preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+    }
+};
+// Function to load scripts based on DOM selectors
+const loadScriptsForSections = ()=>{
+    scriptsMap.forEach((scriptInfo, selector)=>{
         const element = document.querySelector(selector);
         if (element) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
-});
-// Load scripts based on URL matching
-urlScriptsMap.forEach(({ src, id }, key)=>{
-    if (url.includes(key)) preloadAndExecuteScript(src, id);
+    });
+};
+// Execute the functions
+window.addEventListener("DOMContentLoaded", ()=>{
+    loadScriptForCurrentPage(); // Load scripts based on the URL
+    loadScriptsForSections(); // Load scripts based on DOM selectors
 });
 // Fallback for homepage to ensure home.js loads
 if (url === "/" || url === "/home") {
