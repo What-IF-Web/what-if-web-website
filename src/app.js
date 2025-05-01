@@ -10,12 +10,6 @@
 //   MorphSVGPlugin
 // );
 
-// Example usage for the home section
-loadScriptWhenInView(".section_home-header", {
-  src: "home.js",
-  id: "home-script",
-});
-
 const url = window.location.pathname;
 
 // Define mappings for scripts based on DOM selectors
