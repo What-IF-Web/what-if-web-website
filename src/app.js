@@ -10,6 +10,8 @@
 //   MorphSVGPlugin
 // );
 
+console.log("localhost");
+
 const url = window.location.pathname;
 
 // Define mappings for scripts based on DOM selectors
@@ -104,32 +106,45 @@ const urlScriptsMap = new Map([
   ],
 ]);
 
+const loadedScripts = new Set();
+
 function preloadAndExecuteScript(src, id) {
-  if (!document.getElementById(id)) {
+  if (!loadedScripts.has(id)) {
     const script = document.createElement("script");
     script.src = src;
     script.id = id;
     script.defer = true;
     document.head.appendChild(script);
+    loadedScripts.add(id);
   }
 }
 
-// Load scripts based on elements found in DOM
-scriptsMap.forEach((scriptInfo, selector) => {
-  if (scriptInfo && scriptInfo.src && scriptInfo.id) {
-    const element = document.querySelector(selector);
-    if (element) {
-      preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
+// Combine DOM-based and URL-based script loading
+function loadScripts() {
+  // DOM-based scripts
+  const selectors = Array.from(scriptsMap.keys());
+  selectors.forEach((selector) => {
+    if (document.querySelector(selector)) {
+      const { src, id } = scriptsMap.get(selector);
+      preloadAndExecuteScript(src, id);
     }
-  }
-});
+  });
 
-// Load scripts based on URL matching
-urlScriptsMap.forEach(({ src, id }, key) => {
-  if (url.includes(key)) {
-    preloadAndExecuteScript(src, id);
+  // URL-based scripts
+  urlScriptsMap.forEach(({ src, id }, key) => {
+    if (url.includes(key)) {
+      preloadAndExecuteScript(src, id);
+    }
+  });
+
+  // Homepage fallback
+  if (url === "/" || url === "/home") {
+    const scriptInfo = scriptsMap.get(".section_home-header");
+    if (scriptInfo) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
   }
-});
+}
+
+loadScripts();
 
 // Fallback for homepage to ensure home.js loads
 if (url === "/" || url === "/home") {
