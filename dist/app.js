@@ -667,9 +667,15 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"bNKaB":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ window.parceled = true;
-// Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin, MotionPathPlugin, MorphSVGPlugin);
+/*uncomment the below when in localhost */ // window.parceled = true;
+// // Register GSAP plugins
+// gsap.registerPlugin(
+//   ScrollTrigger,
+//   SplitText,
+//   DrawSVGPlugin,
+//   MotionPathPlugin,
+//   MorphSVGPlugin
+// );
 const url = window.location.pathname;
 // Define mappings for scripts based on DOM selectors
 const scriptsMap = new Map([
