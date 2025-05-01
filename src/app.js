@@ -1,15 +1,15 @@
 /*uncomment the below when in localhost */
 // window.parceled = true;
 
-// Register GSAP plugins
-gsap.registerPlugin(
-  ScrollTrigger,
-  SplitText,
-  DrawSVGPlugin,
-  MotionPathPlugin,
-  ScrollSmoother,
-  MorphSVGPlugin
-);
+// // Register GSAP plugins
+// gsap.registerPlugin(
+//   ScrollTrigger,
+//   SplitText,
+//   DrawSVGPlugin,
+//   MotionPathPlugin,
+//   MorphSVGPlugin
+// );
+
 
 const url = window.location.pathname;
 
