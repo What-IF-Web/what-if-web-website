@@ -667,7 +667,7 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 }
 
 },{}],"bNKaB":[function(require,module,exports,__globalThis) {
-/*uncomment the below when in localhost */ // window.parceled = true;
+/*uncomment the below when in localhost */ window.parceled = true;
 // // Register GSAP plugins
 // gsap.registerPlugin(
 //   ScrollTrigger,
@@ -676,7 +676,6 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 //   MotionPathPlugin,
 //   MorphSVGPlugin
 // );
-console.log("localhost");
 const url = window.location.pathname;
 // Define mappings for scripts based on DOM selectors
 const scriptsMap = new Map([
@@ -771,6 +770,13 @@ const urlScriptsMap = new Map([
 const loadedScripts = new Set();
 function preloadAndExecuteScript(src, id) {
     if (!loadedScripts.has(id)) {
+        // Add preload link
+        const preloadLink = document.createElement("link");
+        preloadLink.rel = "preload";
+        preloadLink.href = src;
+        preloadLink.as = "script";
+        document.head.appendChild(preloadLink);
+        // Load script
         const script = document.createElement("script");
         script.src = src;
         script.id = id;
@@ -793,18 +799,8 @@ function loadScripts() {
     urlScriptsMap.forEach(({ src, id }, key)=>{
         if (url.includes(key)) preloadAndExecuteScript(src, id);
     });
-    // Homepage fallback
-    if (url === "/" || url === "/home") {
-        const scriptInfo = scriptsMap.get(".section_home-header");
-        if (scriptInfo) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-    }
 }
 loadScripts();
-// Fallback for homepage to ensure home.js loads
-if (url === "/" || url === "/home") {
-    const scriptInfo = scriptsMap.get(".section_home-header");
-    if (scriptInfo) preloadAndExecuteScript(scriptInfo.src, scriptInfo.id);
-}
 // Testimonial slider initialization
 if (document.querySelector("#testimonials-slider")) try {
     new Swiper("#testimonials-slider", {
@@ -892,49 +888,45 @@ document.addEventListener("click", (event)=>{
 // Animations object
 window.Animations = {
     animateFooter () {
+        const footer = document.querySelector(".footer_component");
+        if (!footer) return;
         const footerLoad = gsap.timeline({
             scrollTrigger: {
-                trigger: ".footer_component",
+                trigger: footer,
                 start: "-=400 center"
             }
         });
-        const footerSplit = new SplitText(".footer_top-wrapper > h2", {
-            type: "lines"
-        });
-        footerLoad.from(footerSplit.lines, {
+        const heading = footer.querySelector(".footer_top-wrapper > h2");
+        if (heading) {
+            const footerSplit = new SplitText(heading, {
+                type: "lines"
+            });
+            footerLoad.from(footerSplit.lines, {
+                scale: 0.8,
+                opacity: 0,
+                y: 100,
+                stagger: 0.125,
+                ease: "power3.out",
+                duration: 1
+            });
+        }
+        footerLoad.from(gsap.utils.toArray([
+            ".footer_top-wrapper > p",
+            ".footer_form_component"
+        ]), {
             scale: 0.8,
             opacity: 0,
             y: 100,
-            stagger: 0.125,
             ease: "power3.out",
-            duration: 1
-        }, 0);
-        footerLoad.from(".footer_top-wrapper > p", {
-            scale: 0.8,
+            duration: 1,
+            stagger: 0.125
+        }, heading ? "<0.25" : 0);
+        footerLoad.from(gsap.utils.toArray(".footer_links-wrapper > a, .footer_contact-wrapper > .footer_contact-item"), {
             opacity: 0,
-            y: 100,
-            ease: "power3.out",
-            duration: 1
-        }, "<0.25");
-        footerLoad.from(".footer_form_component", {
-            scale: 0.8,
-            opacity: 0,
-            y: 100,
-            ease: "power3.out",
-            duration: 1
-        }, "<0.125");
-        footerLoad.from(".footer_links-wrapper > a", {
-            opacity: 0,
-            stagger: 0.125,
-            ease: "power4.out",
-            duration: 0.5
-        }, "<0.5");
-        footerLoad.from(".footer_contact-wrapper > .footer_contact-item", {
             y: 50,
-            opacity: 0,
-            stagger: 0.125,
             ease: "power4.out",
-            duration: 1
+            duration: 0.5,
+            stagger: 0.125
         }, "<0.5");
     },
     animateProjects () {
@@ -1043,53 +1035,68 @@ window.Animations = {
         }, "<0.25");
     },
     animateCTA () {
+        const section = document.querySelector(".section_quote-cta");
+        if (!section) return;
         const ctaLoad = gsap.timeline({
             scrollTrigger: {
-                trigger: ".section_quote-cta",
+                trigger: section,
                 start: "-=400 center"
             }
         });
-        ctaLoad.from(".quote-cta_component", {
+        const component = section.querySelector(".quote-cta_component");
+        if (component) ctaLoad.from(component, {
             y: 100,
-            scale: 0.9
+            scale: 0.9,
+            ease: "power3.out",
+            duration: 1
         });
-        ctaLoad.fromTo(".quote-cta_heading-wrapper", {
+        const headingWrapper = section.querySelector(".quote-cta_heading-wrapper");
+        if (headingWrapper) ctaLoad.fromTo(headingWrapper, {
             opacity: 0,
             scale: 0,
             y: 400
         }, {
             opacity: 1,
             scale: 1,
-            y: 0
-        }, "<+0.125");
-        ctaLoad.from(".quote-cta_subheading", {
+            y: 0,
+            ease: "power3.out",
+            duration: 1
+        }, component ? "<0.125" : 0);
+        const subheading = section.querySelector(".quote-cta_subheading");
+        if (subheading) ctaLoad.from(subheading, {
             y: 150,
-            duration: 0.875,
-            opacity: 0
-        }, "<.25");
-        ctaLoad.from("#ctaButton", {
+            opacity: 0,
+            ease: "power3.out",
+            duration: 0.875
+        }, "<0.25");
+        const ctaButton = section.querySelector("#ctaButton");
+        if (ctaButton) ctaLoad.from(ctaButton, {
             y: 200,
-            duration: 0.875,
-            opacity: 0
+            opacity: 0,
+            ease: "power3.out",
+            duration: 0.875
         }, "<0.125");
-        ctaLoad.to(".quote-cta_heading > .text-color-alternate", {
+        const alternateText = section.querySelector(".quote-cta_heading > .text-color-alternate");
+        if (alternateText) ctaLoad.to(alternateText, {
             scale: 1.1,
             repeat: 1,
             yoyo: true,
             ease: "power2.inOut",
             duration: 0.3
-        }, ">-0.5");
-        ctaLoad.from(".quote-cta_heading > .text-color-alternate", {
+        }, ">-0.5").from(alternateText, {
             color: "#fff9f3",
             duration: 0.125
-        }, "<.125");
-        ctaLoad.from("#ctaScribble", {
-            drawSVG: "0% 0%"
-        }, "<");
-        ctaLoad.to("#ctaScribble", {
-            drawSVG: "100% 100%"
-        }, ">-0.3");
-        ctaLoad.to("#ctaScribble", {
+        }, "<0.125");
+        const scribble = section.querySelector("#ctaScribble");
+        if (scribble) ctaLoad.from(scribble, {
+            drawSVG: "0% 0%",
+            duration: 0.6,
+            ease: "power3.out"
+        }, "<").to(scribble, {
+            drawSVG: "100% 100%",
+            duration: 0.6,
+            ease: "power3.out"
+        }, ">-0.3").to(scribble, {
             opacity: 0,
             duration: 0
         }, ">-0.02");
